@@ -1,0 +1,35 @@
+#@ Nodejs
+
+" window {{{
+nvm install latest
+nvm use v11.9.0
+npm -g i nrm
+nrm use taobao
+}}}
+
+" linux {{{
+git clone https://github.com/creationix/nvm.git /opt/nvm
+nvm install latest
+nvm alias default v11.9.0
+npm -g i nrm
+nrm use taobao
+npm config set "@fortawesome:registry" https://npm.fontawesome.com/ && \
+npm config set "//npm.fontawesome.com/:_authToken" TOKEN
+npm -g i --save-dev @fortawesome/fontawesome-free
+}}}
+
+
+npm -g i yarn
+npm -g i rimraf
+npm -g i neovim
+npm -g i wcwidth
+npm -g i remark
+npm -g i remark-cli
+npm -g i remark-stringify
+npm -g i bash-language-server
+npm -g i import-js
+npm -g i javascript-typescript-langserver
+npm -g i vscode-css-languageserver-bin
+
+yarn global add prettier
+yarn global add diagnostic-languageserver
