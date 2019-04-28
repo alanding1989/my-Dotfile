@@ -152,8 +152,6 @@ echo " "
 # Conda
 export PATH="/home/alanding/software/anaconda3/envs/py36/bin:$PATH"
 . /home/alanding/software/anaconda3/etc/profile.d/conda.sh
-export PYTHON_HOST_PROG="/home/alanding/software/anaconda3/envs/py27/bin/python2.7"
-export PYTHON3_HOST_PROG="/home/alanding/software/anaconda3/envs/py36/bin/python3.6"
 
 # CUDA
 export PATH=/home/alanding/software/cuda/cuda-10.0/bin${PATH:+:${PATH}}
