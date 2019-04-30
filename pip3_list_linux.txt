@@ -29,38 +29,12 @@ pyspark
 coverage
 wordcloud
 jupyter
-jupyter jupyter_contrib_nbextensions
+jupyter_contrib_nbextensions
+asciinema
 
 git+https://github.com/google/vimdoc
 tensorflow-gpu
-https://download.pytorch.org/whl/cu100/torch-1.0.1-cp36-cp36m-win_amd64.whl torchvision
+https://download.pytorch.org/whl/cu100/torch-1.0.1.post2-cp36-cp36m-linux_x86_64.whl
+torchvision
 
 
-asciinema
-vimiv
-
-ansicolor
-appdirs
-asn1crypto
-attrs
-certifi
-cffi
-chardet
-click
-codecov
-covimerage
-cryptography
-greenlet
-idna
-msgpack-python
-olefile
-packaging
-Pillow
-ply
-pycparser
-pygobject
-pyOpenSSL
-pyparsing
-python-sane
-PyYAML
-six

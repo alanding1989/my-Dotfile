@@ -1,0 +1,22 @@
+BashSupport
+GrepConsole
+IdeaVim
+StringManipulation
+KJump
+
+python-ce
+mypy-plugin
+pylint-plugin
+
+intellij-makefile
+idea-multimarkdown
+markdown
+NodeJS
+Scala
+
+Find Pull Request
+idea-gitignore
+repo
+
+TeamCityIntegration
+Key-Promoter-X

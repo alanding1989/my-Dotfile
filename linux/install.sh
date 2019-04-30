@@ -9,7 +9,7 @@ if [ ! x 'usr/bin/git']; then
 fi
 
 rm -r /tmp/alan-dotfile
-git clone git@github.com:alanding1989/alan-dotfile.git /tmp/alan-dotfile
+git clone git@github.com:alanding1989/my-Dotfile.git /tmp/my-Dotfile
 cd /tmp/alan-dotfile
 
 if [ ! -d "./log" ]; then

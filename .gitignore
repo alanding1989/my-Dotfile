@@ -31,3 +31,4 @@ build/
 .coverage.covimerage
 *.swp
 .gtm/
+.mypy_cache
