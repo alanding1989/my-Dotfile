@@ -17,7 +17,7 @@
 
 # Path to shared boot directory (default: ~/.sbt/boot in 0.11 series)
 #
--sbt-boot /home/alanding/.sbt/boot  
+-sbt-boot /home/alanding/.sbt/boot
 
 # Path to local Ivy repository (default: ~/.ivy2)
 #
@@ -40,9 +40,9 @@
 
 # Scala version (default: latest release)
 #
-#-scala-home <path>        
-#-scala-version <version>
+-scala-home /opt/lang-tools/scala/scala-2.12.8
+-scala-version 2.12.8
 
 # java version (default: java from PATH, currently $(java -version |& grep version))
 #
-#-java-home <path>
+-java-home /opt/lang-tools/java/jdk

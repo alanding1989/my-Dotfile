@@ -30,6 +30,7 @@ coverage
 wordcloud
 jupyter
 jupyter_contrib_nbextensions
+Send2Trash
 asciinema
 
 git+https://github.com/google/vimdoc

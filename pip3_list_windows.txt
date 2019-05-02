@@ -30,6 +30,7 @@ pyspark-stubs
 coverage
 codecov
 wordcloud
+Send2Trash
 jupyter
 jupyter_contrib_nbextensions
 

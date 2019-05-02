@@ -7,7 +7,7 @@
 
 
 git clone git@github.com:alanding1989/SpaceVim.git %HOME%\.SpaceVim
-git clone git@github.com:alanding1989/my-Vim.git %HOME%\vimfiles
+git clone git@github.com:alanding1989/my-Vim.git %HOME%\.SpaceVim.d
 
 mklink /D %HOME%\AppData\Local\nvim %HOME%\.SpaceVim
-mklink /D %HOME%\.SpaceVim.d %HOME%\vimfiles
+mklink /D %HOME%\vimfiles %HOME%\.SpaceVim.d

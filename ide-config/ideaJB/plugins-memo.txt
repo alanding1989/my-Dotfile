@@ -1,16 +1,21 @@
-BashSupport
+" editor
 GrepConsole
 IdeaVim
 StringManipulation
+idea-file-path-autocomplete
 KJump
 
+
+" lang
 python-ce
 mypy-plugin
 pylint-plugin
 
 intellij-makefile
-idea-multimarkdown
+
+BashSupport
 markdown
+idea-multimarkdown
 NodeJS
 Scala
 
@@ -18,5 +23,7 @@ Find Pull Request
 idea-gitignore
 repo
 
+Docker
 TeamCityIntegration
+
 Key-Promoter-X
