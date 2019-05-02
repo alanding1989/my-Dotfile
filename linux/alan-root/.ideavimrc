@@ -36,12 +36,12 @@ noremap <c-a> ^
 noremap <c-e> $
 
 " insert mode
-inoremap <c-b> <c-[>:action EditorLeft<cr>a
-inoremap <c-l> <c-[>:action EditorRight<cr>a
+inoremap <c-b> <ESC>:action EditorLeft<CR>
+inoremap <c-l> <ESC>:action EditorRight<CR>
 inoremap <c-a> <esc>^i
-inoremap <c-e> <esc>g_a
+inoremap <c-e> <end>
 inoremap <c-d> <del>
-inoremap <c-f> <c-[>:action EditorRight<cr>a
+inoremap <c-f> <ESC>:action EditorRight<CR>
 inoremap <c-_> <c-k>
 
 " faster command mode
@@ -60,41 +60,46 @@ nnoremap <leader><tab> gt
 nnoremap <leader>q     gT
 
 " window management
-nnoremap qq :close<cr>
-nnoremap qh :action Exit<cr>
-nnoremap qp :action CloseProject<cr>
-nnoremap qo :action CloseAllEditorsButActive<cr><c-[>
+nnoremap qq :close<CR>
+nnoremap qd :close<CR>
+nnoremap qe ggVGd
+nnoremap qh :action Exit<CR>
+nnoremap qp :action CloseProject<CR>
+nnoremap qo :action CloseAllEditorsButActive<CR>
 
-nnoremap sf :action OpenFile<cr><c-[>
-nnoremap sv :vs<cr>
-nnoremap sp :sp<cr>
-nnoremap sl :nohl<cr>
+nnoremap sl :action NextTab<CR>
+nnoremap sh :action PreviousTab<CR>
+nnoremap sm :action MaximizeToolWindow<CR>
+nnoremap sf :action OpenFile<CR>
+nnoremap sv :vs<CR>
+nnoremap sp :sp<CR>
+nnoremap su :nohl<CR>
 
-nnoremap <c-w>r :action MoveTabRight<cr>
-nnoremap <c-w>d :action MoveTabDown<cr>
+nnoremap <c-w>r :action MoveTabRight<CR>
+nnoremap <c-w>d :action MoveTabDown<CR>
 
 " fast save
-inoremap qw <c-[>:action SaveAll<cr>
+inoremap qw <ESC>:action SaveAll<CR>
 
 " file management
-nnoremap <space>fo    :action OpenFile<cr>
-nnoremap <space>fr    :action RecentFiles<cr>
-nnoremap <space>fp    :action ShowFilePath<cr>
-nnoremap <space>fc    :action ReopenClosedTab<cr>
-nnoremap <space>fn    :action NewFile<cr>
-nnoremap <space>fd    :action NewDir<cr>
-nnoremap <space>fw    :action OpenInBrowser<cr>
-nnoremap <space>ft    :action GotoTest<cr>
+nnoremap <space>fo    :action OpenFile<CR>
+nnoremap <space>fr    :action RecentFiles<CR>
+nnoremap <space>fp    :action ShowFilePath<CR>
+nnoremap <space>fc    :action ReopenClosedTab<CR>
+nnoremap <space>fn    :action NewFile<CR>
+nnoremap <space>fd    :action NewDir<CR>
+nnoremap <space>fw    :action OpenInBrowser<CR>
+nnoremap <space>ft    :action GotoTest<CR>
 
 
 " edit
-noremap J :action EditorJoinLines<cr>
+noremap J :action EditorJoinLines<CR>
 
-noremap <space>cc :action CommentByLineComment<cr>
-noremap <space>cl :action CommentByLineComment<cr>
-noremap <space>cp :action CommentByBlockComment<cr>
+noremap <space>cc :action CommentByLineComment<CR>
+noremap <space>cl :action CommentByLineComment<CR>
+noremap <space>cp :action CommentByBlockComment<CR>
 
-nnoremap <space>hh :action HighlightUsagesInFile<cr>
+nnoremap <space>hh :action HighlightUsagesInFile<CR>
 
 nnoremap <tab>o o<ESC>
 nnoremap <tab>p O<ESC>j
@@ -111,22 +116,23 @@ noremap <leader>P "*P
 xnoremap < <gv
 xnoremap > >gv|
 " Use tab for indenting in visual mode
-xnoremap <Tab>   >gv|
-xnoremap <S-Tab> <gv
+xnoremap <c-l> >gv|
+xnoremap <c-h> <gv
 nnoremap > >>_
 nnoremap < <<_
 
 " run
-nnoremap <space>rr :action Run<cr>
-nnoremap <space>rj :action RunClass<cr>
-nnoremap <space>ro :action Rerun<cr>
-nnoremap <space>rk :action RunConfiguration<cr>
+nnoremap <space>rr :action Run<CR>
+nnoremap <space>rc :action RunClass<CR>
+nnoremap <space>ra :action Rerun<CR>
+nnoremap <space>re :action RunConfiguration<CR>
+nnoremap <space>rq :action Stop<CR>
 
 " debug
 nnoremap <space>dk :action Resume<CR>
-nnoremap <space>dd :action Debug<cr>
-nnoremap <space>dj :action DebugClass<cr>
-nnoremap <space>dk :action ChooseDebugConfiguration<cr>
+nnoremap <space>dd :action Debug<CR>
+nnoremap <space>dj :action DebugClass<CR>
+nnoremap <space>dk :action ChooseDebugConfiguration<CR>
 nnoremap <space>do :action StepOver<CR>
 nnoremap <space>di :action SmartStepInto<CR>
 nnoremap <space>de :action EvaluateExpression<CR>
@@ -144,73 +150,73 @@ nnoremap [e        :action GotoPreviousError<CR>
 
 
 " search
-nnoremap <space>sg :action SearchEverywhere<cr>
-nnoremap <space>sr :action ReplaceInPath<cr>
-nnoremap <space>su :action FindUsages<cr>
-nnoremap <space>sc :action GotoClass<cr>
-nnoremap <space>sf :action GotoFile<cr>
-nnoremap <space>ss :action GotoSymbol<cr>
-nnoremap <space>sa :action GotoAction<cr>
-nnoremap <space>sp :action SelectInProjectView<cr>
-nnoremap <space>sh :action FileStructurePopup<cr>
-nnoremap <space>sw :action SearchWithGoogle<cr>
+nnoremap <space>sg :action SearchEverywhere<CR>
+nnoremap <space>sr :action ReplaceInPath<CR>
+nnoremap <space>su :action FindUsages<CR>
+nnoremap <space>sc :action GotoClass<CR>
+nnoremap <space>sf :action GotoFile<CR>
+nnoremap <space>ss :action GotoSymbol<CR>
+nnoremap <space>sa :action GotoAction<CR>
+nnoremap <space>sp :action SelectInProjectView<CR>
+nnoremap <space>sh :action FileStructurePopup<CR>
+nnoremap <space>sw :action SearchWithGoogle<CR>
 
-nnoremap <space>j  :action MethodDown<cr>
-nnoremap <space>k  :action MethodUp<cr>
+nnoremap <space>j  :action MethodDown<CR>
+nnoremap <space>k  :action MethodUp<CR>
 
 " generate
-nnoremap <space>lgk  :action Generate<cr>
-nnoremap <space>lgg  :action GenerateGetter<cr>
-nnoremap <space>lgs  :action GenerateSetter<cr>
-nnoremap <space>lga  :action GenerateGetterAndSetter<cr>
+nnoremap <space>lgk  :action Generate<CR>
+nnoremap <space>lgg  :action GenerateGetter<CR>
+nnoremap <space>lgs  :action GenerateSetter<CR>
+nnoremap <space>lga  :action GenerateGetterAndSetter<CR>
 " code refactoring
-nnoremap <space>lr   :action Refactorings.QuickListPopupAction<cr>
-nnoremap <space>lc   :action CheckStyleCurrentFileAction<cr>
+nnoremap <space>lr   :action Refactorings.QuickListPopupAction<CR>
+nnoremap <space>lc   :action CheckStyleCurrentFileAction<CR>
 " format =
-nnoremap <space>lf   :action ReformatCode<cr>
+nnoremap <space>bf   :action ReformatCode<CR>
 nnoremap g= ggVG=``
 
 " code navigation
-nnoremap <leader>gg :action GotoDeclaration<cr>
-nnoremap <leader>gi :action GotoImplementation<cr>
-nnoremap <leader>gu :action GotoSuperMethod<cr>
-nnoremap <leader>gd :action GotoTypeDeclaration<cr>
-nnoremap <leader>gm :action MethodHierarchy<cr>
-nnoremap <leader>gt :action TypeHierarchy<cr>
-nnoremap <leader>gc :action CallHierarchy<cr>
+nnoremap <leader>gg :action GotoDeclaration<CR>
+nnoremap <leader>gi :action GotoImplementation<CR>
+nnoremap <leader>gu :action GotoSuperMethod<CR>
+nnoremap <leader>gd :action GotoTypeDeclaration<CR>
+nnoremap <leader>gm :action MethodHierarchy<CR>
+nnoremap <leader>gt :action TypeHierarchy<CR>
+nnoremap <leader>gc :action CallHierarchy<CR>
 
-nnoremap gg         :action GotoDeclaration<cr>
-nnoremap gi         :action GotoImplementation<cr>
-nnoremap gu         :action GotoSuperMethod<cr>
-nnoremap gd         :action GotoTypeDeclaration<cr>
-nnoremap gm         :action MethodHierarchy<cr>
-nnoremap gt         :action TypeHierarchy<cr>
-nnoremap gc         :action CallHierarchy<cr>
+nnoremap gd         :action GotoDeclaration<CR>
+nnoremap gi         :action GotoImplementation<CR>
+nnoremap gu         :action GotoSuperMethod<CR>
+nnoremap gg         :action GotoTypeDeclaration<CR>
+nnoremap gm         :action MethodHierarchy<CR>
+nnoremap gt         :action TypeHierarchy<CR>
+nnoremap gc         :action CallHierarchy<CR>
 
 
 " git
-nnoremap <space>gi  :action Git.Init<cr>
-nnoremap <space>ga  :action Git.Add<cr>
-nnoremap <space>gl  :action Git.Pull<cr>
-nnoremap <space>gf  :action Gitflow.OpenGitflowPopup<cr>
-nnoremap <space>ghf :action Github.Open.In.Browser<cr>
-nnoremap <space>gq  :action Vcs.QuickListPopupAction<cr>
-nnoremap <space>gk  :action VcsShowPrevChangeMarker<cr>
-nnoremap <space>gj  :action VcsShowNextChangeMarker<cr>
-nnoremap [g         :action VcsShowPrevChangeMarker<cr>
-nnoremap ]g         :action VcsShowNextChangeMarker<cr>
+nnoremap <space>gi  :action Git.Init<CR>
+nnoremap <space>ga  :action Git.Add<CR>
+nnoremap <space>gl  :action Git.Pull<CR>
+nnoremap <space>gf  :action Gitflow.OpenGitflowPopup<CR>
+nnoremap <space>ghf :action Github.Open.In.Browser<CR>
+nnoremap <space>gq  :action Vcs.QuickListPopupAction<CR>
+nnoremap <space>gk  :action VcsShowPrevChangeMarker<CR>
+nnoremap <space>gj  :action VcsShowNextChangeMarker<CR>
+nnoremap [g         :action VcsShowPrevChangeMarker<CR>
+nnoremap ]g         :action VcsShowNextChangeMarker<CR>
 
 
 " options
-nnoremap <space>ts :action EditorToggleUseSoftWraps<cr>
-nnoremap <space>tw :action EditorToggleShowWhitespaces<cr>
+nnoremap <space>ts :action EditorToggleUseSoftWraps<CR>
+nnoremap <space>tw :action EditorToggleShowWhitespaces<CR>
 
-nnoremap <leader>a :action HideAllWindows<cr>
+nnoremap <leader>a :action HideAllWindows<CR>
 
 " built-in navigation to navigate items works better
 " use idea map
-" nnoremap <c-o> :action Back<cr>
-" nnoremap <c-i> :action Forward<cr>
+" nnoremap <c-o> :action Back<CR>
+" nnoremap <c-i> :action Forward<CR>
 
 
 " plugins
@@ -218,7 +224,7 @@ set surround
 set multiple-cursors
 nmap <c-m> <A-n>
 nmap <c-x> <A-x>
-nmap <c-q> <ESC>:action $EditorTranslateAction<CR>
+nmap <c-q> <ESC>:action EditorTranslateAction<CR>
 
 nnoremap <leader><leader>f :action KJumpAction<CR>
 nnoremap <leader><leader>l :action KJumpAction.Line<CR>
