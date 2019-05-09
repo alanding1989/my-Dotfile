@@ -82,34 +82,44 @@ DefAlias() {
   alias la="ls -a -htrF"
   alias ll="ls -la -lhtrF"
   alias l.="ls -lhtrdF .*"
-  alias grep="grep --color=auto"
   alias cl="colorls -A --sd"
   alias clf="colorls -A -f --sd"
   alias cld="colorls -A -d --sd"
   alias cll="colorls -lA --sd"
   alias cgt="colorls --gs -t"
   alias cgl="colorls --gs -lA --sd"
+  alias grep="grep --color=auto"
   # app
   alias yy='sudo netease-cloud-music &'
   alias xmind='cd /home/alanding/software/xmind-8/XMIND_amd64/ | ./XMind'
   alias sysbackup='sh /mnt/fun+downloads/linux系统安装/systembackup/sysbackup.sh'
   alias ge='gedit'
 
+  # config
   alias zrc="nv ~/.zshrc"
   alias brc="nv ~/.bashrc"
   alias vrc="nv ~/.SpaceVim.d/vimrc"
   alias trc="nv ~/.tmux.conf"
   alias szsh="source ~/.zshrc"
 
+  alias asne='asciinema'
+  alias arec='asciinema rec'
+  alias arect='asciinema rec -t'
+  alias apl='asciinema play'
+  alias aul='asciinema upload'
+  alias ath='asciinema auth' 
+  alias acat='asciinema cat'
   alias tmk="tmux kill-server"
   alias nv='nvim'
 
+  # spark
   alias sthdfs='start-dfs.sh && start-yarn.sh && start-master.sh && start-slaves.sh'
   alias sphdfs='stop-dfs.sh && stop-yarn.sh && stop-master.sh && stop-slaves.sh'
   alias hf='hadoop fs'
 
+  # git
   alias gch='git checkout'
-  alias grh='git reset --hard HEAD'
+  alias grh='git reset --hard'
 
   alias mysql='mysql -u root -p'
 }
@@ -196,6 +206,9 @@ DefEnVar() {
   # Gtm
   export PATH=/opt/vim/gtm.v1.3.5.linux:$PATH
 
+  # LanguageTool
+  export LANGUAGE_TOOL_HOME=/opt/vim/LanguageTool
+
   # Node version manager
   export NVM_DIR="/opt/lang-tools/nvm"
   # yarn
@@ -281,6 +294,7 @@ FzfConfig
 # Browser for ensime
 export BROWSER='google-chrome %s'
 
+stty -ixon
 
 ZshSettings
 DefAlias

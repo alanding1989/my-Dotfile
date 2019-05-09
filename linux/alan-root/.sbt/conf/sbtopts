@@ -25,7 +25,7 @@
 
 # set memory options
 #
-#-mem   <integer>  
+#-mem   <integer>
 
 # Use local caches for projects, no sharing.
 #
@@ -36,13 +36,13 @@
 #-offline
 
 # Sets the SBT version to use.
--sbt-version  1.2.8
+# -sbt-version  "1.2.8"
 
 # Scala version (default: latest release)
 #
--scala-home /opt/lang-tools/scala/scala-2.12.8
--scala-version 2.12.8
+# -scala-home /opt/lang-tools/scala/scala-2.12.8
+# -scala-version "2.12.8"
 
 # java version (default: java from PATH, currently $(java -version |& grep version))
 #
--java-home /opt/lang-tools/java/jdk
+# -java-home /opt/lang-tools/java/jdk

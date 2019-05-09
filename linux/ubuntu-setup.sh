@@ -133,12 +133,13 @@ npm -g i nrm
 npm -g i yarn
 npm -g i rimraf
 npm -g i neovim
-npm -g i wcwidth
+npm -g i import-js
 npm -g i remark
 npm -g i remark-cli
 npm -g i remark-stringify
+npm -g i remark-frontmatter
+npm -g i wcwidth
 npm -g i bash-language-server
-npm -g i import-js
 npm -g i javascript-typescript-langserver
 npm -g i vscode-css-languageserver-bin
 npm -g i --save-dev @fortawesome/fontawesome-free

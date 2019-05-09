@@ -23,7 +23,7 @@ $path1   = $syspath + $env:Path
 [Environment]::SetEnvironmentVariable("PATH", $path1, "Machine")
 
 
-[Environment]::SetEnvironmentVariable("JAVA_HOME"             , "D:\devtools\java\jdk12"                                  , "Machine")
+[Environment]::SetEnvironmentVariable("JAVA_HOME"             , "D:\devtools\java\jdk"                                    , "Machine")
 [Environment]::SetEnvironmentVariable("JRE_HOME"              , "%JAVA_HOME%\jre"                                         , "Machine")
 [Environment]::SetEnvironmentVariable("MAVEN"                 , "D:\devtools\java\apache-maven-3.6.0\bin"                 , "Machine")
 [Environment]::SetEnvironmentVariable("CONDA_HOME"            , "D:\devtools\python\Anaconda3"                            , "Machine")
