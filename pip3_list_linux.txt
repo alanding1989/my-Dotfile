@@ -5,6 +5,7 @@ urllib3
 requests-html
 pynvim
 pyvim
+vim-vint
 Pygments
 sexpdata
 websocket-client
@@ -12,7 +13,6 @@ clang
 scan-build
 jedi
 python-language-server
-vim-vint
 yapf
 autopep8
 isort
@@ -21,17 +21,19 @@ flake8
 mypy
 mccabe
 rope
+pytest-cov
 seaborn
 scikit-learn
 xgboost
 lightgbm
 pyspark
-coverage
-wordcloud
 jupyter
 jupyter_contrib_nbextensions
 Send2Trash
+wordcloud
 asciinema
+coverage
+
 
 git+https://github.com/google/vimdoc
 tensorflow-gpu

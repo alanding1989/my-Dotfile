@@ -26,9 +26,10 @@ let mapleader = ';'
 
 nnoremap <leader>r :source ~/.ideavimrc<CR>
 
-noremap - q
-noremap q <nop>
-noremap s <nop>
+nnoremap -   q
+nnoremap --  @a
+nnoremap q   <nop>
+nnoremap s   <nop>
 
 " all mode init
 noremap <bs>  %
@@ -36,24 +37,25 @@ noremap <c-a> ^
 noremap <c-e> $
 
 " insert mode
-inoremap <c-b> <ESC>:action EditorLeft<CR>
-inoremap <c-l> <ESC>:action EditorRight<CR>
-inoremap <c-a> <esc>^i
-inoremap <c-e> <end>
-inoremap <c-d> <del>
-inoremap <c-f> <ESC>:action EditorRight<CR>
+inoremap <c-b> <Left>
+inoremap <c-l> <Right>
+inoremap <c-a> <Esc>^i
+inoremap <c-e> <End>
+inoremap <c-d> <Del>
+inoremap <c-f> <Right>
 inoremap <c-_> <c-k>
+inoremap <c-q> <Esc>ld$a
 
 " faster command mode
-cnoremap <c-h> <bs>
-cnoremap <c-b> <left>
-cnoremap <c-l> <right>
-cnoremap <c-f> <right>
-cnoremap <c-a> <home>
-cnoremap <c-e> <end>
-cnoremap <c-d> <del>
+cnoremap <c-h> <BS>
+cnoremap <c-b> <Left>
+cnoremap <c-l> <Right>
+cnoremap <c-f> <Right>
+cnoremap <c-a> <Home>
+cnoremap <c-e> <End>
+cnoremap <c-d> <Del>
 cnoremap <c-_> <c-k>
-cnoremap qw    <esc>
+cnoremap qw    <Esc>
 
 " tabn tabp
 nnoremap <leader><tab> gt
@@ -62,11 +64,14 @@ nnoremap <leader>q     gT
 " window management
 nnoremap qq :close<CR>
 nnoremap qd :close<CR>
-nnoremap qe ggVGd
+nnoremap qe ggdG
 nnoremap qh :action Exit<CR>
 nnoremap qp :action CloseProject<CR>
 nnoremap qo :action CloseAllEditorsButActive<CR>
+nnoremap qr :action RenameFile<CR>
+nnoremap qf :action FileChooser.Delete<CR>
 
+nnoremap s0 :action NewFile<CR>
 nnoremap sl :action NextTab<CR>
 nnoremap sh :action PreviousTab<CR>
 nnoremap sm :action MaximizeToolWindow<CR>
@@ -74,6 +79,8 @@ nnoremap sf :action OpenFile<CR>
 nnoremap sv :vs<CR>
 nnoremap sp :sp<CR>
 nnoremap su :nohl<CR>
+
+nnoremap g0 g*
 
 nnoremap <c-w>r :action MoveTabRight<CR>
 nnoremap <c-w>d :action MoveTabDown<CR>
@@ -106,8 +113,9 @@ nnoremap <tab>p O<ESC>j
 
 noremap  vv V
 nnoremap <leader>aa ggVG
+nnoremap <leader>ae VG
 
-noremap <leader>y "*y
+xoremap <leader>y "*y
 noremap <leader>Y "*Y
 noremap <leader>p "*p
 noremap <leader>P "*P
@@ -192,7 +200,7 @@ nnoremap gg         :action GotoTypeDeclaration<CR>
 nnoremap gm         :action MethodHierarchy<CR>
 nnoremap gt         :action TypeHierarchy<CR>
 nnoremap gc         :action CallHierarchy<CR>
-
+nnoremap gf         :action ReformatCode<CR>
 
 " git
 nnoremap <space>gi  :action Git.Init<CR>

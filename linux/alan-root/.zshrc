@@ -120,6 +120,9 @@ DefAlias() {
   # git
   alias gch='git checkout'
   alias grh='git reset --hard'
+  alias gpod='git push origin --delete'
+  alias grro='git remote remove origin'
+  alias grru='git remote remove upstream'
 
   alias mysql='mysql -u root -p'
 }
@@ -198,8 +201,9 @@ DefEnVar() {
   # Neovim-remote/spacevim
   export PATH=$HOME/.SpaceVim/bin:$PATH
 
-  # Gtags
+  # Ctags and Gtags
   export PATH=/opt/vim/universal-ctags/bin:$PATH
+  export PATH=/opt/vim/gtags/bin:$PATH
   export GTAGSLABEL=native-pygments
   export GTAGSCONF=$HOME/.globalrc
 
