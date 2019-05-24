@@ -12,6 +12,9 @@ mypy-plugin
 pylint-plugin
 
 intellij-makefile
+xmake
+EmmyLua
+TeXiFy IDEA
 
 BashSupport
 markdown
