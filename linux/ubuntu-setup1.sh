@@ -106,6 +106,7 @@ else
   cd "$HOME/.SpaceVim" && git pull
 fi
 
+
 #@ Nodejs
 if [ ! -e "/opt/nvm" ]; then
   # curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
@@ -173,6 +174,8 @@ if [ ! -e "$HOME/go" ]; then
   go get -u github.com/haya14busa/go-vimlparser/cmd/vimlparser
 fi
 
+# Xmake
+curl -fsSL https://raw.githubusercontent.com/xmake-io/xmake/master/scripts/get.sh
 
 #@ Google
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
