@@ -34,3 +34,4 @@ npm -g i vscode-css-languageserver-bin
 
 yarn global add prettier
 yarn global add diagnostic-languageserver
+yarn global add vim-language-server

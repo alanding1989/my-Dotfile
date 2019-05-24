@@ -10,6 +10,9 @@ else
   exit
 fi
 
+mydotfile=$(cd $(dirname $(dirname $0)); pwd)
+
+
 #-------------- Add source and Remove some useless software {{{
 if [ $bb = i ]; then
   add-apt-repository ppa:daniruiz/flat-remix
@@ -63,14 +66,14 @@ fi
 if [ $bb = i ]; then
   chsh -s /bin/zsh root
   zsh
-  cp ./alan-root/.* $HOME/
+  cp $mydotfile/linux/alan-root/.* $HOME/
 
   # @ install fonts
-  cp -r ./fonts/sourcecodepro-fonts /usr/share/fonts
+  cp -r $mydotfile/fonts/powerline /usr/share/fonts
   fc-cache -vf
 
   # @ icons
-  cp ./theme-system/icons/*.desktop /usr/share/applications
+  cp $mydotfile/system-theme/icons/*.desktop /usr/share/applications
 
   # @ pip
   if [ ! -x "/usr/bin/pip" ]; then
@@ -87,24 +90,23 @@ if [ $bb = i ]; then
   update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 60
   update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 40
 
-  source ~/.zshrc
+  source $HOME/.zshrc
 fi
 
 #@ SpaceVim
 if [ ! -e "$HOME/.SpaceVim" ]; then
-  curl -sLf https://spacevim.org/cn/install.sh | bash -s -- --install neovim
-  # curl -sLf https://spacevim.org/cn/install.sh | bash -s -- -h
-  # curl -sLf https://spacevim.org/cn/install.sh | bash -s -- --uninstall
+  sh $mydotfile/ide-config/vim-install/linux-MyVim-install.sh
   if [ ! -e "/root/.SpaceVim" ]; then
-    ln -s /home/alanding/.SpaceVim /root/.SpaceVim
-    ln -s /home/alanding/.vim      /root/.SpaceVim.d
+    ln -s /home/alanding/.SpaceVim    /root/.SpaceVim
+    ln -s /home/alanding/.SpaceVim.d  /root/.SpaceVim.d
   fi
-  if [ ! -e "/home/alanding/.SpaceVim.d" ]; then
-    ln -s /home/alanding/.vim      /home/alanding/.SpaceVim.d
+  if [ ! -e "/home/alanding/.vim.d" ]; then
+    ln -s /home/alanding/.SpaceVim.d  /home/alanding/.vim
   fi
 else
   cd "$HOME/.SpaceVim" && git pull
 fi
+
 
 #@ Nodejs
 if [ ! -e "/opt/nvm" ]; then
@@ -124,7 +126,7 @@ if [ ! -e "/opt/nvm" ]; then
   # echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
   # sudo apt-get update && sudo apt-get install --no-install-recommends yarn
 else
-  cd /opt/.nvm && git pull
+  cd /opt/lang-tools/nvm && git pull
 fi
 nodepath=$(which node)
 ln -s /usr/bin/node ${nodepath}
@@ -145,12 +147,13 @@ npm -g i vscode-css-languageserver-bin
 npm -g i --save-dev @fortawesome/fontawesome-free
 yarn global add prettier
 yarn global add diagnostic-languageserver
+yarn global add vim-language-server
 
 if [ ! -e "$HOME/.rbenv" ]; then
   git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-  cd ~/.rbenv && src/configure && make -C src
+  cd $HOME/.rbenv && src/configure && make -C src
   source $HOME/.zshrc
-  ~/.rbenv/bin/rbenv init
+  $HOME/.rbenv/bin/rbenv init
   git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
   # ruby-dependencies
   apt-get install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev
@@ -173,6 +176,8 @@ if [ ! -e "$HOME/go" ]; then
   go get -u github.com/haya14busa/go-vimlparser/cmd/vimlparser
 fi
 
+# Xmake
+bash <(curl -fsSL https://raw.githubusercontent.com/xmake-io/xmake/master/scripts/get.sh)
 
 #@ Google
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -180,7 +185,6 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 #@ rg search
 curl -LO https://github.com/BurntSushi/ripgrep/releases/download/0.12.0/ripgrep_0.12.0_amd64.deb
 dpkg -i *.deb
-
 # }}}
 
 
@@ -234,8 +238,8 @@ if [ -z $(nvidia-smi) ]; then
   read -pr "Confirm to remove Nvidia? [y/n] ->:" cc
   if [ $cc = y ]; then
     apt-get remove --purge nvidia*
-    cd /mnt/fun+downloads/linux系统安装/code-software/system-util
-    chmod +x *.run | ./NVIDIA-Linux-x86_6<4-410.78.run
+    cd /mnt/fun+downloads/linux系统安装/code-software/system-util || return
+    chmod +x ./*.run | ./NVIDIA-Linux-x86_6<4-410.78.run
   fi
 fi
 # }}}
