@@ -31,6 +31,7 @@ npm -g i remark-frontmatter
 npm -g i bash-language-server
 npm -g i javascript-typescript-langserver
 npm -g i vscode-css-languageserver-bin
+npm -g i markdownlint-cli
 
 yarn global add prettier
 yarn global add diagnostic-languageserver

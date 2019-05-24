@@ -109,7 +109,7 @@ fi
 
 
 #@ Nodejs
-if [ ! -e "/opt/nvm" ]; then
+if [ ! -e "/opt/lang-tools/nvm" ]; then
   # curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
   git clone https://github.com/creationix/nvm.git /opt/nvm
   nvm install v11.9.0
@@ -149,6 +149,21 @@ yarn global add prettier
 yarn global add diagnostic-languageserver
 yarn global add vim-language-server
 
+
+if [ ! -e "/opt/lang-tools/lua/" ]; then
+  mkdir -p /opt/lang-tools/lua
+  cd /tmp && curl -R -O http://www.lua.org/ftp/lua-5.3.5.tar.gz
+  tar -zxf lua-5.3.5.tar.gz
+  cd lua-5.3.5 || return
+  make linux test
+  sudo make install
+fi
+if [ ! -e "/opt/lang-tools/lua/luarocks" ]; then
+  cd /tmp && git clone git@github.com:luarocks/luarocks.git && cd luarocks || return
+  ./configure --prefix=/opt/lang-tools/lua/luarocks
+  make && make install
+fi
+
 if [ ! -e "$HOME/.rbenv" ]; then
   git clone https://github.com/rbenv/rbenv.git ~/.rbenv
   cd $HOME/.rbenv && src/configure && make -C src
@@ -175,6 +190,8 @@ if [ ! -e "$HOME/go" ]; then
   go get -u github.com/sourcegraph/go-langserver
   go get -u github.com/haya14busa/go-vimlparser/cmd/vimlparser
 fi
+
+
 
 # Xmake
 bash <(curl -fsSL https://raw.githubusercontent.com/xmake-io/xmake/master/scripts/get.sh)
