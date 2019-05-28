@@ -150,20 +150,20 @@ yarn global add diagnostic-languageserver
 yarn global add vim-language-server
 
 
-if [ ! -e "/opt/lang-tools/lua/" ]; then
-  mkdir -p /opt/lang-tools/lua
-  cd /tmp && curl -R -O http://www.lua.org/ftp/lua-5.3.5.tar.gz
-  tar -zxf lua-5.3.5.tar.gz
-  cd lua-5.3.5 || return
-  make linux test
-  sudo make install
-fi
+# lua
+cd /tmp && curl -R -O http://www.lua.org/ftp/lua-5.3.5.tar.gz
+tar -zxf lua-5.3.5.tar.gz
+cd lua-5.3.5 || return
+make linux test
+sudo make install
+
 if [ ! -e "/opt/lang-tools/lua/luarocks" ]; then
   cd /tmp && git clone git@github.com:luarocks/luarocks.git && cd luarocks || return
   ./configure --prefix=/opt/lang-tools/lua/luarocks
   make && make install
 fi
 
+# ruby
 if [ ! -e "$HOME/.rbenv" ]; then
   git clone https://github.com/rbenv/rbenv.git ~/.rbenv
   cd $HOME/.rbenv && src/configure && make -C src
@@ -184,12 +184,10 @@ else
   cd "$HOME/.rbenv" && git pull
 fi
 
-
-if [ ! -e "$HOME/go" ]; then
-  go get -u github.com/saibing/bingo
-  go get -u github.com/sourcegraph/go-langserver
-  go get -u github.com/haya14busa/go-vimlparser/cmd/vimlparser
-fi
+# go
+# go get -u github.com/saibing/bingo
+go get -u github.com/sourcegraph/go-langserver
+go get -u github.com/haya14busa/go-vimlparser/cmd/vimlparser
 
 
 
