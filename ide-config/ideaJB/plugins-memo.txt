@@ -2,7 +2,7 @@
 GrepConsole
 IdeaVim
 StringManipulation
-idea-file-path-autocomplete
+file-path-autocomplete
 KJump
 
 

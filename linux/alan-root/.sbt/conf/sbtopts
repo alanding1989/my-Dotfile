@@ -21,7 +21,7 @@
 
 # Path to local Ivy repository (default: ~/.ivy2)
 #
--ivy /mnt/fun+downloads/linux系统安装/systembackup/repo/ivy2
+-ivy /home/alanding/.ivy2
 
 # set memory options
 #

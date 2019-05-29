@@ -113,8 +113,8 @@ DefAlias() {
   alias nv='nvim'
 
   # spark
-  alias sthdfs='start-dfs.sh && start-yarn.sh && start-master.sh && start-slaves.sh'
-  alias sphdfs='stop-dfs.sh && stop-yarn.sh && stop-master.sh && stop-slaves.sh'
+  alias starthdfs='start-dfs.sh && start-yarn.sh && start-master.sh && start-slaves.sh'
+  alias stophdfs='stop-dfs.sh && stop-yarn.sh && stop-master.sh && stop-slaves.sh'
   alias hf='hadoop fs'
 
   # git
@@ -129,14 +129,19 @@ DefAlias() {
 
 
 DefEnVar() {
-  export ALANDOTFILE=/mnt/fun+downloads/my-Dotfile
+  export PATH=/home/alanding/.local/bin:$PATH
   export TERM=xterm-256color
 
+  export ALANDOTFILE=/mnt/fun+downloads/my-Dotfile
+
   # Preferred editor for local and remote sessions
-  export EDITOR="/opt/vim/nvim-linux64/bin/nvim"
+  export EDITOR=/opt/vim/nvim-linux64/bin/nvim
+
+# Browser for ensime
+  export BROWSER='google-chrome %s'
 
   # Conda
-  export PATH="/home/alanding/software/anaconda3/envs/py36/bin:$PATH"
+  export PATH=/home/alanding/software/anaconda3/envs/py36/bin:$PATH
   . /home/alanding/software/anaconda3/etc/profile.d/conda.sh
 
   # CUDA
@@ -154,6 +159,9 @@ DefEnVar() {
   export JRE_HOME=${JAVA_HOME}/jre
   export CLASSPATH=${JAVA_HOME}/lib:${JRE_HOME}/lib
   export PATH=${JAVA_HOME}/bin:${JRE_HOME}/bin:${CLASSPATH}:$PATH
+  # Maven
+  export MAVEN_HOME=/opt/lang-tools/maven
+  export PATH=${MAVEN_HOME}/bin:$PATH
 
   # Scala
   export SCALA_HOME=/opt/lang-tools/scala/scala-2.12.8
@@ -162,6 +170,8 @@ DefEnVar() {
   export SCALA_COMPILER=${SCALA_HOME}/bin/scalac
   # metals-vim, coursier
   export PATH=/opt/lang-tools/scala:$PATH
+  # export PATH=/opt/lang-tools/scala/languageclient:$PATH
+  export PATH=/opt/lang-tools/scala/coc:$PATH
 
   # Sbt
   export PATH=/opt/lang-tools/scala/sbt/bin:$PATH
@@ -169,12 +179,10 @@ DefEnVar() {
   # Spark
   export SPARK_HOME=/opt/spark/spark-2.4.0
   export PATH=${SPARK_HOME}/bin:${SPARK_HOME}/sbin:$PATH
-
   # Pyspark
   export PYSPARK_DRIVER_PYTHON=jupyter
   export PYSPARK_DRIVER_PYTHON_OPTS='notebook'
   export PYSPARK_PYTHON=/home/alanding/software/anaconda3/envs/py36/bin/python3.6
-
   # Hadoop
   export HADOOP_HOME=/opt/spark/hadoop
   export PATH=${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:$PATH
@@ -183,10 +191,6 @@ DefEnVar() {
   export HDFS_SECONDARYNAMENODE_USER=alanding
   export YARN_NODEMANAGER_USER=alanding
   export YARN_RESOURCEMANAGER_USER=alanding
-
-  # Maven
-  export MAVEN_HOME=/opt/lang-tools/maven
-  export PATH=${MAVEN_HOME}/bin:$PATH
 
   # TEX
   export PATH=/home/alanding/software/texlive/2018/bin/x86_64-linux:$PATH
@@ -197,21 +201,18 @@ DefEnVar() {
   export VIM_HOME=/opt/vim
   export PATH=${VIM_HOME}/vim8.1/bin:$PATH
   export PATH=${VIM_HOME}/nvim-linux64/bin:$PATH
-
   # Neovim-remote/spacevim
   export PATH=$HOME/.SpaceVim/bin:$PATH
-
   # Ctags and Gtags
   export PATH=/opt/vim/universal-ctags/bin:$PATH
   export PATH=/opt/vim/gtags/bin:$PATH
   export GTAGSLABEL=native-pygments
   export GTAGSCONF=$HOME/.globalrc
-
   # Gtm
   export PATH=/opt/vim/gtm.v1.3.5.linux:$PATH
-
   # LanguageTool
-  export LANGUAGE_TOOL_HOME=/opt/vim/LanguageTool
+  export LANGUAGE_TOOL_HOME=/opt/vim/LanguageTool:$PATH
+
 
   # Node version manager
   export NVM_DIR="/opt/lang-tools/nvm"
@@ -220,7 +221,7 @@ DefEnVar() {
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-  #autoload -U add-zsh-hook
+  # autoload -U add-zsh-hook
   load-nvmrc() {
     local node_version="$(nvm version)"
     local nvmrc_path="$(nvm_find_nvmrc)"
@@ -238,7 +239,6 @@ DefEnVar() {
     fi
   }
   add-zsh-hook chpwd load-nvmrc
-  load-nvmrc
 
   # Ruby
   export PATH=$HOME/.rbenv/bin:$PATH
@@ -246,17 +246,18 @@ DefEnVar() {
   source $(dirname $(gem which colorls))/tab_complete.sh
 
   # Go
-  export PATH=/opt/lang-tools/go/go1.12.linux-amd64/bin:$PATH
+  export PATH=/opt/lang-tools/go/go/bin:$PATH
   export PATH=$HOME/go/bin:$PATH
 
+  #lua
+  export PATH=/opt/lang-tools/lua/luarocks/bin:$PATH
 }
 
 
 # Others
 # ================================================================================== 
 
-# Codi
-# Usage: codi [filetype] [filename]
+# Codi Usage: codi [filetype] [filename]
 codi() {
   local syntax="${1:-python}"
   shift
@@ -295,11 +296,13 @@ FzfConfig() {
 } 
 FzfConfig
 
-# Browser for ensime
-export BROWSER='google-chrome %s'
-
+# disable Vim freeze after pressing <C-s>
 stty -ixon
 
 ZshSettings
 DefAlias
 DefEnVar
+[[ -s "$HOME/.xmake/profile" ]] && source "$HOME/.xmake/profile" # load xmake profile
+
+
+
