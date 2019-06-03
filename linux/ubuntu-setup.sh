@@ -32,7 +32,7 @@ fi
 apt-get update
 apt-get install zsh vim git git-extras tig tmux guake albert gdebi curl tsocks jq goldendict urlview xclip ripgrep silversearcher-ag
 apt-get install xserver-xorg-input-synaptics synaptic openssh-server asciinema
-apt-get install build-essential gcc-7 g++-7 global
+apt-get install build-essential gcc-7 g++-7 global texinfo
 
 # system theme
 #@ user themes/ dash to dock/ hide top bar/ weather in the clock
