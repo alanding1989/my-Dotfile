@@ -1,7 +1,11 @@
 #! /usr/bin/env bash
 
-mydotfile=$(cd $(dirname $(dirname $0)); pwd)
+mydotfile=$($(cd $(dirname $0); cd ..); pwd)
+echo "$mydotfile"
 
 # @ install fonts
-  cp -r $mydotfile/fonts/powerline /usr/share/fonts
-  fc-cache -vf
+
+if [ -e "$mydotfile/fonts/powerline" ]; then
+  cp -r "$mydotfile/fonts/powerline" /usr/share/fonts  && \
+    fc-cache -vf
+fi

@@ -1,6 +1,6 @@
 #! /usr/bin/env zsh
 
-# ================================================================================== 
+# ==================================================================================
 
 ZshSettings() {
   # Path to your oh-my-zsh installation.
@@ -59,7 +59,7 @@ ZshSettings() {
   export LESS_TERMCAP_us=$'\e[1;4;31m'
 }
 
-# ================================================================================== 
+# ==================================================================================
 
 # For a full list of active aliases, run `alias`.
 DefAlias() {
@@ -107,10 +107,11 @@ DefAlias() {
   alias arect='asciinema rec -t'
   alias apl='asciinema play'
   alias aul='asciinema upload'
-  alias ath='asciinema auth' 
+  alias ath='asciinema auth'
   alias acat='asciinema cat'
   alias tmk="tmux kill-server"
   alias nv='nvim'
+  alias em='emacs'
 
   # spark
   alias starthdfs='start-dfs.sh && start-yarn.sh && start-master.sh && start-slaves.sh'
@@ -121,6 +122,7 @@ DefAlias() {
   alias gch='git checkout'
   alias grh='git reset --hard'
   alias gpod='git push origin --delete'
+  alias gdrb='git push origin '
   alias grro='git remote remove origin'
   alias grru='git remote remove upstream'
 
@@ -138,7 +140,7 @@ DefEnVar() {
   export EDITOR=/opt/vim/nvim-linux64/bin/nvim
 
 # Browser for ensime
-  export BROWSER='google-chrome %s'
+  export BROWSER="google-chrome %s"
 
   # Conda
   export PATH=/home/alanding/software/anaconda3/envs/py36/bin:$PATH
@@ -211,7 +213,11 @@ DefEnVar() {
   # Gtm
   export PATH=/opt/vim/gtm.v1.3.5.linux:$PATH
   # LanguageTool
-  export LANGUAGE_TOOL_HOME=/opt/vim/LanguageTool:$PATH
+  export LANGUAGE_TOOL_HOME=/opt/vim/LanguageTool
+
+  # Emacs
+  # export EMACS_HOME=/opt/emacs
+  # export PATH=${EMACS_HOME}/emacs/bin:$PATH
 
 
   # Node version manager
@@ -246,8 +252,12 @@ DefEnVar() {
   source $(dirname $(gem which colorls))/tab_complete.sh
 
   # Go
-  export PATH=/opt/lang-tools/go/go/bin:$PATH
-  export PATH=$HOME/go/bin:$PATH
+  export GOROOT=/opt/lang-tools/go/go
+  export GOPATH=/home/alanding/go/
+  export GOBIN=/home/alanding/go/bin
+  export PATH=$GOROOT/bin:$PATH
+  export PATH=$GOPATH/src:$PATH
+  export PATH=$GOBIN:$PATH
 
   #lua
   export PATH=/opt/lang-tools/lua/luarocks/bin:$PATH
@@ -255,7 +265,7 @@ DefEnVar() {
 
 
 # Others
-# ================================================================================== 
+# ==================================================================================
 
 # Codi Usage: codi [filetype] [filename]
 codi() {
@@ -293,7 +303,7 @@ FzfConfig() {
   fh() {
     eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
   }
-} 
+}
 FzfConfig
 
 # disable Vim freeze after pressing <C-s>

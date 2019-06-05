@@ -35,6 +35,7 @@ nnoremap s                <nop>
 noremap <bs>              %
 noremap <c-a>             ^
 noremap <c-e>             $
+noremap i                 zzi
 
 nnoremap <C-h>            <Left>
 nnoremap <C-l>            <Right>
@@ -44,17 +45,21 @@ nnoremap <C-k>            <Up>
 " insert mode
 inoremap <c-b>            <Left>
 inoremap <c-f>            <Right>
+inoremap <c-l>            <Right>
 inoremap <c-a>            <Esc>^i
 inoremap <c-e>            <End>
 inoremap <c-h>            <BS>
 inoremap <c-d>            <Del>
-inoremap <c-l>            <Esc>lviwc
 inoremap <c-q>            <Esc>lC
 inoremap <c-_>            <c-k>
 inoremap <C-p>            <C-left>
 inoremap <C-n>            <C-right>
-inoremap <M-b>            <C-left>
-inoremap <M-f>            <C-right>
+" does not work for M
+" inoremap <M-j>            <CR>
+" inoremap <M-k>            <Esc>lc$
+" inoremap <M-d>            <Esc>lce
+" inoremap <M-b>            <C-left>
+" inoremap <M-f>            <C-right>
 
 " faster command mode
 cnoremap qw               <Esc>
@@ -96,8 +101,11 @@ nnoremap g0               g*
 nnoremap <c-w>r           :action MoveTabRight<CR>
 nnoremap <c-w>d           :action MoveTabDown<CR>
 
-" fast save
-inoremap qw               <ESC>:action SaveAll<CR>
+" scroll
+nnoremap <C-f>            <C-d>M
+nnoremap <C-b>            <C-u>M
+nnoremap <C-d>            3<C-e>
+nnoremap <C-u>            3<C-y>
 
 " folding
 nnoremap <CR>             zozz
@@ -125,6 +133,9 @@ noremap J                 :action EditorJoinLines<CR>
 noremap <Space>cc         :action CommentByLineComment<CR>
 noremap <Space>cl         :action CommentByLineComment<CR>
 noremap <Space>cp         :action CommentByBlockComment<CR>
+
+" fast save
+inoremap qw               <ESC>:action SaveAll<CR>
 
 nnoremap <tab>o           o<ESC>
 nnoremap <tab>p           O<ESC>j
