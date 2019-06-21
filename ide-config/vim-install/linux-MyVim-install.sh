@@ -7,8 +7,17 @@
 # ================================================================================
 
 
-git clone git@github.com:alanding1989/SpaceVim.git "$HOME/.SpaceVim"
-git clone git@github.com:alanding1989/my-Vim.git "$HOME/.SpaceVim.d"
+git clone git@github.com:alanding1989/SpaceVim.git "/home/alanding/.SpaceVim"
+git clone git@github.com:alanding1989/my-Vim.git "/home/alanding/.SpaceVim.d"
+
+if [ "$(whoami)" = 'root' ] && [ ! -e "/root/.SpaceVim" ]; then
+  ln -s /home/alanding/.SpaceVim    /root/.SpaceVim
+  ln -s /home/alanding/.SpaceVim.d  /root/.SpaceVim.d
+fi
 
 ln -s "$HOME/.SpaceVim" "$HOME/config/nvim"
-ln -s "$HOME/.SpaceVim.d" "$HOME/.vim"
+
+if [ ! -e "/home/alanding/.vim" ]; then
+  ln -s /home/alanding/.SpaceVim.d  /home/alanding/.vim
+fi
+

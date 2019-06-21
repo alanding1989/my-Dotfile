@@ -22,6 +22,7 @@ idea-multimarkdown
 NodeJS
 Scala
 
+file-watcher
 Find Pull Request
 idea-gitignore
 repo

@@ -142,13 +142,19 @@ DefEnVar() {
 # Browser for ensime
   export BROWSER="google-chrome %s"
 
+  # Git
+  export GIT_DISCOVERY_ACROSS_FILESYSTEM=1
+
   # Conda
   export PATH=/home/alanding/software/anaconda3/envs/py36/bin:$PATH
   . /home/alanding/software/anaconda3/etc/profile.d/conda.sh
 
   # CUDA
-  export PATH=/home/alanding/software/cuda/cuda-10.0/bin${PATH:+:${PATH}}
-  export LD_LIBRARY_PATH=/home/alanding/software/cuda/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+  export CUDA_HOME=/home/alanding/software/cuda/cuda-10.0
+  export PATH=$CUDA_HOME/bin:$PATH
+  export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
+  # export PATH=$CUDA_HOME/bin${PATH:+:${PATH}}
+  # export LD_LIBRARY_PATH=$CUDA_HOME/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
   export CUDA_DEVICE_ORDER="PCI_BUS_ID"
   export CUDA_VISIBLE_DEVICES="0,1,2,3"
 
@@ -258,6 +264,7 @@ DefEnVar() {
   export PATH=$GOROOT/bin:$PATH
   export PATH=$GOPATH/src:$PATH
   export PATH=$GOBIN:$PATH
+  # export GO111MODULE=on
 
   #lua
   export PATH=/opt/lang-tools/lua/luarocks/bin:$PATH

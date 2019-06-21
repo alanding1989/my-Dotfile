@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-mydotfile=$($(cd $(dirname $0); cd ..); pwd)
+mydotfile=$(cd "$(dirname "$0")"; cd ..; pwd)
 echo "$mydotfile"
 
 # @ install fonts

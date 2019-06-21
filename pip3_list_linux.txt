@@ -33,6 +33,7 @@ Send2Trash
 wordcloud
 asciinema
 coverage
+Sphinx
 
 
 git+https://github.com/google/vimdoc
