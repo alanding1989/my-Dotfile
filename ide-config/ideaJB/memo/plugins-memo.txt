@@ -21,6 +21,8 @@ markdown
 idea-multimarkdown
 NodeJS
 Scala
+Rainbow brackets
+google-java-style
 
 file-watcher
 Find Pull Request

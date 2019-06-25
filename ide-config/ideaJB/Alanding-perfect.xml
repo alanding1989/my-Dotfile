@@ -7,6 +7,10 @@
   <action id="$Cut">
     <keyboard-shortcut first-keystroke="shift delete" />
   </action>
+  <action id="$Delete">
+    <keyboard-shortcut first-keystroke="delete" />
+    <keyboard-shortcut first-keystroke="ctrl d" />
+  </action>
   <action id="$EditorTranslateAction">
     <keyboard-shortcut first-keystroke="shift ctrl y" />
     <keyboard-shortcut first-keystroke="alt e" />
@@ -73,6 +77,7 @@
   <action id="Arrangement.Rule.Remove">
     <keyboard-shortcut first-keystroke="delete" />
   </action>
+  <action id="AutoIndentLines" />
   <action id="CallHierarchy">
     <keyboard-shortcut first-keystroke="ctrl alt h" />
     <keyboard-shortcut first-keystroke="ctrl s" second-keystroke="b" />
@@ -101,7 +106,6 @@
     <keyboard-shortcut first-keystroke="alt g" second-keystroke="a" />
   </action>
   <action id="ChooseDebugConfiguration">
-    <keyboard-shortcut first-keystroke="alt d" second-keystroke="e" />
     <keyboard-shortcut first-keystroke="shift f11" />
   </action>
   <action id="ChooseNextSubsequentPropertyValueEditorAction">
@@ -138,8 +142,16 @@
   <action id="CollapseAllRegions">
     <keyboard-shortcut first-keystroke="shift ctrl minus" />
   </action>
+  <action id="CollapseBlock">
+    <keyboard-shortcut first-keystroke="shift ctrl period" />
+    <keyboard-shortcut first-keystroke="ctrl alt i" />
+  </action>
   <action id="CollapseRegionRecursively">
     <keyboard-shortcut first-keystroke="ctrl minus" />
+  </action>
+  <action id="CollapseSelection">
+    <keyboard-shortcut first-keystroke="ctrl period" />
+    <keyboard-shortcut first-keystroke="alt i" />
   </action>
   <action id="CompareTwoFiles" />
   <action id="CompileDirty">
@@ -156,18 +168,13 @@
     <keyboard-shortcut first-keystroke="alt r" second-keystroke="w" />
   </action>
   <action id="Debug">
-    <keyboard-shortcut first-keystroke="alt d" second-keystroke="s" />
     <keyboard-shortcut first-keystroke="f9" />
-  </action>
-  <action id="DebugClass">
-    <keyboard-shortcut first-keystroke="alt d" second-keystroke="c" />
   </action>
   <action id="Debugger.AddToWatch">
     <keyboard-shortcut first-keystroke="ctrl a" />
   </action>
   <action id="Debugger.EditArrayFilter">
     <keyboard-shortcut first-keystroke="f2" />
-    <keyboard-shortcut first-keystroke="alt d" second-keystroke="p" />
   </action>
   <action id="Debugger.RemoveAllBreakpointsInFile">
     <keyboard-shortcut first-keystroke="alt f6" />
@@ -197,6 +204,9 @@
     <keyboard-shortcut first-keystroke="alt c" />
     <keyboard-shortcut first-keystroke="ctrl c" />
   </action>
+  <action id="Editor Delete">
+    <keyboard-shortcut first-keystroke="ctrl d" />
+  </action>
   <action id="Editor EditorTranslateAction">
     <keyboard-shortcut first-keystroke="alt e" />
   </action>
@@ -221,6 +231,7 @@
     <keyboard-shortcut first-keystroke="shift back_space" />
     <keyboard-shortcut first-keystroke="ctrl h" />
   </action>
+  <action id="EditorChooseLookupItem" />
   <action id="EditorCodeBlockEnd" />
   <action id="EditorCodeBlockStart" />
   <action id="EditorCut">
@@ -228,6 +239,7 @@
   </action>
   <action id="EditorDelete">
     <keyboard-shortcut first-keystroke="delete" />
+    <keyboard-shortcut first-keystroke="ctrl d" />
   </action>
   <action id="EditorDeleteLine" />
   <action id="EditorDeleteToLineEnd">
@@ -238,9 +250,9 @@
     <keyboard-shortcut first-keystroke="ctrl j" />
   </action>
   <action id="EditorDuplicate" />
-  <action id="EditorEnter">
+  <action id="EditorEscape">
+    <keyboard-shortcut first-keystroke="escape" />
     <keyboard-shortcut first-keystroke="enter" />
-    <keyboard-shortcut first-keystroke="alt j" />
   </action>
   <action id="EditorJoinLines" />
   <action id="EditorKillToWordStart">
@@ -262,6 +274,10 @@
     <keyboard-shortcut first-keystroke="ctrl right" />
     <keyboard-shortcut first-keystroke="alt f" />
   </action>
+  <action id="EditorPageUp">
+    <keyboard-shortcut first-keystroke="page_up" />
+    <keyboard-shortcut first-keystroke="ctrl u" />
+  </action>
   <action id="EditorPreviousWord">
     <keyboard-shortcut first-keystroke="ctrl left" />
     <keyboard-shortcut first-keystroke="alt b" />
@@ -271,10 +287,6 @@
     <keyboard-shortcut first-keystroke="ctrl l" />
     <keyboard-shortcut first-keystroke="ctrl f" />
   </action>
-  <action id="EditorScrollDown">
-    <keyboard-shortcut first-keystroke="ctrl down" />
-    <keyboard-shortcut first-keystroke="ctrl d" />
-  </action>
   <action id="EditorScrollLeft">
     <keyboard-shortcut first-keystroke="alt open_bracket" />
   </action>
@@ -282,12 +294,11 @@
     <keyboard-shortcut first-keystroke="alt close_bracket" />
   </action>
   <action id="EditorScrollToCenter" />
-  <action id="EditorScrollUp">
-    <keyboard-shortcut first-keystroke="ctrl up" />
-    <keyboard-shortcut first-keystroke="ctrl u" />
-  </action>
   <action id="EditorSelectWord" />
   <action id="EditorSplitLine" />
+  <action id="EditorToggleShowWhitespaces">
+    <keyboard-shortcut first-keystroke="alt t" second-keystroke="w" />
+  </action>
   <action id="EditorUp">
     <keyboard-shortcut first-keystroke="up" />
     <keyboard-shortcut first-keystroke="ctrl k" />
@@ -472,6 +483,10 @@
     <keyboard-shortcut first-keystroke="alt 0" />
     <keyboard-shortcut first-keystroke="ctrl 0" />
   </action>
+  <action id="ManageRecentProjects">
+    <keyboard-shortcut first-keystroke="ctrl q" second-keystroke="o" />
+    <keyboard-shortcut first-keystroke="ctrl p" second-keystroke="o" />
+  </action>
   <action id="Maven.RunBuild">
     <keyboard-shortcut first-keystroke="alt r" second-keystroke="m" />
   </action>
@@ -479,6 +494,7 @@
     <keyboard-shortcut first-keystroke="shift ctrl quote" />
     <keyboard-shortcut first-keystroke="alt w" second-keystroke="m" />
     <keyboard-shortcut first-keystroke="ctrl m" />
+    <keyboard-shortcut first-keystroke="alt tab" />
   </action>
   <action id="MethodDown">
     <keyboard-shortcut first-keystroke="alt down" />
@@ -506,19 +522,13 @@
   </action>
   <action id="NewElementSamePlace">
     <keyboard-shortcut first-keystroke="ctrl alt insert" />
-    <keyboard-shortcut first-keystroke="ctrl n" second-keystroke="a" />
+    <keyboard-shortcut first-keystroke="alt n" second-keystroke="a" />
   </action>
   <action id="NewModuleInGroup">
     <keyboard-shortcut first-keystroke="ctrl n" second-keystroke="m" />
   </action>
   <action id="NewProject">
     <keyboard-shortcut first-keystroke="ctrl n" second-keystroke="n" />
-  </action>
-  <action id="NewPythonFile">
-    <keyboard-shortcut first-keystroke="ctrl n" second-keystroke="p" />
-  </action>
-  <action id="NewPythonPackage">
-    <keyboard-shortcut first-keystroke="ctrl n" second-keystroke="o" />
   </action>
   <action id="NextProjectWindow">
     <keyboard-shortcut first-keystroke="ctrl alt close_bracket" />
@@ -564,7 +574,7 @@
   <action id="RecentFiles" />
   <action id="Refactorings.QuickListPopupAction">
     <keyboard-shortcut first-keystroke="shift ctrl alt t" />
-    <keyboard-shortcut first-keystroke="ctrl n" second-keystroke="r" />
+    <keyboard-shortcut first-keystroke="alt n" second-keystroke="r" />
   </action>
   <action id="Refresh" />
   <action id="RemoteHostView.Rename" />
@@ -607,9 +617,6 @@
     <keyboard-shortcut first-keystroke="alt r" second-keystroke="c" />
   </action>
   <action id="RunDashboard.CopyConfiguration" />
-  <action id="RunDashboard.Debug">
-    <keyboard-shortcut first-keystroke="alt d" second-keystroke="c" />
-  </action>
   <action id="RunDashboard.RemoveConfiguration">
     <keyboard-shortcut first-keystroke="delete" />
   </action>
@@ -626,6 +633,11 @@
   </action>
   <action id="RunToCursor">
     <keyboard-shortcut first-keystroke="f9" />
+  </action>
+  <action id="SafeDelete">
+    <keyboard-shortcut first-keystroke="alt delete" />
+    <keyboard-shortcut first-keystroke="ctrl d" />
+    <keyboard-shortcut first-keystroke="alt d" />
   </action>
   <action id="SaveAll">
     <keyboard-shortcut first-keystroke="ctrl q" second-keystroke="w" />
@@ -705,28 +717,21 @@
     <keyboard-shortcut first-keystroke="ctrl g" second-keystroke="i" />
     <keyboard-shortcut first-keystroke="alt g" second-keystroke="i" />
   </action>
-  <action id="StepInto">
-    <keyboard-shortcut first-keystroke="f7" />
-    <keyboard-shortcut first-keystroke="alt d" second-keystroke="i" />
-  </action>
   <action id="StepOut">
     <keyboard-shortcut first-keystroke="ctrl f8" />
   </action>
-  <action id="StepOver">
-    <keyboard-shortcut first-keystroke="f8" />
-    <keyboard-shortcut first-keystroke="alt d" second-keystroke="o" />
-  </action>
   <action id="Stop">
     <keyboard-shortcut first-keystroke="f10" />
-  </action>
-  <action id="SurroundWith">
-    <keyboard-shortcut first-keystroke="ctrl alt t" />
-    <keyboard-shortcut first-keystroke="alt i" />
+    <keyboard-shortcut first-keystroke="f11" />
   </action>
   <action id="Switcher">
     <keyboard-shortcut first-keystroke="shift ctrl tab" />
     <keyboard-shortcut first-keystroke="alt h" />
     <keyboard-shortcut first-keystroke="ctrl tab" />
+  </action>
+  <action id="Synchronize">
+    <keyboard-shortcut first-keystroke="ctrl alt y" />
+    <keyboard-shortcut first-keystroke="ctrl r" />
   </action>
   <action id="Terminal.OpenInTerminal">
     <keyboard-shortcut first-keystroke="alt o" second-keystroke="t" />
@@ -757,6 +762,10 @@
   <action id="TypeHierarchyBase.BaseOnThisType" />
   <action id="Unsplit">
     <keyboard-shortcut first-keystroke="alt w" second-keystroke="u" />
+  </action>
+  <action id="Unwrap">
+    <keyboard-shortcut first-keystroke="shift ctrl delete" />
+    <keyboard-shortcut first-keystroke="ctrl d" />
   </action>
   <action id="UpdateRunningApplication" />
   <action id="Vcs.EditSource">
@@ -797,7 +806,6 @@
   </action>
   <action id="ViewBreakpoints">
     <keyboard-shortcut first-keystroke="shift ctrl f8" />
-    <keyboard-shortcut first-keystroke="alt d" second-keystroke="v" />
     <keyboard-shortcut first-keystroke="shift ctrl f6" />
   </action>
   <action id="VimPluginToggle">
@@ -812,12 +820,7 @@
     <keyboard-shortcut first-keystroke="alt down" />
   </action>
   <action id="XDebugger.MuteBreakpoints">
-    <keyboard-shortcut first-keystroke="alt d" second-keystroke="m" />
     <keyboard-shortcut first-keystroke="shift f6" />
-  </action>
-  <action id="XDebugger.RemoveWatch">
-    <keyboard-shortcut first-keystroke="delete" />
-    <keyboard-shortcut first-keystroke="ctrl d" />
   </action>
   <action id="XDebugger.SetValue">
     <keyboard-shortcut first-keystroke="ctrl v" />
@@ -832,6 +835,9 @@
   </action>
   <action id="osmedile.intellij.stringmanip.PopupChoiceAction">
     <keyboard-shortcut first-keystroke="shift alt m" />
+  </action>
+  <action id="osmedile.intellij.stringmanip.TrimAllSpacesAction">
+    <keyboard-shortcut first-keystroke="alt p" second-keystroke="space" />
   </action>
   <action id="tasks.close">
     <keyboard-shortcut first-keystroke="shift alt w" />
