@@ -1,5 +1,6 @@
 #! /usr/bin/env zsh
 
+
 # ==================================================================================
 
 ZshSettings() {
@@ -90,7 +91,7 @@ DefAlias() {
   alias cgl="colorls --gs -lA --sd"
   alias grep="grep --color=auto"
   # app
-  alias yy='sudo netease-cloud-music &'
+  alias yinyue='sudo netease-cloud-music'
   alias xmind='cd /home/alanding/software/xmind-8/XMIND_amd64/ | ./XMind'
   alias sysbackup='sh /mnt/fun+downloads/linux系统安装/systembackup/sysbackup.sh'
   alias ge='gedit'
@@ -113,6 +114,12 @@ DefAlias() {
   alias nv='nvim'
   alias em='emacs'
 
+  # sphinx
+  alias sphq='sphinx-quickstart'
+  alias sphb='sphinx-build'
+  alias spha='sphinx-apidoc'
+  alias sphg='sphinx-autogen'
+
   # spark
   alias starthdfs='start-dfs.sh && start-yarn.sh && start-master.sh && start-slaves.sh'
   alias stophdfs='stop-dfs.sh && stop-yarn.sh && stop-master.sh && stop-slaves.sh'
@@ -126,7 +133,10 @@ DefAlias() {
   alias grro='git remote remove origin'
   alias grru='git remote remove upstream'
 
-  alias mysql='mysql -u root -p'
+  # translate
+  alias jj='python3 /home/alanding/.SpaceVim.d/extools/translator/translator.py '
+  # alias rmysql='mysql -u root -p'
+  alias mysql='mysql -u alanding -p'
 }
 
 
@@ -253,9 +263,9 @@ DefEnVar() {
   add-zsh-hook chpwd load-nvmrc
 
   # Ruby
-  export PATH=$HOME/.rbenv/bin:$PATH
-  eval "$(rbenv init -)"
-  source $(dirname $(gem which colorls))/tab_complete.sh
+  # export PATH=$HOME/.rbenv/bin:$PATH
+  # eval "$(rbenv init -)"
+  # source $(dirname $(gem which colorls))/tab_complete.sh
 
   # Go
   export GOROOT=/opt/lang-tools/go/go
@@ -319,7 +329,4 @@ stty -ixon
 ZshSettings
 DefAlias
 DefEnVar
-[[ -s "$HOME/.xmake/profile" ]] && source "$HOME/.xmake/profile" # load xmake profile
-
-
 

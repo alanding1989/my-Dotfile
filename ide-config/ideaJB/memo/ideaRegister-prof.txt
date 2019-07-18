@@ -1,4 +1,5 @@
 针对2019版本 请不要参照网站的做法，按照我的来
+/etc/hosts
 第一步将：0.0.0.0 https://account.jetbrains.com:443加入hosts，不需要0.0.0.0 www.jetbrains.com，不然会影响idea的某些功能
 第二步 打开cmd终端，输入ipconfig /flushdns，然后回车刷新dns缓存
 第三步 输入lanyu序列号，成功开车！！！！！！！！！！！！！！！！！！！！！！

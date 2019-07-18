@@ -7,5 +7,6 @@ echo "$mydotfile"
 
 if [ -e "$mydotfile/fonts/powerline" ]; then
   cp -r "$mydotfile/fonts/powerline" /usr/share/fonts  && \
+  cp -r "$mydotfile/fonts/sourcecodepro-fonts" /usr/share/fonts  && \
     fc-cache -vf
 fi

@@ -8,9 +8,9 @@ if [ ! -x "usr/bin/git" ]; then
   sudo apt-install git
 fi
 
-rm -r /tmp/alan-dotfile
+rm -r /tmp/my-Dotfile
 git clone git@github.com:alanding1989/my-Dotfile.git /tmp/my-Dotfile
-cd /tmp/alan-dotfile
+cd /tmp/my-Dotfile
 
 if [ ! -d "./log" ]; then
 	mkdir ./log

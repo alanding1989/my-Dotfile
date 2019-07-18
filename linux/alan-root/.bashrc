@@ -59,7 +59,7 @@ unset color_prompt force_color_prompt
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
   xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    PS1="\[\e]0;${debian_chroot:+$(debian_chroot)}\u@\h: \w\a\]$PS1"
     ;;
   *)
     ;;
@@ -104,7 +104,12 @@ fi
 
 # disable Vim freeze after pressing <C-s>
 stty -ixon
+
 export PATH=/home/alanding/.local/bin:$PATH
+
+# Conda
+export PATH=/home/alanding/software/anaconda3/envs/py36/bin:$PATH
+. /home/alanding/software/anaconda3/etc/profile.d/conda.sh
 # Node version manager
 export NVM_DIR="/opt/lang-tools/nvm"
 # yarn
@@ -113,7 +118,7 @@ export PATH=`dirname $(which node)`:$PATH
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
   # autoload -U add-zsh-hook
-  load-nvmrc() {
+load-nvmrc() {
   local node_version="$(nvm version)"
   local nvmrc_path="$(nvm_find_nvmrc)"
   if [ -n "$nvmrc_path" ]; then
@@ -129,7 +134,7 @@ export PATH=`dirname $(which node)`:$PATH
     nvm use default
   fi
 }
-add-zsh-hook chpwd load-nvmrc
+load-nvmrc
 
 
 alias pdf='synclient touchpadoff=1'
