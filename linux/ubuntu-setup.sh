@@ -14,12 +14,16 @@ fi
 mydotfile=$(cd "$(dirname "$0")"; cd ..; pwd)
 
 
-function preparation() {
+preparation() {
+  add-apt-repository ppa:daniruiz/flat-remix
+  add-apt-repository ppa:noobslab/macbuntu
+  apt-add-repository ppa:zanchey/asciinema
+  apt-get update
+
   sudo ln -s /bin/bash /bin/sh -f
   sudo apt-get install git zsh
   sudo chsh -s /bin/zsh root
-  zsh
-  cp -r "$mydotfile/linux/alan-root/.zshrc" "/root" && cp "$mydotfile/linux/alan-root/.bashrc"  "/root"
+  cp -r "$mydotfile/linux/alan-root/.zshrc" "/root"
 }
 
 
@@ -28,10 +32,6 @@ remove_useless() {
   # Add source and Remove some useless software
   #--------------------------------------------------------------------------------
   if [ "$bb" = i ]; then
-    add-apt-repository ppa:daniruiz/flat-remix
-    add-apt-repository ppa:noobslab/macbuntu
-    apt-add-repository ppa:zanchey/asciinema
-
     apt-get remove unity-webapps-common thunderbird totem rhythmbox empathy \
       brasero simple-scan gnome-mahjongg aisleriot gnome-mines cheese onboard \
       transmission-common gnome-orca webbrowser-app gnome-sudoku deja-dup\
@@ -43,7 +43,7 @@ install_apps() {
   #--------------------------------------------------------------------------------
   # Install from ubuntu source 
   #--------------------------------------------------------------------------------
-  apt-get update
+
   apt-get install zsh  git-extras tig tmux guake albert gdebi curl jq \
     tsocks goldendict urlview xclip silversearcher-ag fcitx \
     xserver-xorg-input-synaptics synaptic openssh-server asciinema \
@@ -51,7 +51,6 @@ install_apps() {
 
   # system theme
   apt-get install flat-remix-gnome flat-remix gnome-tweaks gnome-shell-extension-top-icons-plus acpi
-
 }
 
 
@@ -76,7 +75,6 @@ install_zsh_fonts() {
       rm -r /root/.oh-my-zsh && cp -r /home/alanding/.oh-my-zsh /root/
     fi
   fi
-
 
   #@ install fonts
   sudo cp -r "$mydotfile/fonts/powerline" /usr/share/fonts
@@ -147,13 +145,16 @@ install_wine_code_google() {
     dpkg -i ./*.deb
 
     # tex 换源
-    tlmgr option repository http://mirrors.ustc.edu.cn/CTAN/systems/texlive/tlnet
+    #tlmgr option repository http://mirrors.ustc.edu.cn/CTAN/systems/texlive/tlnet
     cd "$cpath" || return
   fi
 
   # fix dependencies
   apt-get --fix-broken install
   apt-get autoclean && apt-get autoremove && apt-get clean
+  #@ icons
+  cp -r "$mydotfile/linux/alan-root/.*" "$HOME"
+  cp -r "$mydotfile/system-theme/icons/*" /usr/share/applications
 }
 
 
@@ -190,8 +191,4 @@ install_yarnpkg() {
 # lang_install
 # install_wine_code_google
 install_nvidia
-
-cp -r "$mydotfile/linux/alan-root/.*" "$HOME"
-#@ icons
-cp -r "$mydotfile/system-theme/icons/*" /usr/share/applications
 

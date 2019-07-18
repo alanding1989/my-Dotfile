@@ -157,14 +157,14 @@ DefEnVar() {
 
   # Conda
   export PATH=/home/alanding/software/anaconda3/envs/py36/bin:$PATH
-  . /home/alanding/software/anaconda3/etc/profile.d/conda.sh
+  \. /home/alanding/software/anaconda3/etc/profile.d/conda.sh
 
   # CUDA
   export CUDA_HOME=/home/alanding/software/cuda/cuda-10.0
-  export PATH=$CUDA_HOME/bin:$PATH
-  export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
-  # export PATH=$CUDA_HOME/bin${PATH:+:${PATH}}
-  # export LD_LIBRARY_PATH=$CUDA_HOME/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+  # export PATH=$CUDA_HOME/bin:$PATH
+  # export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
+  export PATH=$CUDA_HOME/bin${PATH:+:${PATH}}
+  export LD_LIBRARY_PATH=$CUDA_HOME/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
   export CUDA_DEVICE_ORDER="PCI_BUS_ID"
   export CUDA_VISIBLE_DEVICES="0,1,2,3"
 
@@ -174,6 +174,7 @@ DefEnVar() {
 
   # Java
   export JAVA_HOME=/opt/lang-tools/java/jdk
+  export IDEA_JDK=/opt/lang-tools/java/jdk
   export JRE_HOME=${JAVA_HOME}/jre
   export CLASSPATH=${JAVA_HOME}/lib:${JRE_HOME}/lib
   export PATH=${JAVA_HOME}/bin:${JRE_HOME}/bin:${CLASSPATH}:$PATH
@@ -238,8 +239,6 @@ DefEnVar() {
 
   # Node version manager
   export NVM_DIR="/opt/lang-tools/nvm"
-  # yarn
-  export PATH=`dirname $(which node)`:$PATH
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
@@ -261,11 +260,13 @@ DefEnVar() {
     fi
   }
   add-zsh-hook chpwd load-nvmrc
+  # yarn
+  export PATH=`dirname $(which node)`:$PATH
 
   # Ruby
-  # export PATH=$HOME/.rbenv/bin:$PATH
-  # eval "$(rbenv init -)"
-  # source $(dirname $(gem which colorls))/tab_complete.sh
+  export PATH=$HOME/.rbenv/bin:$PATH
+  eval "$(rbenv init -)"
+  source $(dirname $(gem which colorls))/tab_complete.sh
 
   # Go
   export GOROOT=/opt/lang-tools/go/go
@@ -278,6 +279,7 @@ DefEnVar() {
 
   #lua
   export PATH=/opt/lang-tools/lua/luarocks/bin:$PATH
+
 }
 
 
