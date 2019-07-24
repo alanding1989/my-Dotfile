@@ -45,14 +45,13 @@ install_apps() {
   #--------------------------------------------------------------------------------
 
   apt-get install zsh  git-extras tig tmux guake albert gdebi curl jq \
-    tsocks goldendict urlview xclip silversearcher-ag fcitx \
+    shellcheck tsocks goldendict urlview xclip silversearcher-ag fcitx \
     xserver-xorg-input-synaptics synaptic openssh-server asciinema \
     build-essential gcc-8 g++-8 global texinfo
 
   # system theme
   apt-get install flat-remix-gnome flat-remix gnome-tweaks gnome-shell-extension-top-icons-plus acpi
 }
-
 
 install_zsh_fonts() {
   #--------------------------------------------------------------------------------
@@ -162,18 +161,17 @@ install_nvidia() {
   #--------------------------------------------------------------------------------
   # Nvidia install
   #--------------------------------------------------------------------------------
-  if ! lsmod | grep nouveau; then
+  if lsmod | grep nouveau; then
     echo "blacklist nouveau" >> /etc/modprobe.d/blacklist.conf
     update-initramfs -u
+    sudo reboot
   fi
 
-  if [ -z "$(nvidia-smi)" ]; then
-    read -pr "Confirm to remove Nvidia? [y/n] ->:" cc
-    if [ "$cc" = y ]; then
-      apt-get remove --purge nvidia*
-      cd /mnt/fun+downloads/linux系统安装/code-software/system-util || return
-      chmod +x ./*.run | ./NVIDIA-Linux-x86_64-410.78.run
-    fi
+  nvidia-smi || read -rp "Confirm to remove Nvidia? [y/n] ->:" cc
+  if [ "$cc" = y ]; then
+    apt-get remove --purge nvidia*
+    cd /mnt/fun+downloads/linux系统安装/code-software/system-util || return
+    chmod +x ./*.run | ./NVIDIA-Linux-x86_64-410.78.run
   fi
 }
 

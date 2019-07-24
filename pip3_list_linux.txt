@@ -1,8 +1,16 @@
 pip
 setuptools
+chardet
 requests
+'requests[socks]'
 urllib3
 requests-html
+selenium
+pymysql
+sqlalchemy
+dataset
+pymongo
+mongoengine
 pynvim
 pyvim
 vim-vint
@@ -40,7 +48,7 @@ recommonmark
 
 git+https://github.com/google/vimdoc
 tensorflow-gpu
-https://download.pytorch.org/whl/cu100/torch-1.0.1.post2-cp36-cp36m-linux_x86_64.whl
+https://download.pytorch.org/whl/cu100/torch-1.0.1.post2-cp37-cp37m-linux_x86_64.whl
 torchvision
 
 

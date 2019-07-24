@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=The Economist
+Exec=/opt/google/chrome/google-chrome --profile-directory=Default --app-id=gebjgjhbjedcomcajgpodjgfjgkepgpl
+Icon=chrome-gebjgjhbjedcomcajgpodjgfjgkepgpl-Default
+StartupWMClass=crx_gebjgjhbjedcomcajgpodjgfjgkepgpl
