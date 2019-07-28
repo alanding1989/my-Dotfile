@@ -20,7 +20,7 @@ preparation() {
   apt-add-repository ppa:zanchey/asciinema
   apt-get update
 
-  sudo ln -s /bin/bash /bin/sh -f
+  sudo ln -s -f /bin/bash /bin/sh
   sudo apt-get install git zsh
   sudo chsh -s /bin/zsh root
   cp -r "$mydotfile/linux/alan-root/.zshrc" "/root"
@@ -68,7 +68,7 @@ install_zsh_fonts() {
     git clone https://github.com/paulirish/git-open.git \
       "$ZSH_CUSTOM/plugins/git-open"
     if [ -e "$HOME/.zsh.pre-oh-my-zsh" ]; then
-      mv $HOME/.zsh.pre-oh-my-zsh $HOME/.zshrc
+      mv "$HOME/.zsh.pre-oh-my-zsh" "$HOME/.zshrc"
     fi
     if [ -e "/root/.oh-my-zsh" ]; then
       rm -r /root/.oh-my-zsh && cp -r /home/alanding/.oh-my-zsh /root/
@@ -85,10 +85,13 @@ install_zsh_fonts() {
   # 版本修改 gcc and g++
   update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 60
   update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 50
-  # update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 40
   update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 60
   update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 50
+  # update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 40
   # update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 40
+
+  update-alternatives --config gcc
+  update-alternatives --config g++
 }
 
 install_vim() {
@@ -103,10 +106,9 @@ lang_install() {
   # --------------------------------------------------------------------------------
   # Lang install 
   # --------------------------------------------------------------------------------
-  vimroot=/home/alanding/.SpaceVim.d
+  local vimroot=/home/alanding/.SpaceVim.d
+  declare -a lang=(cpp go lua nodejs python)
 
-  declare -a lang
-  lang=(cpp go lua nodejs python)
   for lang in ${lang[*]}; do
     sh "$vimroot/extools/lang-install/$lang"
   done
@@ -168,7 +170,7 @@ install_nvidia() {
   fi
 
   nvidia-smi || read -rp "Confirm to remove Nvidia? [y/n] ->:" cc
-  if [ "$cc" = y ]; then
+  if [[ "$cc" = y ]]; then
     apt-get remove --purge nvidia*
     cd /mnt/fun+downloads/linux系统安装/code-software/system-util || return
     chmod +x ./*.run | ./NVIDIA-Linux-x86_64-410.78.run

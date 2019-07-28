@@ -92,7 +92,7 @@ DefAlias() {
   alias grep="grep --color=auto"
   # app
   alias yinyue='sudo netease-cloud-music'
-  alias xmind='cd /home/alanding/software/xmind-8/XMIND_amd64/ | ./XMind'
+  alias xmind='/home/alanding/software/xmind-8/XMind_amd64/XMind'
   alias sysbackup='sh /mnt/fun+downloads/linux系统安装/systembackup/sysbackup.sh'
   alias ge='gedit'
 
@@ -114,12 +114,6 @@ DefAlias() {
   alias nv='nvim'
   alias em='emacs'
 
-  # sphinx
-  alias sphq='sphinx-quickstart'
-  alias sphb='sphinx-build'
-  alias spha='sphinx-apidoc'
-  alias sphg='sphinx-autogen'
-
   # spark
   alias starthdfs='start-dfs.sh && start-yarn.sh && start-master.sh && start-slaves.sh'
   alias stophdfs='stop-dfs.sh && stop-yarn.sh && stop-master.sh && stop-slaves.sh'
@@ -133,10 +127,18 @@ DefAlias() {
   alias grro='git remote remove origin'
   alias grru='git remote remove upstream'
 
+  # python
   # translate
-  alias jj='python3 /home/alanding/.SpaceVim.d/extools/translator/translator.py '
-  # alias rmysql='mysql -u root -p'
+  alias jj='python3 /home/alanding/.SpaceVim.d/extools/tools/translator/translator.py '
   alias mysql='mysql -u alanding -p'
+  alias jpnb='jupyter-notebook'
+  alias ipyto='jupyter nbconvert --to'
+  alias pydata='cookiecutter https://github.com/drivendata/cookiecutter-data-science'
+  # sphinx
+  alias sphq='sphinx-quickstart'
+  alias sphb='sphinx-build'
+  alias spha='sphinx-apidoc'
+  alias sphg='sphinx-autogen'
 }
 
 
@@ -156,15 +158,15 @@ DefEnVar() {
   export GIT_DISCOVERY_ACROSS_FILESYSTEM=1
 
   # Conda
-  export PATH=/home/alanding/software/anaconda3/envs/py36/bin:$PATH
+  export PATH=/home/alanding/software/anaconda3/envs/py37/bin:$PATH
   \. /home/alanding/software/anaconda3/etc/profile.d/conda.sh
 
   # CUDA
   export CUDA_HOME=/home/alanding/software/cuda/cuda-10.0
-  # export PATH=$CUDA_HOME/bin:$PATH
-  # export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
-  export PATH=$CUDA_HOME/bin${PATH:+:${PATH}}
-  export LD_LIBRARY_PATH=$CUDA_HOME/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+  export PATH=$CUDA_HOME/bin:$PATH
+  export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
+  # export PATH=$CUDA_HOME/bin${PATH:+:${PATH}}
+  # export LD_LIBRARY_PATH=$CUDA_HOME/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
   export CUDA_DEVICE_ORDER="PCI_BUS_ID"
   export CUDA_VISIBLE_DEVICES="0,1,2,3"
 
