@@ -38,7 +38,6 @@ remove_useless() {
       brasero simple-scan gnome-mahjongg aisleriot gnome-mines cheese onboard \
       transmission-common gnome-orca webbrowser-app gnome-sudoku deja-dup\
       landscape-client-ui-install libreoffice-common firefox*
-      apt-get upgrade
   fi
 }
 
@@ -56,6 +55,7 @@ install_apps() {
 
   # system theme
   apt-get install flat-remix-gnome flat-remix gnome-tweaks gnome-shell-extension-top-icons-plus
+  apt-get upgrade
 }
 
 install_zsh_fonts() {
@@ -86,6 +86,8 @@ install_zsh_fonts() {
 
   # ssh
   # rm $HOME/.ssh && ssh localhost || cd ~/.ssh && ssh-keygen -t rsa && cat ./id_rsa.pub >> ./authorized_keys
+  ssh-keygen -f "/home/alanding/.ssh/known_hosts" -R "localhost"
+  ssh-keygen -f "/home/alanding/.ssh/known_hosts" -R "0.0.0.0"
 
   # 版本修改 gcc and g++
   update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 60
@@ -199,13 +201,13 @@ install_yarnpkg() {
 }
 
 
-#preparation
-#remove_useless
-# install_apps
+preparation
+remove_useless
+install_apps
 # install_zsh_fonts
 # install_vim
 # install_yarnpkg
 # lang_install
 # install_wine_code_google
-install_nvidia
+# install_nvidia
 
