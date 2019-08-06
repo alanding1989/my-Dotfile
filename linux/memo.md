@@ -25,25 +25,25 @@ WORD  /usr/share/icons/hicolor/256x256/apps/wps-office-wpsmain.png
 
 
 ###  版本修改
-> 1. gcc and g++  
+
+1. gcc and g++  
 ```
 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 60  
 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 40  
 sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 60  
 sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 40  
 ```
-> 2. 切换版本  
+
+2. 切换版本  
+
 `update-alternatives --config gcc`
-> 3. 删除  
+
+3. 删除  
 `update-alternatives --remove gcc /usr/bin/gcc-4.6`
 
 
 ###  Java版本切换
-```
-sudo update-alternatives --set java  /usr/local/java/jdk1.8.0_181/bin/java
-sudo update-alternatives --set javac  /usr/local/java/jdk1.8.0_181/bin/javac
-sudo update-alternatives --set javaws  /usr/local/java/jdk1.8.0_181/bin/javaws
-```
+修改系统环境变量
 
 
 ###  Conda 换源

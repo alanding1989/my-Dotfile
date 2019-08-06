@@ -3,8 +3,16 @@ setuptools
 
 pynvim
 pyvim
+msgpack-python
 vim-vint
+sexpdata
+websocket-client
+clang
+scan-build
 Pygments
+Send2Trash
+neovim-remote
+
 python-language-server
 jedi
 yapf
@@ -17,6 +25,10 @@ mccabe
 rope
 
 cookiecutter
+Sphinx
+sphinx_rtd_theme
+recommonmark
+
 ipdb
 pytest
 pytest-django
@@ -26,20 +38,30 @@ pytest-konira
 pytest-cov
 pytest-pep8
 pytest-flake8
-
+pytest-xdist
 when-changed
+watchdog
 coverage
+
+memory_profiler
+psutil
+line_profiler
+objgraph
 
 requests
 'requests[socks]'
 urllib3
 requests-html
+aiohttp
+pyquery
 selenium
+aiomysql
 pymysql
 sqlalchemy
 dataset
 pymongo
 mongoengine
+jinja2
 celery
 
 seaborn
@@ -47,20 +69,15 @@ scikit-learn
 xgboost
 lightgbm
 wordcloud
+jieba
 pyspark
 jupyter
 jupyter_contrib_nbextensions
+notedown
 rise
-Sphinx
-sphinx_rtd_theme
-recommonmark
 
+pillow
 chardet
-clang
-scan-build
-Send2Trash
-sexpdata
-websocket-client
 asciinema
 
 

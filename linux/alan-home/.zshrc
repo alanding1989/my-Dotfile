@@ -274,11 +274,11 @@ DefEnVar() {
   export PATH=`dirname $(which node)`:$PATH
 
   # Ruby
-  # export PATH=$HOME/.rbenv/bin:$PATH
-  # eval "$(rbenv init -)"
-  # if [ -x gem ]; then
-    # \. $(dirname $(gem which colorls))/tab_complete.sh
-  # fi
+  export PATH=$HOME/.rbenv/bin:$PATH
+  eval "$(rbenv init -)"
+  if [ -x gem ]; then
+    \. $(dirname $(gem which colorls))/tab_complete.sh
+  fi
 
   # Go
   export GOROOT=/opt/lang-tools/go/go

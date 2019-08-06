@@ -15,17 +15,19 @@ mydotfile=$(cd "$(dirname "$0")"; cd ..; pwd)
 
 
 preparation() {
-  add-apt-repository ppa:daniruiz/flat-remix
-  add-apt-repository ppa:noobslab/macbuntu
-  apt-add-repository ppa:zanchey/asciinema
+  sudo add-apt-repository ppa:daniruiz/flat-remix
+  sudo add-apt-repository ppa:noobslab/macbuntu
+  sudo apt-add-repository ppa:zanchey/asciinema
+  sudo add-apt-repository ppa:jonathonf/vim
   apt-get update
 
+
   sudo ln -s -f /bin/bash /bin/sh
+  sudo ln -s -f /bin/bash /usr/bin/sh#
   sudo apt-get install git zsh
   sudo chsh -s /bin/zsh root
   cp -r "$mydotfile/linux/alan-root/.zshrc" "/root"
 }
-
 
 remove_useless() {
   #--------------------------------------------------------------------------------
@@ -36,6 +38,7 @@ remove_useless() {
       brasero simple-scan gnome-mahjongg aisleriot gnome-mines cheese onboard \
       transmission-common gnome-orca webbrowser-app gnome-sudoku deja-dup\
       landscape-client-ui-install libreoffice-common firefox*
+      apt-get upgrade
   fi
 }
 
@@ -43,14 +46,16 @@ install_apps() {
   #--------------------------------------------------------------------------------
   # Install from ubuntu source 
   #--------------------------------------------------------------------------------
-
-  apt-get install zsh  git-extras tig tmux guake albert gdebi curl jq \
-    shellcheck tsocks goldendict urlview xclip silversearcher-ag fcitx \
-    xserver-xorg-input-synaptics synaptic openssh-server asciinema \
-    build-essential gcc-8 g++-8 global texinfo
+  apt-get install gcc-8 g++-8 texinfo autoconf automake \
+    build-essential libncurses5-dev libgtk-3-dev
+  apt-get install vim zsh git-extras tig tmux guake albert gdebi curl jq \
+    fcitx-googlepinyin \
+    shellcheck tsocks goldendict urlview xclip silversearcher-ag fcitx convmv\
+    xserver-xorg-input-synaptics synaptic openssh-server asciinema unrar rar\
+    global acpi
 
   # system theme
-  apt-get install flat-remix-gnome flat-remix gnome-tweaks gnome-shell-extension-top-icons-plus acpi
+  apt-get install flat-remix-gnome flat-remix gnome-tweaks gnome-shell-extension-top-icons-plus
 }
 
 install_zsh_fonts() {
@@ -94,6 +99,7 @@ install_zsh_fonts() {
   update-alternatives --config g++
 }
 
+
 install_vim() {
   #@ SpaceVim
   if [ ! -e "$HOME/.SpaceVim" ]; then
@@ -132,21 +138,19 @@ install_wine_code_google() {
     # https://www.xmind.net/download/xmind8
     # https://github.com/wszqkzqk/deepin-wine-ubuntu
 
-    cd /mnt/fun+downloads/linux系统安装/daily-software || return
     #@ Google
+    cd /mnt/fun+downloads/linux系统安装/daily-software || return
     rm -f google-chrome-stable_current_amd64.deb
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     #@ rg search
     # curl -LO https://github.com/BurntSushi/ripgrep/releases/download/
     dpkg -i ./*.deb
 
-
-    #@ vscode fd
-    cd /mnt/fun+downloads/linux系统安装/code-software || return
+    cd /mnt/fun+downloads/linux系统安装/code-software/ || return
     dpkg -i ./*.deb
 
     # tex 换源
-    #tlmgr option repository http://mirrors.ustc.edu.cn/CTAN/systems/texlive/tlnet
+    tlmgr option repository http://mirrors.ustc.edu.cn/CTAN/systems/texlive/tlnet
     cd "$cpath" || return
   fi
 
@@ -154,8 +158,19 @@ install_wine_code_google() {
   apt-get --fix-broken install
   apt-get autoclean && apt-get autoremove && apt-get clean
   #@ icons
+  zsh
+  # FIXME:
   cp -r "$mydotfile/linux/alan-root/.*" "$HOME"
-  cp -r "$mydotfile/system-theme/icons/*" /usr/share/applications
+  cp -r "$mydotfile/system-theme/icons/alanding/.local" /home/alanding
+}
+
+
+install_databashes() {
+  cp -r /mnt/fun+downloads/my-Dotfile/linux/alan-root/etc  /etc
+  sudo cd /home/alanding/.SpaceVim.d/extools/tools/database/ || return
+  sh ./mysql.sh
+  sh ./redis.sh
+  sh ./mongodb.sh
 }
 
 
@@ -166,14 +181,15 @@ install_nvidia() {
   if lsmod | grep nouveau; then
     echo "blacklist nouveau" >> /etc/modprobe.d/blacklist.conf
     update-initramfs -u
-    sudo reboot
+    # sudo reboot
   fi
 
   nvidia-smi || read -rp "Confirm to remove Nvidia? [y/n] ->:" cc
   if [[ "$cc" = y ]]; then
     apt-get remove --purge nvidia*
     cd /mnt/fun+downloads/linux系统安装/code-software/system-util || return
-    chmod +x ./*.run | ./NVIDIA-Linux-x86_64-410.78.run
+    chmod +x ./*.run 
+    echo 'Installation must run in shell ! can`t in a subprocess'
   fi
 }
 
@@ -182,8 +198,9 @@ install_yarnpkg() {
   ln -sf /opt/lang-tools/nvm/versions/node/v11.9.0/bin/node /usr/bin/node
 }
 
-# preparation
-# remove_useless
+
+#preparation
+#remove_useless
 # install_apps
 # install_zsh_fonts
 # install_vim
