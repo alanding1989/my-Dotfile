@@ -106,7 +106,7 @@
     <keyboard-shortcut first-keystroke="alt g" second-keystroke="a" />
   </action>
   <action id="ChooseDebugConfiguration">
-    <keyboard-shortcut first-keystroke="shift f11" />
+    <keyboard-shortcut first-keystroke="f6" />
   </action>
   <action id="ChooseNextSubsequentPropertyValueEditorAction">
     <keyboard-shortcut first-keystroke="alt down" />
@@ -167,9 +167,7 @@
   <action id="Coverage">
     <keyboard-shortcut first-keystroke="alt r" second-keystroke="w" />
   </action>
-  <action id="Debug">
-    <keyboard-shortcut first-keystroke="f9" />
-  </action>
+  <action id="Debug" />
   <action id="Debugger.AddToWatch">
     <keyboard-shortcut first-keystroke="ctrl a" />
   </action>
@@ -177,7 +175,7 @@
     <keyboard-shortcut first-keystroke="f2" />
   </action>
   <action id="Debugger.RemoveAllBreakpointsInFile">
-    <keyboard-shortcut first-keystroke="alt f6" />
+    <keyboard-shortcut first-keystroke="alt f5" />
   </action>
   <action id="DecrementWindowHeight">
     <keyboard-shortcut first-keystroke="shift ctrl up" />
@@ -296,9 +294,6 @@
   <action id="EditorScrollToCenter" />
   <action id="EditorSelectWord" />
   <action id="EditorSplitLine" />
-  <action id="EditorToggleShowWhitespaces">
-    <keyboard-shortcut first-keystroke="alt t" second-keystroke="w" />
-  </action>
   <action id="EditorUp">
     <keyboard-shortcut first-keystroke="up" />
     <keyboard-shortcut first-keystroke="ctrl k" />
@@ -327,6 +322,7 @@
   <action id="ExpressionTypeInfo">
     <keyboard-shortcut first-keystroke="shift ctrl p" />
     <keyboard-shortcut first-keystroke="ctrl p" second-keystroke="t" />
+    <keyboard-shortcut first-keystroke="alt t" />
   </action>
   <action id="FileChooser.GotoDesktop" />
   <action id="FileChooser.GotoHome" />
@@ -492,7 +488,6 @@
   </action>
   <action id="MaximizeToolWindow">
     <keyboard-shortcut first-keystroke="shift ctrl quote" />
-    <keyboard-shortcut first-keystroke="alt w" second-keystroke="m" />
     <keyboard-shortcut first-keystroke="ctrl m" />
     <keyboard-shortcut first-keystroke="alt tab" />
   </action>
@@ -517,18 +512,12 @@
   <action id="MoveTabRight">
     <keyboard-shortcut first-keystroke="alt w" second-keystroke="r" />
   </action>
-  <action id="NewClass">
-    <keyboard-shortcut first-keystroke="ctrl n" second-keystroke="j" />
-  </action>
   <action id="NewElementSamePlace">
     <keyboard-shortcut first-keystroke="ctrl alt insert" />
     <keyboard-shortcut first-keystroke="alt n" second-keystroke="a" />
   </action>
-  <action id="NewModuleInGroup">
-    <keyboard-shortcut first-keystroke="ctrl n" second-keystroke="m" />
-  </action>
   <action id="NewProject">
-    <keyboard-shortcut first-keystroke="ctrl n" second-keystroke="n" />
+    <keyboard-shortcut first-keystroke="alt n" second-keystroke="p" />
   </action>
   <action id="NextProjectWindow">
     <keyboard-shortcut first-keystroke="ctrl alt close_bracket" />
@@ -540,9 +529,10 @@
   </action>
   <action id="NextTab">
     <keyboard-shortcut first-keystroke="alt right" />
-    <keyboard-shortcut first-keystroke="alt w" second-keystroke="n" />
     <keyboard-shortcut first-keystroke="alt tab" />
+    <keyboard-shortcut first-keystroke="ctrl tab" />
   </action>
+  <action id="NextTemplateParameter" />
   <action id="OpenFile">
     <keyboard-shortcut first-keystroke="alt o" second-keystroke="o" />
   </action>
@@ -620,10 +610,6 @@
   <action id="RunDashboard.RemoveConfiguration">
     <keyboard-shortcut first-keystroke="delete" />
   </action>
-  <action id="RunDashboard.Run">
-    <keyboard-shortcut first-keystroke="shift ctrl f10" />
-    <keyboard-shortcut first-keystroke="alt r" second-keystroke="s" />
-  </action>
   <action id="RunDashboard.Stop">
     <keyboard-shortcut first-keystroke="ctrl f2" />
     <keyboard-shortcut first-keystroke="alt r" second-keystroke="q" />
@@ -653,12 +639,9 @@
     <keyboard-shortcut first-keystroke="alt enter" />
     <keyboard-shortcut first-keystroke="ctrl enter" />
   </action>
-  <action id="Scala.NewClass">
-    <keyboard-shortcut first-keystroke="ctrl n" second-keystroke="c" />
-  </action>
   <action id="Scala.RunConsole">
     <keyboard-shortcut first-keystroke="shift ctrl d" />
-    <keyboard-shortcut first-keystroke="alt r" second-keystroke="f" />
+    <keyboard-shortcut first-keystroke="alt r" second-keystroke="s" />
   </action>
   <action id="Scala.SendSelectionToConsole">
     <keyboard-shortcut first-keystroke="shift ctrl x" />
@@ -670,12 +653,15 @@
   </action>
   <action id="Scala.TypeInfo">
     <keyboard-shortcut first-keystroke="ctrl p" second-keystroke="t" />
+    <keyboard-shortcut first-keystroke="alt t" />
   </action>
   <action id="SelectAllOccurrences">
     <keyboard-shortcut first-keystroke="shift ctrl alt j" />
     <keyboard-shortcut first-keystroke="ctrl s" second-keystroke="o" />
   </action>
-  <action id="SelectIn" />
+  <action id="SelectIn">
+    <keyboard-shortcut first-keystroke="alt s" second-keystroke="v" />
+  </action>
   <action id="SelectInProjectView">
     <keyboard-shortcut first-keystroke="ctrl s" second-keystroke="p" />
   </action>
@@ -683,9 +669,6 @@
   <action id="SendEOF" />
   <action id="ShelvedChanges.Rename">
     <keyboard-shortcut first-keystroke="f2" />
-  </action>
-  <action id="ShowBookmarks">
-    <keyboard-shortcut first-keystroke="shift f5" />
   </action>
   <action id="ShowFilePath">
     <keyboard-shortcut first-keystroke="ctrl alt f12" />
@@ -719,16 +702,16 @@
   </action>
   <action id="StepOut">
     <keyboard-shortcut first-keystroke="ctrl f8" />
+    <keyboard-shortcut first-keystroke="f9" />
   </action>
   <action id="Stop">
     <keyboard-shortcut first-keystroke="f10" />
-    <keyboard-shortcut first-keystroke="f11" />
   </action>
   <action id="Switcher">
     <keyboard-shortcut first-keystroke="shift ctrl tab" />
     <keyboard-shortcut first-keystroke="alt h" />
-    <keyboard-shortcut first-keystroke="ctrl tab" />
   </action>
+  <action id="SwitcherRecentEditedChangedToggleCheckBox" />
   <action id="Synchronize">
     <keyboard-shortcut first-keystroke="ctrl alt y" />
     <keyboard-shortcut first-keystroke="ctrl r" />
@@ -740,20 +723,14 @@
   <action id="TodoViewGroupByShowPackages">
     <keyboard-shortcut first-keystroke="ctrl p" second-keystroke="m" />
   </action>
-  <action id="ToggleBookmark">
-    <keyboard-shortcut first-keystroke="f5" />
-  </action>
-  <action id="ToggleBookmarkWithMnemonic">
-    <keyboard-shortcut first-keystroke="ctrl f5" />
-  </action>
   <action id="ToggleBreakpointEnabled">
-    <keyboard-shortcut first-keystroke="ctrl f6" />
+    <keyboard-shortcut first-keystroke="ctrl f5" />
   </action>
   <action id="ToggleDistractionFreeMode">
     <keyboard-shortcut first-keystroke="alt z" />
   </action>
   <action id="ToggleLineBreakpoint">
-    <keyboard-shortcut first-keystroke="f6" />
+    <keyboard-shortcut first-keystroke="f5" />
   </action>
   <action id="TypeHierarchy">
     <keyboard-shortcut first-keystroke="ctrl s" second-keystroke="t" />
@@ -820,7 +797,7 @@
     <keyboard-shortcut first-keystroke="alt down" />
   </action>
   <action id="XDebugger.MuteBreakpoints">
-    <keyboard-shortcut first-keystroke="shift f6" />
+    <keyboard-shortcut first-keystroke="shift f5" />
   </action>
   <action id="XDebugger.SetValue">
     <keyboard-shortcut first-keystroke="ctrl v" />

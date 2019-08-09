@@ -90,6 +90,7 @@ DefAlias() {
   alias cgt="colorls --gs -t"
   alias cgl="colorls --gs -lA --sd"
   alias grep="grep --color=auto"
+  alias du="du -h"
 
   # system check
   alias free='free -h -s4'
@@ -169,14 +170,21 @@ DefEnVar() {
   export PATH=/home/alanding/software/anaconda3/envs/py37/bin:$PATH
   \. /home/alanding/software/anaconda3/etc/profile.d/conda.sh
 
+  # Cmake
+  # export PATH=/opt/lang-tools/cpp/cmake/bin:$PATH
+
   # CUDA
   export CUDA_HOME=/home/alanding/software/cuda/cuda-10.0
   export PATH=$CUDA_HOME/bin:$PATH
   export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
-  # export PATH=$CUDA_HOME/bin${PATH:+:${PATH}}
-  # export LD_LIBRARY_PATH=$CUDA_HOME/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
   export CUDA_DEVICE_ORDER="PCI_BUS_ID"
   export CUDA_VISIBLE_DEVICES="0,1,2,3"
+
+  # OpenCV
+  export OPENCV_HOME=/opt/lang-tools/cpp/opencv/
+  export PATH=$OPENCV_HOME/bin:$PATH
+  # use ln -s include and lib
+  # Caffe
 
   # Clang
   export CLANG_HOME=/opt/lang-tools/cpp/clang
@@ -195,8 +203,6 @@ DefEnVar() {
   # Scala
   export SCALA_HOME=/opt/lang-tools/scala/scala-2.12.8
   export PATH=${SCALA_HOME}/bin:$PATH
-  export SCALA_DOC=${SCALA_HOME}/bin/scaladoc
-  export SCALA_COMPILER=${SCALA_HOME}/bin/scalac
   # metals-vim, coursier
   export PATH=/opt/lang-tools/scala:$PATH
   # export PATH=/opt/lang-tools/scala/languageclient:$PATH
@@ -211,7 +217,7 @@ DefEnVar() {
   # Pyspark
   export PYSPARK_DRIVER_PYTHON=jupyter
   export PYSPARK_DRIVER_PYTHON_OPTS='notebook'
-  export PYSPARK_PYTHON=/home/alanding/software/anaconda3/envs/py36/bin/python3.6
+  export PYSPARK_PYTHON=/home/alanding/software/anaconda3/envs/py37/bin/python3.7
   # Hadoop
   export HADOOP_HOME=/opt/spark/hadoop
   export PATH=${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:$PATH
@@ -243,9 +249,8 @@ DefEnVar() {
   export LANGUAGE_TOOL_HOME=/opt/vim/LanguageTool
 
   # Emacs
-  # export EMACS_HOME=/opt/emacs
-  # export PATH=${EMACS_HOME}/emacs/bin:$PATH
-
+  export EMACS_HOME=/opt/emacs
+  export PATH=${EMACS_HOME}/emacs/bin:$PATH
 
   # Node version manager
   export NVM_DIR="/opt/lang-tools/nvm"
@@ -274,10 +279,13 @@ DefEnVar() {
   export PATH=`dirname $(which node)`:$PATH
 
   # Ruby
-  export PATH=$HOME/.rbenv/bin:$PATH
-  eval "$(rbenv init -)"
-  if [ -x gem ]; then
-    \. $(dirname $(gem which colorls))/tab_complete.sh
+  if [ `whoami` != "root" ]; then
+  # if [ $UID -ne 0 ]; then
+    export PATH=$HOME/.rbenv/bin:$PATH
+    eval "$(rbenv init -)"
+    if [ -x gem ]; then
+      \. $(dirname $(gem which colorls))/tab_complete.sh
+    fi
   fi
 
   # Go
@@ -291,6 +299,9 @@ DefEnVar() {
 
   #lua
   export PATH=/opt/lang-tools/lua/luarocks/bin:$PATH
+
+  # .net
+  export PATH=/opt/lang-tools/dotnet:$PATH
 }
 
 

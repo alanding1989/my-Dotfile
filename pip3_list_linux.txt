@@ -3,15 +3,15 @@ setuptools
 
 pynvim
 pyvim
-msgpack-python
 vim-vint
-sexpdata
-websocket-client
+Pygments
+neovim-remote
 clang
 scan-build
-Pygments
+msgpack-python
+sexpdata
+websocket-client
 Send2Trash
-neovim-remote
 
 python-language-server
 jedi
@@ -75,6 +75,9 @@ jupyter
 jupyter_contrib_nbextensions
 notedown
 rise
+pydot
+h5py
+
 
 pillow
 chardet
@@ -85,5 +88,6 @@ git+https://github.com/google/vimdoc
 tensorflow-gpu
 https://download.pytorch.org/whl/cu100/torch-1.0.1.post2-cp37-cp37m-linux_x86_64.whl
 torchvision
+keras
 
 
