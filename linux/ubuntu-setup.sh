@@ -152,7 +152,7 @@ install_wine_code_google() {
     #@ rg search
     # curl -LO https://github.com/BurntSushi/ripgrep/releases/download/
     dpkg -i ./*.deb
-    ([ -x cargo ] && [ -x ripgrep ]) || cargo install ripgrep
+    ([ -x cargo ] && [ -x rg ]) || cargo install ripgrep
 
     cd /mnt/fun+downloads/linux系统安装/code-software/ || return
     dpkg -i ./*.deb
