@@ -53,7 +53,7 @@ install_apps() {
     libswscale-dev libv4l-dev libxvidcore-dev libx264-dev
 
   apt-get install vim zsh git-extras tig tmux guake albert gdebi curl jq \
-    shellcheck global fcitx fcitx-googlepinyin qbittorrent\
+    shellcheck global fcitx fcitx-googlepinyin qbittorrent tree \
     tsocks goldendict urlview xclip silversearcher-ag convmv\
     xserver-xorg-input-synaptics synaptic openssh-server asciinema unrar rar\
     acpi
@@ -152,6 +152,7 @@ install_wine_code_google() {
     #@ rg search
     # curl -LO https://github.com/BurntSushi/ripgrep/releases/download/
     dpkg -i ./*.deb
+    ([ -x cargo ] && [ -x ripgrep ]) || cargo install ripgrep
 
     cd /mnt/fun+downloads/linux系统安装/code-software/ || return
     dpkg -i ./*.deb

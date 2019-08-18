@@ -27,6 +27,7 @@ ZshSettings() {
   # Example format: plugins=(rails git textmate ruby lighthouse)
   plugins=(git wd	z extract history web-search sbt
           git-open zsh-syntax-highlighting zsh-autosuggestions)
+  # fpath+=/home/alanding/.oh-my-zsh/custom/plugins/rustcompletion
 
   # Enable autosuggestions automatically.
   ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"
@@ -190,14 +191,18 @@ DefEnVar() {
   export CLANG_HOME=/opt/lang-tools/cpp/clang
   export PATH=${CLANG_HOME}/bin:${CLANG_HOME}/lib:${CLANG_HOME}/libexec:$PATH
 
+  # Rust
+  export RUSTUP_HOME=/opt/lang-tools/rust/rustup
+  export CARGO_HOME=/home/alanding/software/lang-tools/cargo
+  export PATH=$CARGO_HOME/bin:$PATH
+  # export RUST_SRC_PATH=/opt/lang-tools/rust/rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
+
   # Java
   export JAVA_HOME=/opt/lang-tools/java/jdk
   export JRE_HOME=${JAVA_HOME}/jre
-  # export CLASSPATH=${JAVA_HOME}/lib:${JRE_HOME}/lib
-  # export PATH=${JAVA_HOME}/bin:${JRE_HOME}/bin:${CLASSPATH}:$PATH
   export PATH=${JAVA_HOME}/bin:${JRE_HOME}/bin:$PATH
   # Maven
-  export MAVEN_HOME=/opt/lang-tools/maven
+  export MAVEN_HOME=/opt/lang-tools/java/maven
   export PATH=${MAVEN_HOME}/bin:$PATH
 
   # Scala
@@ -353,4 +358,3 @@ stty -ixon
 ZshSettings
 DefAlias
 DefEnVar
-
