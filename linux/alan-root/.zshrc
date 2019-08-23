@@ -12,7 +12,7 @@ ZshSettings() {
   ZSH_THEME="lambda-mod"
 
   # Uncomment the following line to enable command auto-correction.
-  ENABLE_CORRECTION="true"
+  # ENABLE_CORRECTION="true"
 
   # Uncomment the following line to display red dots whilst waiting for completion.
   COMPLETION_WAITING_DOTS="true"
@@ -27,7 +27,7 @@ ZshSettings() {
   # Example format: plugins=(rails git textmate ruby lighthouse)
   plugins=(git wd	z extract history web-search sbt
           git-open zsh-syntax-highlighting zsh-autosuggestions)
-  # fpath+=/home/alanding/.oh-my-zsh/custom/plugins/rustcompletion
+  fpath+=/home/alanding/.oh-my-zsh/custom/plugins/rustcompletion
 
   # Enable autosuggestions automatically.
   ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"
@@ -148,6 +148,9 @@ DefAlias() {
   alias ipyto='jupyter nbconvert --to'
   alias cookiedata='cookiecutter https://github.com/drivendata/cookiecutter-data-science'
   alias cookiepy='cookiecutter git@github.com:audreyr/cookiecutter-pypackage.git'
+
+  # Cargo
+  alias cg='cargo'
 }
 
 
@@ -195,7 +198,10 @@ DefEnVar() {
   export RUSTUP_HOME=/opt/lang-tools/rust/rustup
   export CARGO_HOME=/home/alanding/software/lang-tools/cargo
   export PATH=$CARGO_HOME/bin:$PATH
-  # export RUST_SRC_PATH=/opt/lang-tools/rust/rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
+  # export PATH=$RUSTUP_HOME/toolchains/nightly-x86_64-unknown-linux-gnu/bin:$PATH
+  export RUST_SRC_PATH=$RUSTUP_HOME/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
+  export RUSTUP_DIST_SERVER=http://mirrors.ustc.edu.cn/rust-static
+  export RUSTUP_UPDATE_ROOT=http://mirrors.ustc.edu.cn/rust-static/rustup
 
   # Java
   export JAVA_HOME=/opt/lang-tools/java/jdk
@@ -295,8 +301,8 @@ DefEnVar() {
 
   # Go
   export GOROOT=/opt/lang-tools/go/go
-  export GOPATH=/home/alanding/go/
-  export GOBIN=/home/alanding/go/bin
+  export GOPATH=/home/alanding/software/lang-tools/go/
+  export GOBIN=/home/alanding/software/lang-tools/go/bin
   export PATH=$GOROOT/bin:$PATH
   export PATH=$GOPATH/src:$PATH
   export PATH=$GOBIN:$PATH

@@ -12,7 +12,7 @@ ZshSettings() {
   ZSH_THEME="lambda-mod"
 
   # Uncomment the following line to enable command auto-correction.
-  ENABLE_CORRECTION="true"
+  # ENABLE_CORRECTION="true"
 
   # Uncomment the following line to display red dots whilst waiting for completion.
   COMPLETION_WAITING_DOTS="true"
@@ -199,7 +199,9 @@ DefEnVar() {
   export CARGO_HOME=/home/alanding/software/lang-tools/cargo
   export PATH=$CARGO_HOME/bin:$PATH
   # export PATH=$RUSTUP_HOME/toolchains/nightly-x86_64-unknown-linux-gnu/bin:$PATH
-  export RUST_SRC_PATH=$RUSTUP_HOME/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
+  export RUST_SRC_PATH=$RUSTUP_HOME/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
+  export RUSTUP_DIST_SERVER=http://mirrors.ustc.edu.cn/rust-static
+  export RUSTUP_UPDATE_ROOT=http://mirrors.ustc.edu.cn/rust-static/rustup
 
   # Java
   export JAVA_HOME=/opt/lang-tools/java/jdk
