@@ -61,7 +61,7 @@ inoremap <C-p>            <C-left>
 inoremap <C-n>            <C-right>
 inoremap <C-i>            <Esc>:action InsertLiveTemplate<CR>a
 inoremap <C-o>            <Esc>:action PreviousTemplateVariable<CR>i
-inoremap <C-m>            <Esc>:action SmartTypeCompletion<CR>a
+" inoremap <C-m>            <Esc>:action SmartTypeCompletion<CR>a
 " does not work for M
 inoremap <A-j>            <CR>
 
@@ -75,6 +75,7 @@ cnoremap <C-a>            <Home>
 cnoremap <C-e>            <End>
 cnoremap <C-d>            <Del>
 cnoremap <C-_>            <C-k>
+
 
 " tabn tabp
 nnoremap <leader><tab>    gt
@@ -121,9 +122,10 @@ nnoremap <C-d>            3<C-e>
 nnoremap <C-u>            3<C-y>
 
 " folding
-nnoremap zo               zRzz
+nnoremap zo               zozz
 nnoremap zi               zMzz
-nnoremap <CR>             zozz
+nnoremap zc               zCzz
+nnoremap <CR>             zOzz
 nnoremap <S-CR>           zMzozz
 nnoremap zj               zjzz
 nnoremap zk               zkzz
@@ -134,6 +136,7 @@ nnoremap <Space>fo        :action OpenFile<CR>
 nnoremap <Space>fr        :action RecentFiles<CR>
 nnoremap <Space>fp        :action ShowFilePath<CR>
 nnoremap <Space>fc        :action ReopenClosedTab<CR>
+" creat new file
 nnoremap <Space>fn        :action NewElement<CR>
 nnoremap <Space>fd        :action NewDir<CR>
 nnoremap <Space>fb        :action OpenInBrowser<CR>
@@ -150,6 +153,7 @@ noremap <Space>cl         :action CommentByLineComment<CR>
 noremap <Space>cp         :action CommentByBlockComment<CR>
 
 " fast save
+nnoremap qw               <ESC>:action SaveAll<CR>
 inoremap qw               <ESC>:action SaveAll<CR>
 
 nnoremap <tab>o           o<ESC>
@@ -225,10 +229,10 @@ nnoremap ght              :action TypeHierarchy<CR>
 nnoremap ghc              :action CallHierarchy<CR>
 nnoremap ghi              :action CIDR.Lang.ImportsHierarchy<CR>
 
-nnoremap <Space>dk        :action Resume<CR>
-nnoremap <Space>rq        :action Stop<CR>
 
 " run
+nnoremap <Space>dk        :action Resume<CR>
+nnoremap <Space>rq        :action Stop<CR>
 nnoremap <Space>rr        :action Run<CR>
 nnoremap <Space>lr        :action Run<CR>
 nnoremap <Space>ra        :action Rerun<CR>
@@ -236,8 +240,8 @@ nnoremap <Space>rc        :action RunClass<CR>
 nnoremap <Space>re        :action RunConfiguration<CR>
 
 nnoremap <Space>rb        :action Build<CR>
-nnoremap <Space>rc        :action Clean<CR>
 nnoremap <Space>lb        :action Build<CR>
+nnoremap <Space>rc        :action Clean<CR>
 nnoremap <Space>lc        :action Clean<CR>
 nnoremap <Space>rbb       :action RebuildProject<CR>
 nnoremap <Space>lbb       :action RebuildProject<CR>
@@ -253,8 +257,8 @@ nnoremap <Space>dd        :action Debug<CR>
 nnoremap <Space>dl        :action Debug<CR>
 nnoremap <Space>dc        :action DebugClass<CR>
 nnoremap <Space>dk        :action ChooseDebugConfiguration<CR>
-nnoremap <Space>do        :action StepOver<CR>
 nnoremap <Space>di        :action StepInto<CR>
+nnoremap <Space>do        :action StepOver<CR>
 nnoremap <Space>de        :action EvaluateExpression<CR>
 nnoremap <Space>dv        :action ViewBreakpoints<CR>
 nnoremap <Space>db        :action ToggleLineBreakpoint<CR>

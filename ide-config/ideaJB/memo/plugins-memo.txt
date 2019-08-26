@@ -1,35 +1,51 @@
 " editor
-GrepConsole
 IdeaVim
 StringManipulation
 file-path-autocomplete
 KJump
+Rainbow brackets
+CodeGlance
+GrepConsole
 
 
 " lang
-python-ce
-mypy-plugin
-pylint-plugin
-
-intellij-makefile
-xmake
-EmmyLua
-TeXiFy IDEA
-
+rust
 BashSupport
 markdown
 idea-multimarkdown
 NodeJS
 Scala
-Rainbow brackets
+EmmyLua
+toml
+
+
+" lint
+cppcheck
+findbugs
+python-ce
+mypy-plugin
+pylint-plugin
 google-java-style
 
-file-watcher
+
+" build-tools
+intellij-makefile
+xmake
+
+
+Translation
+OnlineSeach
+Docker
+GitToolBox
+gitee
 Find Pull Request
 idea-gitignore
+.ignore
 repo
+file-watcher
 
-Docker
+
 TeamCityIntegration
+TeXiFy IDEA
 
 Key-Promoter-X

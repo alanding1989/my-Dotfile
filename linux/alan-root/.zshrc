@@ -27,7 +27,7 @@ ZshSettings() {
   # Example format: plugins=(rails git textmate ruby lighthouse)
   plugins=(git wd	z extract history web-search sbt
           git-open zsh-syntax-highlighting zsh-autosuggestions)
-  fpath+=/home/alanding/.oh-my-zsh/custom/plugins/rustcompletion
+  fpath+=$HOME/.oh-my-zsh/custom/plugins/rustcompletion
 
   # Enable autosuggestions automatically.
   ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"
@@ -108,7 +108,7 @@ DefAlias() {
   alias xmind='cp=$pwd; cd /home/alanding/software/xmind-8/XMind_amd64 && ./XMind; cd $cp'
   alias sysbackup='sh /mnt/fun+downloads/linux系统安装/systembackup/sysbackup.sh'
   alias ge='gedit'
-  alias em='emacs'
+  alias em='emacs -nw'
   alias tmk="tmux kill-server"
   alias nv='nvim'
   alias encconvert='convmv'

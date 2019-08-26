@@ -50,10 +50,10 @@ install_apps() {
 
   apt-get install libncurses5-dev libgtk-3-dev libgtk2.0-dev \
     libjpeg-dev libpng-dev libtiff-dev libavcodec-dev libavformat-dev \
-    libswscale-dev libv4l-dev libxvidcore-dev libx264-dev
+    libswscale-dev libv4l-dev libxvidcore-dev libx264-dev flex
 
   apt-get install vim zsh git-extras tig tmux guake albert gdebi curl jq \
-    shellcheck global fcitx fcitx-googlepinyin qbittorrent tree \
+    shellcheck cppcheck global fcitx fcitx-googlepinyin qbittorrent tree \
     tsocks goldendict urlview xclip silversearcher-ag convmv\
     xserver-xorg-input-synaptics synaptic openssh-server asciinema unrar rar\
     acpi
