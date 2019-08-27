@@ -29,7 +29,10 @@ fi
 
 export JAVA_HOME=/opt/lang-tools/java/jdk
 export PYSPARK_PYTHON=/home/alanding/software/anaconda3/envs/py37/bin/python3.7
+
+# Ctags and Gtags
+export PATH=/opt/vim/universal-ctags/bin:$PATH
+
 # .net
 export PATH=/opt/lang-tools/dotnet/:$PATH
-
 

@@ -1,5 +1,7 @@
 #! /usr/bin/env bash
 
+set -e
+
 read -rp "Install or update ->: [i/u]" bb
 
 if [ "$bb" = i ]; then
@@ -19,6 +21,7 @@ preparation() {
   sudo add-apt-repository ppa:noobslab/macbuntu
   sudo apt-add-repository ppa:zanchey/asciinema
   sudo add-apt-repository ppa:jonathonf/vim
+  sudo add-apt-repository ppa:kelleyk/emacs -y
   apt-get update
 
 
@@ -48,11 +51,11 @@ install_apps() {
   apt-get install gcc-8 g++-8 texinfo cmake autoconf automake \
     build-essential unzip pkg-config bear
 
-  apt-get install libncurses5-dev libgtk-3-dev libgtk2.0-dev \
+  apt-get install libncurses5-dev libgtk-3-dev libgtk2.0-dev libatlas-base-dev\
     libjpeg-dev libpng-dev libtiff-dev libavcodec-dev libavformat-dev \
     libswscale-dev libv4l-dev libxvidcore-dev libx264-dev flex
 
-  apt-get install vim zsh git-extras tig tmux guake albert gdebi curl jq \
+  apt-get install emacs26 zsh git-extras tig tmux guake albert gdebi curl jq \
     shellcheck cppcheck global fcitx fcitx-googlepinyin qbittorrent tree \
     tsocks goldendict urlview xclip silversearcher-ag convmv\
     xserver-xorg-input-synaptics synaptic openssh-server asciinema unrar rar\
@@ -61,6 +64,9 @@ install_apps() {
   # system theme
   apt-get install flat-remix-gnome flat-remix gnome-tweaks gnome-shell-extension-top-icons-plus
   apt-get upgrade
+
+  local chromedriver=/mnt/fun+downloads/linux系统安装/code-software/lang/python/chromedriver
+  [ -e $chromedriver ] || echo "Please download chromedriver !" | exit 1
 }
 
 install_zsh_fonts() {
@@ -134,6 +140,7 @@ install_wine_code_google() {
   #--------------------------------------------------------------------------------
   #@ Deepin-wine
   if [ ! -x "/usr/bin/deepin-wine" ]; then
+    local cpath
     cpath=$(pwd)
     # sh /mnt/fun+downloads/linux系统安装/daily-software/deepin-wine-env/install.sh
 

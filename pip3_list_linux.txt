@@ -48,6 +48,9 @@ psutil
 line_profiler
 objgraph
 
+numba
+
+
 requests
 'requests[socks]'
 urllib3

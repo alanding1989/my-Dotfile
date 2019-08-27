@@ -71,10 +71,10 @@
 
 
 export JAVA_HOME=/opt/lang-tools/java/jdk
-export SCALA_HOME=/opt/lang-tools/scala/scala-2.12.8
+export SCALA_HOME=/opt/lang-tools/scala/scala
 export HADOOP_HOME=/opt/spark/hadoop
 export HADOOP_CONF_DIR=/opt/spark/hadoop/etc/hadoop
-export SPARK_HOME=/opt/spark/spark-2.4.0
+export SPARK_HOME=/opt/spark/spark
 export SPARK_MASTER_IP=127.0.0.1
 export SPARK_MASTER_PORT=7077
 export SPARK_MASTER_WEBUI_PORT=8099
