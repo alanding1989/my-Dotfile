@@ -10,11 +10,15 @@ elif [ "$bb" = u ]; then
   echo "update now"
 else
   echo "invalid input!!"
-  exit
+  exit 1
 fi
 
 mydotfile=$(cd "$(dirname "$0")"; cd ..; pwd)
 
+
+#--------------------------------------------------------------------------------
+# Installation preparation 
+#----------------------------------------------------------------------------- # {{{
 
 preparation() {
   sudo add-apt-repository ppa:daniruiz/flat-remix
@@ -31,11 +35,13 @@ preparation() {
   sudo chsh -s /bin/zsh root
   cp -r "$mydotfile/linux/alan-root/.zshrc" "/root"
 }
+# }}}
 
+
+#--------------------------------------------------------------------------------
+# Add source and Remove some useless software
+#----------------------------------------------------------------------------- # {{{
 remove_useless() {
-  #--------------------------------------------------------------------------------
-  # Add source and Remove some useless software
-  #--------------------------------------------------------------------------------
   if [ "$bb" = i ]; then
     apt-get remove unity-webapps-common thunderbird totem rhythmbox empathy \
       brasero simple-scan gnome-mahjongg aisleriot gnome-mines cheese onboard \
@@ -43,21 +49,25 @@ remove_useless() {
       landscape-client-ui-install libreoffice-common firefox*
   fi
 }
+# }}}
 
+
+#--------------------------------------------------------------------------------
+# Install from ubuntu source 
+#---------------------------------------------------------------------------- # {{{
 install_apps() {
-  #--------------------------------------------------------------------------------
-  # Install from ubuntu source 
-  #--------------------------------------------------------------------------------
   apt-get install gcc-8 g++-8 texinfo cmake autoconf automake \
     build-essential unzip pkg-config bear
 
   apt-get install libncurses5-dev libgtk-3-dev libgtk2.0-dev libatlas-base-dev\
-    libjpeg-dev libpng-dev libtiff-dev libavcodec-dev libavformat-dev \
-    libswscale-dev libv4l-dev libxvidcore-dev libx264-dev flex
+    libjpeg-dev libpng-dev libtiff-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev \
+    libxvidcore-dev libx264-dev libaudit-dev libslang2-dev libelf-dev systemtap-sdt-dev \
+    pcre2-utils libpcre2-dev \
+    libperl-dev python3-dev flex
 
   apt-get install emacs26 zsh git-extras tig tmux guake albert gdebi curl jq \
     shellcheck cppcheck global fcitx fcitx-googlepinyin qbittorrent tree \
-    tsocks goldendict urlview xclip silversearcher-ag convmv\
+    net-tools tsocks goldendict urlview xclip silversearcher-ag convmv \
     xserver-xorg-input-synaptics synaptic openssh-server asciinema unrar rar\
     acpi
 
@@ -68,11 +78,13 @@ install_apps() {
   local chromedriver=/mnt/fun+downloads/linux系统安装/code-software/lang/python/chromedriver
   [ -e $chromedriver ] || echo "Please download chromedriver !" | exit 1
 }
+# }}}
 
+
+#--------------------------------------------------------------------------------
+# Install from web
+#----------------------------------------------------------------------------- # {{{
 install_zsh_fonts() {
-  #--------------------------------------------------------------------------------
-  # Install from web
-  #--------------------------------------------------------------------------------
   #@ oh-my-zsh
   if [ ! -e "$HOME/.oh-my-zsh" ]; then
     wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
@@ -119,12 +131,13 @@ install_vim() {
     sh "$mydotfile/ide-config/vim-install/linux-MyVim-install.sh"
   fi
 }
+# }}}
 
 
+# --------------------------------------------------------------------------------
+# Lang install 
+# ----------------------------------------------------------------------------- # {{{
 lang_install() {
-  # --------------------------------------------------------------------------------
-  # Lang install 
-  # --------------------------------------------------------------------------------
   local vimroot=/home/alanding/.SpaceVim.d
   declare -a lang=(cpp go lua nodejs python)
 
@@ -132,12 +145,13 @@ lang_install() {
     sh "$vimroot/extools/lang-install/$lang"
   done
 }
+# }}}
 
 
+#--------------------------------------------------------------------------------
+# Install from disk  
+#----------------------------------------------------------------------------- # {{{
 install_wine_code_google() {
-  #--------------------------------------------------------------------------------
-  # Install from disk  
-  #--------------------------------------------------------------------------------
   #@ Deepin-wine
   if [ ! -x "/usr/bin/deepin-wine" ]; then
     local cpath
@@ -187,12 +201,13 @@ install_databashes() {
   sh ./redis.sh
   sh ./mongodb.sh
 }
+# }}}
 
 
+#--------------------------------------------------------------------------------
+# Nvidia install
+#----------------------------------------------------------------------------- # {{{
 install_nvidia() {
-  #--------------------------------------------------------------------------------
-  # Nvidia install
-  #--------------------------------------------------------------------------------
   if lsmod | grep nouveau; then
     echo "blacklist nouveau" >> /etc/modprobe.d/blacklist.conf
     update-initramfs -u
@@ -212,8 +227,12 @@ install_yarnpkg() {
   ln -sf /opt/lang-tools/nvm/versions/node/v11.9.0/bin/node /usr/bin/nodejs
   ln -sf /opt/lang-tools/nvm/versions/node/v11.9.0/bin/node /usr/bin/node
 }
+# }}}
 
 
+#--------------------------------------------------------------------------------
+# load
+#----------------------------------------------------------------------------- # {{{
 preparation
 remove_useless
 install_apps
@@ -223,4 +242,6 @@ install_apps
 # lang_install
 # install_wine_code_google
 # install_nvidia
+
+# }}}
 

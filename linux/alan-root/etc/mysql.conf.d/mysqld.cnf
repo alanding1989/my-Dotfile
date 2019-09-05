@@ -26,8 +26,19 @@
 # For explanations see
 # http://dev.mysql.com/doc/mysql/en/server-system-variables.html
 
-[mysqld]
-pid-file	= /var/run/mysqld/mysqld.pid
+[client]
+default-character-set = utf8mb4
+port      = 3306
 socket		= /var/run/mysqld/mysqld.sock
-datadir		= /opt/databases/mysql/
+
+
+[mysqld]
+default-storage-engine = INNODB
+character-set-server = utf8mb4
+collation-server = utf8_general_ci
+
+port      = 3306
+socket		= /var/run/mysqld/mysqld.sock
+pid-file	= /var/run/mysqld/mysqld.pid
+datadir		= /home/alanding/software/database/mysql
 log-error	= /var/log/mysql/error.log

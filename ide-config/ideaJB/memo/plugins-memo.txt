@@ -12,6 +12,7 @@ GrepConsole
 rust
 BashSupport
 markdown
+rst
 idea-multimarkdown
 NodeJS
 Scala

@@ -27,7 +27,9 @@ ZshSettings() {
   # Example format: plugins=(rails git textmate ruby lighthouse)
   plugins=(git wd	z extract history web-search sbt
           git-open zsh-syntax-highlighting zsh-autosuggestions)
-  fpath+=$HOME/.oh-my-zsh/custom/plugins/rustcompletion
+
+  fpath+=$HOME/.oh-my-zsh/custom/plugins/rust-completion
+  fpath+=$HOME/.oh-my-zsh/custom/plugins/ninja-completion
 
   # Enable autosuggestions automatically.
   ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"
@@ -44,7 +46,7 @@ ZshSettings() {
   # export ARCHFLAGS="-arch x86_64"
 
   # ssh
-  export SSH_KEY_PATH="~/.ssh/rsa_id"
+  # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
   source $ZSH/oh-my-zsh.sh
 
@@ -137,10 +139,10 @@ DefAlias() {
   alias mysql='mysql -u alanding -p'
 
   # sphinx
-  alias sphq='sphinx-quickstart'
-  alias sphb='sphinx-build'
-  alias spha='sphinx-apidoc'
-  alias sphg='sphinx-autogen'
+  alias sphstart='sphinx-quickstart'
+  alias sphbuild='sphinx-build'
+  alias sphapidoc='sphinx-apidoc'
+  alias sphgen='sphinx-autogen'
 
   # translator
   alias jj='python3 /home/alanding/.SpaceVim.d/extools/tools/translator/translator.py '
@@ -150,7 +152,8 @@ DefAlias() {
   alias cookiepy='cookiecutter git@github.com:audreyr/cookiecutter-pypackage.git'
 
   # Cargo
-  alias cg='cargo'
+  alias rr='cargo run'
+  alias rb='cargo build'
 }
 
 
@@ -174,8 +177,8 @@ DefEnVar() {
   export PATH=/home/alanding/software/anaconda3/envs/py37/bin:$PATH
   \. /home/alanding/software/anaconda3/etc/profile.d/conda.sh
 
-  # Cmake
-  # export PATH=/opt/lang-tools/cpp/cmake/bin:$PATH
+  # Julia
+  export PATH=/opt/lang-tools/julia/julia/bin:$PATH
 
   # CUDA
   export CUDA_HOME=/home/alanding/software/cuda/cuda-10.0
@@ -187,18 +190,17 @@ DefEnVar() {
   # OpenCV
   export OPENCV_HOME=/opt/lang-tools/cpp/opencv/
   export PATH=$OPENCV_HOME/bin:$PATH
-  # use ln -s include and lib
-  # Caffe
 
   # Clang
   export CLANG_HOME=/opt/lang-tools/cpp/clang
   export PATH=${CLANG_HOME}/bin:${CLANG_HOME}/lib:${CLANG_HOME}/libexec:$PATH
+  # Cmake
+  # export PATH=/opt/lang-tools/cpp/cmake/bin:$PATH
 
   # Rust
   export RUSTUP_HOME=/opt/lang-tools/rust/rustup
   export CARGO_HOME=/home/alanding/software/lang-tools/cargo
   export PATH=$CARGO_HOME/bin:$PATH
-  # export PATH=$RUSTUP_HOME/toolchains/nightly-x86_64-unknown-linux-gnu/bin:$PATH
   export RUST_SRC_PATH=$RUSTUP_HOME/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
   export RUSTUP_DIST_SERVER=http://mirrors.ustc.edu.cn/rust-static
   export RUSTUP_UPDATE_ROOT=http://mirrors.ustc.edu.cn/rust-static/rustup
@@ -212,7 +214,7 @@ DefEnVar() {
   export PATH=${MAVEN_HOME}/bin:$PATH
 
   # Scala
-  export SCALA_HOME=/opt/lang-tools/scala/scala-2.12.8
+  export SCALA_HOME=/opt/lang-tools/scala/scala
   export PATH=${SCALA_HOME}/bin:$PATH
   # metals-vim, coursier
   export PATH=/opt/lang-tools/scala:$PATH
@@ -223,20 +225,20 @@ DefEnVar() {
   export PATH=/opt/lang-tools/scala/sbt/bin:$PATH
 
   # Spark
-  export SPARK_HOME=/opt/spark/spark-2.4.0
+  export SPARK_HOME=/home/alanding/software/spark/spark
   export PATH=${SPARK_HOME}/bin:${SPARK_HOME}/sbin:$PATH
-  # Pyspark
-  export PYSPARK_DRIVER_PYTHON=jupyter
-  export PYSPARK_DRIVER_PYTHON_OPTS='notebook'
-  export PYSPARK_PYTHON=/home/alanding/software/anaconda3/envs/py37/bin/python3.7
   # Hadoop
-  export HADOOP_HOME=/opt/spark/hadoop
+  export HADOOP_HOME=/home/alanding/software/spark/hadoop
   export PATH=${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:$PATH
   export HDFS_DATANODE_USER=alanding
   export HDFS_NAMENODE_USER=alanding
   export HDFS_SECONDARYNAMENODE_USER=alanding
   export YARN_NODEMANAGER_USER=alanding
   export YARN_RESOURCEMANAGER_USER=alanding
+  # Pyspark
+  export PYSPARK_DRIVER_PYTHON=jupyter
+  export PYSPARK_DRIVER_PYTHON_OPTS='notebook'
+  export PYSPARK_PYTHON=/home/alanding/software/anaconda3/envs/py37/bin/python3.7
 
   # TEX
   export PATH=/home/alanding/software/texlive/2018/bin/x86_64-linux:$PATH
@@ -260,8 +262,8 @@ DefEnVar() {
   export LANGUAGE_TOOL_HOME=/opt/vim/LanguageTool
 
   # Emacs
-  export EMACS_HOME=/opt/emacs
-  export PATH=${EMACS_HOME}/emacs/bin:$PATH
+  # export EMACS_HOME=/opt/emacs
+  # export PATH=${EMACS_HOME}/emacs/bin:$PATH
 
   # Node version manager
   export NVM_DIR="/opt/lang-tools/nvm"
@@ -301,10 +303,10 @@ DefEnVar() {
 
   # Go
   export GOROOT=/opt/lang-tools/go/go
-  export GOPATH=/home/alanding/software/lang-tools/go/
+  export GOPATH=/home/alanding/software/lang-tools/go
   export GOBIN=/home/alanding/software/lang-tools/go/bin
-  export PATH=$GOROOT/bin:$PATH
   export PATH=$GOPATH/src:$PATH
+  export PATH=$GOROOT/bin:$PATH
   export PATH=$GOBIN:$PATH
   # export GO111MODULE=on
 
@@ -312,24 +314,26 @@ DefEnVar() {
   export PATH=/opt/lang-tools/lua/luarocks/bin:$PATH
 
   # .net
-  export PATH=/opt/lang-tools/dotnet:$PATH
+  export PATH=/opt/lang-tools/csharp:$PATH
 }
 
 
 # Others
 # ==================================================================================
 
+# @ For memo
 # Codi Usage: codi [filetype] [filename]
 codi() {
   local syntax="${1:-python}"
   shift
-  vim -c \
+  nvim -c \
     "set bt=nofile ls=0 noru nonu nornu |\
     hi ColorColumn ctermbg=NONE |\
     hi VertSplit ctermby=NONE |\
     hi NonText ctermfg=0 |\
     Codi $syntax" "$@"
   }
+
 
 # Fzf
 FzfConfig() {

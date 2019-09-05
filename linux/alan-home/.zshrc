@@ -2,7 +2,8 @@
 
 
 # ==================================================================================
-
+# ZSH Configuration
+# ==================================================================================
 ZshSettings() {
   # Path to your oh-my-zsh installation.
   export ZSH=~/.oh-my-zsh
@@ -27,7 +28,8 @@ ZshSettings() {
   # Example format: plugins=(rails git textmate ruby lighthouse)
   plugins=(git wd	z extract history web-search sbt
           git-open zsh-syntax-highlighting zsh-autosuggestions)
-  fpath+=/home/alanding/.oh-my-zsh/custom/plugins/rustcompletion
+  fpath+=$HOME/.oh-my-zsh/custom/plugins/rustcompletion
+  fpath+=$HOME/.oh-my-zsh/custom/plugins/ninja/zsh-completion
 
   # Enable autosuggestions automatically.
   ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"
@@ -41,7 +43,7 @@ ZshSettings() {
   export LANG=en_US.UTF-8
 
   # Compilation flags
-  # export ARCHFLAGS="-arch x86_64"
+  export ARCHFLAGS="-arch x86_64"
 
   # ssh
   export SSH_KEY_PATH="~/.ssh/rsa_id"
@@ -61,9 +63,10 @@ ZshSettings() {
   export LESS_TERMCAP_us=$'\e[1;4;31m'
 }
 
-# ==================================================================================
 
+# ==================================================================================
 # For a full list of active aliases, run `alias`.
+# ==================================================================================
 DefAlias() {
   alias pdf='synclient touchpadoff=1'
   alias pdo='synclient touchpadoff=0'
@@ -90,11 +93,6 @@ DefAlias() {
   alias cll="colorls -lA --sd"
   alias cgt="colorls --gs -t"
   alias cgl="colorls --gs -lA --sd"
-  alias grep="grep --color=auto"
-  alias du="du -h"
-
-  # system check
-  alias free='free -h -s4'
 
   # config
   alias zrc="nv ~/.zshrc"
@@ -108,7 +106,7 @@ DefAlias() {
   alias xmind='cp=$pwd; cd /home/alanding/software/xmind-8/XMind_amd64 && ./XMind; cd $cp'
   alias sysbackup='sh /mnt/fun+downloads/linux系统安装/systembackup/sysbackup.sh'
   alias ge='gedit'
-  alias em='emacs'
+  alias em='emacs -nw'
   alias tmk="tmux kill-server"
   alias nv='nvim'
   alias encconvert='convmv'
@@ -126,6 +124,10 @@ DefAlias() {
   alias stophdfs='stop-dfs.sh && stop-yarn.sh && stop-master.sh && stop-slaves.sh'
   alias hf='hadoop fs'
 
+  # Cargo
+  alias rr='cargo run'
+  alias rb='cargo build'
+
   # git
   alias gch='git checkout'
   alias grh='git reset --hard'
@@ -134,13 +136,11 @@ DefAlias() {
   alias grro='git remote remove origin'
   alias grru='git remote remove upstream'
 
-  alias mysql='mysql -u alanding -p'
-
   # sphinx
-  alias sphq='sphinx-quickstart'
-  alias sphb='sphinx-build'
-  alias spha='sphinx-apidoc'
-  alias sphg='sphinx-autogen'
+  alias sphstart='sphinx-quickstart'
+  alias sphbuild='sphinx-build'
+  alias sphapidoc='sphinx-apidoc'
+  alias sphgen='sphinx-autogen'
 
   # translator
   alias jj='python3 /home/alanding/.SpaceVim.d/extools/tools/translator/translator.py '
@@ -149,11 +149,20 @@ DefAlias() {
   alias cookiedata='cookiecutter https://github.com/drivendata/cookiecutter-data-science'
   alias cookiepy='cookiecutter git@github.com:audreyr/cookiecutter-pypackage.git'
 
-  # Cargo
-  alias cg='cargo'
+  alias du="du -h"
+  alias mysql='mysql -u root -p'
+
+  # system check
+  alias grep="grep --color=auto"
+  alias free='free -h -s4'
+  alias netstat='netstat -tunlp'
+  alias pcheck="lsof -i"
 }
 
 
+# ==================================================================================
+# Environment Variable Definition
+# ==================================================================================
 DefEnVar() {
   export PATH=/home/alanding/.local/bin:$PATH
   export TERM=xterm-256color
@@ -174,8 +183,9 @@ DefEnVar() {
   export PATH=/home/alanding/software/anaconda3/envs/py37/bin:$PATH
   \. /home/alanding/software/anaconda3/etc/profile.d/conda.sh
 
-  # Cmake
-  # export PATH=/opt/lang-tools/cpp/cmake/bin:$PATH
+  # Julia
+  export PATH=/opt/lang-tools/julia/julia/bin:$PATH
+
 
   # CUDA
   export CUDA_HOME=/home/alanding/software/cuda/cuda-10.0
@@ -187,21 +197,21 @@ DefEnVar() {
   # OpenCV
   export OPENCV_HOME=/opt/lang-tools/cpp/opencv/
   export PATH=$OPENCV_HOME/bin:$PATH
-  # use ln -s include and lib
-  # Caffe
 
   # Clang
   export CLANG_HOME=/opt/lang-tools/cpp/clang
   export PATH=${CLANG_HOME}/bin:${CLANG_HOME}/lib:${CLANG_HOME}/libexec:$PATH
+  # Cmake
+  # export PATH=/opt/lang-tools/cpp/cmake/bin:$PATH
 
   # Rust
   export RUSTUP_HOME=/opt/lang-tools/rust/rustup
   export CARGO_HOME=/home/alanding/software/lang-tools/cargo
   export PATH=$CARGO_HOME/bin:$PATH
-  # export PATH=$RUSTUP_HOME/toolchains/nightly-x86_64-unknown-linux-gnu/bin:$PATH
   export RUST_SRC_PATH=$RUSTUP_HOME/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
   export RUSTUP_DIST_SERVER=http://mirrors.ustc.edu.cn/rust-static
   export RUSTUP_UPDATE_ROOT=http://mirrors.ustc.edu.cn/rust-static/rustup
+
 
   # Java
   export JAVA_HOME=/opt/lang-tools/java/jdk
@@ -212,25 +222,23 @@ DefEnVar() {
   export PATH=${MAVEN_HOME}/bin:$PATH
 
   # Scala
-  export SCALA_HOME=/opt/lang-tools/scala/scala-2.12.8
+  export SCALA_HOME=/opt/lang-tools/scala/scala
   export PATH=${SCALA_HOME}/bin:$PATH
-  # metals-vim, coursier
   export PATH=/opt/lang-tools/scala:$PATH
   # export PATH=/opt/lang-tools/scala/languageclient:$PATH
   export PATH=/opt/lang-tools/scala/coc:$PATH
-
   # Sbt
   export PATH=/opt/lang-tools/scala/sbt/bin:$PATH
 
   # Spark
-  export SPARK_HOME=/opt/spark/spark-2.4.0
+  export SPARK_HOME=/home/alanding/software/spark/spark
   export PATH=${SPARK_HOME}/bin:${SPARK_HOME}/sbin:$PATH
   # Pyspark
   export PYSPARK_DRIVER_PYTHON=jupyter
   export PYSPARK_DRIVER_PYTHON_OPTS='notebook'
   export PYSPARK_PYTHON=/home/alanding/software/anaconda3/envs/py37/bin/python3.7
   # Hadoop
-  export HADOOP_HOME=/opt/spark/hadoop
+  export HADOOP_HOME=/home/alanding/software/spark/hadoop
   export PATH=${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:$PATH
   export HDFS_DATANODE_USER=alanding
   export HDFS_NAMENODE_USER=alanding
@@ -238,30 +246,18 @@ DefEnVar() {
   export YARN_NODEMANAGER_USER=alanding
   export YARN_RESOURCEMANAGER_USER=alanding
 
-  # TEX
-  export PATH=/home/alanding/software/texlive/2018/bin/x86_64-linux:$PATH
-  export MANPATH=/home/alanding/software/texlive/2018/texmf-dist/doc/man:$MANPATH
-  export INFOPATH=/home/alanding/software/texlive/2018/texmf-dist/doc/info:$INFOPATH
+  # .net
+  export PATH=/opt/lang-tools/csharp:$PATH
 
-  # Vim
-  export VIM_HOME=/opt/vim
-  export PATH=${VIM_HOME}/vim8.1/bin:$PATH
-  export PATH=${VIM_HOME}/nvim-linux64/bin:$PATH
-  # Neovim-remote/spacevim
-  export PATH=$HOME/.SpaceVim/bin:$PATH
-  # Ctags and Gtags
-  export PATH=/opt/vim/universal-ctags/bin:$PATH
-  export PATH=/opt/vim/gtags/bin:$PATH
-  export GTAGSLABEL=native-pygments
-  export GTAGSCONF=$HOME/.globalrc
-  # Gtm
-  export PATH=/opt/vim/gtm.v1.3.5.linux:$PATH
-  # LanguageTool
-  export LANGUAGE_TOOL_HOME=/opt/vim/LanguageTool
+  # Go
+  export GOROOT=/opt/lang-tools/go/go
+  export GOPATH=/home/alanding/software/lang-tools/go
+  export GOBIN=/home/alanding/software/lang-tools/go/bin
+  export PATH=$GOPATH/src:$PATH
+  export PATH=$GOROOT/bin:$PATH
+  export PATH=$GOBIN:$PATH
+  # export GO111MODULE=on
 
-  # Emacs
-  export EMACS_HOME=/opt/emacs
-  export PATH=${EMACS_HOME}/emacs/bin:$PATH
 
   # Node version manager
   export NVM_DIR="/opt/lang-tools/nvm"
@@ -289,6 +285,9 @@ DefEnVar() {
   # yarn
   export PATH=`dirname $(which node)`:$PATH
 
+  #lua
+  export PATH=/opt/lang-tools/lua/luarocks/bin:$PATH
+
   # Ruby
   if [ `whoami` != "root" ]; then
   # if [ $UID -ne 0 ]; then
@@ -299,28 +298,39 @@ DefEnVar() {
     fi
   fi
 
-  # Go
-  export GOROOT=/opt/lang-tools/go/go
-  export GOPATH=/home/alanding/software/lang-tools/go/
-  export GOBIN=/home/alanding/software/lang-tools/go/bin
-  export PATH=$GOROOT/bin:$PATH
-  export PATH=$GOPATH/src:$PATH
-  export PATH=$GOBIN:$PATH
-  # export GO111MODULE=on
 
-  #lua
-  export PATH=/opt/lang-tools/lua/luarocks/bin:$PATH
+  # Vim
+  export VIM_HOME=/opt/vim
+  export PATH=${VIM_HOME}/vim8.1/bin:$PATH
+  export PATH=${VIM_HOME}/nvim-linux64/bin:$PATH
+  # Neovim-remote/spacevim
+  export PATH=$HOME/.SpaceVim/bin:$PATH
+  # Ctags and Gtags
+  export PATH=/opt/vim/universal-ctags/bin:$PATH
+  export PATH=/opt/vim/gtags/bin:$PATH
+  export GTAGSLABEL=native-pygments
+  export GTAGSCONF=$HOME/.globalrc
+  # Gtm
+  export PATH=/opt/vim/gtm.v1.3.5.linux:$PATH
+  # LanguageTool
+  export LANGUAGE_TOOL_HOME=/opt/vim/LanguageTool
 
-  # .net
-  export PATH=/opt/lang-tools/dotnet:$PATH
+  # Emacs
+  # export EMACS_HOME=/opt/emacs
+  # export PATH=${EMACS_HOME}/emacs/bin:$PATH
+
+  # TEX
+  export PATH=/home/alanding/software/texlive/2018/bin/x86_64-linux:$PATH
+  export MANPATH=/home/alanding/software/texlive/2018/texmf-dist/doc/man:$MANPATH
+  export INFOPATH=/home/alanding/software/texlive/2018/texmf-dist/doc/info:$INFOPATH
 }
 
 
+# ==================================================================================
 # Others
 # ==================================================================================
-
-# Codi Usage: codi [filetype] [filename]
 codi() {
+# Codi Usage: codi [filetype] [filename]
   local syntax="${1:-python}"
   shift
   vim -c \
