@@ -26,8 +26,8 @@ preparation() {
   sudo apt-add-repository ppa:zanchey/asciinema
   sudo add-apt-repository ppa:jonathonf/vim
   sudo add-apt-repository ppa:kelleyk/emacs -y
+  # sudo add-apt-repository ppa:nathan-renniewaldock/flux
   apt-get update
-
 
   sudo ln -s -f /bin/bash /bin/sh
   sudo ln -s -f /bin/bash /usr/bin/sh#
@@ -56,20 +56,25 @@ remove_useless() {
 # Install from ubuntu source 
 #---------------------------------------------------------------------------- # {{{
 install_apps() {
-  apt-get install gcc-8 g++-8 texinfo cmake autoconf automake \
-    build-essential unzip pkg-config bear
+  # build-tools
+  apt-get install gcc-8 g++-8 build-essential texinfo autoconf automake pkg-config bear 
 
+  # deps
   apt-get install libncurses5-dev libgtk-3-dev libgtk2.0-dev libatlas-base-dev\
     libjpeg-dev libpng-dev libtiff-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev \
     libxvidcore-dev libx264-dev libaudit-dev libslang2-dev libelf-dev systemtap-sdt-dev \
     pcre2-utils libpcre2-dev \
-    libperl-dev python3-dev flex
+    libperl-dev python3-dev
 
-  apt-get install emacs26 zsh git-extras tig tmux guake albert gdebi curl jq \
-    shellcheck cppcheck global fcitx fcitx-googlepinyin qbittorrent tree \
-    net-tools tsocks goldendict urlview xclip silversearcher-ag convmv \
-    xserver-xorg-input-synaptics synaptic openssh-server asciinema unrar rar\
-    acpi
+  # cli
+  apt-get install shellcheck cppcheck global valgrind valgrind-dbg valgrind-mpi
+
+  apt-get install emacs26 zsh git-extras tig tmux curl tree silversearcher-ag urlview net-tools \
+    asciinema openssh-server unrar rar unzip xclip acpi tsocks convmv jq \
+
+  # gui
+  aptget install guake albert qbittorrent goldendict fcitx fcitx-googlepinyin synaptic gdebi \
+    xserver-xorg-input-synaptics fluxgui
 
   # system theme
   apt-get install flat-remix-gnome flat-remix gnome-tweaks gnome-shell-extension-top-icons-plus
