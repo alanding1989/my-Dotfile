@@ -1,17 +1,9 @@
 pip
 setuptools
-
-pynvim
-pyvim
-vim-vint
 Pygments
-neovim-remote
-clang
-scan-build
-msgpack-python
-sexpdata
-websocket-client
-Send2Trash
+jupyter
+jupyter_contrib_nbextensions
+notedown
 
 python-language-server
 jedi
@@ -24,9 +16,9 @@ mypy
 mccabe
 rope
 
-cookiecutter
 Sphinx
 sphinx_rtd_theme
+cookiecutter
 recommonmark
 
 ipdb
@@ -51,7 +43,6 @@ objgraph
 
 numba
 
-
 requests
 'requests[socks]'
 urllib3
@@ -73,20 +64,28 @@ seaborn
 scikit-learn
 xgboost
 lightgbm
-wordcloud
-jieba
-pyspark
-jupyter
-jupyter_contrib_nbextensions
-notedown
 rise
 pydot
 h5py
-
+wordcloud
+jieba
+pyspark
 
 removebg
 pillow
 chardet
+fn
+
+pynvim
+pyvim
+vim-vint
+neovim-remote
+clang
+scan-build
+msgpack-python
+sexpdata
+websocket-client
+Send2Trash
 asciinema
 
 

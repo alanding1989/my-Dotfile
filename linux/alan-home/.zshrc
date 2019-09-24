@@ -3,7 +3,7 @@
 
 # ==================================================================================
 # ZSH Configuration
-# ==================================================================================
+# ============================================================================== {{{
 ZshSettings() {
   # Path to your oh-my-zsh installation.
   export ZSH=~/.oh-my-zsh
@@ -29,7 +29,8 @@ ZshSettings() {
   plugins=(git wd	z extract history web-search sbt
           git-open zsh-syntax-highlighting zsh-autosuggestions)
   fpath+=$HOME/.oh-my-zsh/custom/plugins/rustcompletion
-  fpath+=$HOME/.oh-my-zsh/custom/plugins/ninja/zsh-completion
+  fpath+=$HOME/.oh-my-zsh/custom/plugins/ninja-completion
+  fpath+=$HOME/.oh-my-zsh/custom/plugins/gradle-completion
 
   # Enable autosuggestions automatically.
   ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"
@@ -62,12 +63,14 @@ ZshSettings() {
   export LESS_TERMCAP_ue=$'\e[0m'
   export LESS_TERMCAP_us=$'\e[1;4;31m'
 }
+# }}}
 
 
 # ==================================================================================
-# For a full list of active aliases, run `alias`.
-# ==================================================================================
+# Commands Aliases Definition
+# =============================================================================== {{{
 DefAlias() {
+# For a full list of active aliases, run `alias`.
   alias pdf='synclient touchpadoff=1'
   alias pdo='synclient touchpadoff=0'
   alias upalc='update-alternatives --config'
@@ -102,6 +105,7 @@ DefAlias() {
   alias szsh="source ~/.zshrc"
 
   # app
+  alias encconvert='convmv'
   alias yinyue='sudo netease-cloud-music'
   alias xmind='cp=$pwd; cd /home/alanding/software/xmind-8/XMind_amd64 && ./XMind; cd $cp'
   alias sysbackup='sh /mnt/fun+downloads/linux系统安装/systembackup/sysbackup.sh'
@@ -109,7 +113,7 @@ DefAlias() {
   alias em='emacs -nw'
   alias tmk="tmux kill-server"
   alias nv='nvim'
-  alias encconvert='convmv'
+  alias typora='~/software/Typora/Typora'
 
   alias acinema='asciinema'
   alias arec='asciinema rec'
@@ -156,13 +160,17 @@ DefAlias() {
   alias grep="grep --color=auto"
   alias free='free -h -s4'
   alias netstat='netstat -tunlp'
-  alias pcheck="lsof -i"
+  alias portcheck="lsof -i"
+
+  # fun
+  alias rcat="nyancat"
 }
+# }}}
 
 
 # ==================================================================================
 # Environment Variable Definition
-# ==================================================================================
+# =============================================================================== {{{
 DefEnVar() {
   export PATH=/home/alanding/.local/bin:$PATH
   export TERM=xterm-256color
@@ -172,7 +180,7 @@ DefEnVar() {
   # Preferred editor for local and remote sessions
   export EDITOR=/opt/vim/nvim-linux64/bin/nvim
 
-# Browser for ensime
+  # Browser for ensime
   export BROWSER="google-chrome %s"
 
   # Git
@@ -220,6 +228,9 @@ DefEnVar() {
   # Maven
   export MAVEN_HOME=/opt/lang-tools/java/maven
   export PATH=${MAVEN_HOME}/bin:$PATH
+  # Gradle
+  export GRADL_HOME=/opt/lang-tools/java/gradle
+  export PATH=${GRADL_HOME}/bin:$PATH
 
   # Scala
   export SCALA_HOME=/opt/lang-tools/scala/scala
@@ -323,12 +334,28 @@ DefEnVar() {
   export PATH=/home/alanding/software/texlive/2018/bin/x86_64-linux:$PATH
   export MANPATH=/home/alanding/software/texlive/2018/texmf-dist/doc/man:$MANPATH
   export INFOPATH=/home/alanding/software/texlive/2018/texmf-dist/doc/info:$INFOPATH
+
+  # vagrant, chromedriver
+  export PATH=/home/alanding/software/command-line-tools:$PATH
+}
+# }}}
+
+ 
+# ==================================================================================
+# Function Tools Definition
+# =============================================================================== {{{
+pidCheck() {
+  # check pid tid, locate thread problem
+  ps p ${1} -L -o pcpu,pmem,pid,tid,time,tname,cmd
 }
 
 
-# ==================================================================================
-# Others
-# ==================================================================================
+jstackCheck() {
+  local pid=hToD $1
+  jstack -l $pid > $HOME/jstack.log
+}
+
+
 codi() {
 # Codi Usage: codi [filetype] [filename]
   local syntax="${1:-python}"
@@ -339,8 +366,19 @@ codi() {
     hi VertSplit ctermby=NONE |\
     hi NonText ctermfg=0 |\
     Codi $syntax" "$@"
-  }
+}
 
+# utils
+hToD() {
+  printf "%x\n" $1
+}
+
+# }}}
+
+
+# ==================================================================================
+# Others
+# ==============================================================================# {{{
 # Fzf
 FzfConfig() {
   [ -f /opt/vim/fzf/.fzf.zsh ] && source /opt/vim/fzf/.fzf.zsh
@@ -366,11 +404,19 @@ FzfConfig() {
     eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
   }
 }
-FzfConfig
 
 # disable Vim freeze after pressing <C-s>
 stty -ixon
+# }}}
 
+
+# ==================================================================================
+# Load Configuration
+# ==============================================================================# {{{
 ZshSettings
 DefAlias
 DefEnVar
+
+FzfConfig
+# }}}
+

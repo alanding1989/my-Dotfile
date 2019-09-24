@@ -71,6 +71,7 @@ install_apps() {
 
   apt-get install emacs26 zsh git-extras tig tmux curl tree silversearcher-ag urlview net-tools \
     asciinema openssh-server unrar rar unzip xclip acpi tsocks convmv jq \
+    nyancat
 
   # gui
   aptget install guake albert qbittorrent goldendict fcitx fcitx-googlepinyin synaptic gdebi \
@@ -100,6 +101,8 @@ install_zsh_fonts() {
       "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
     git clone https://github.com/paulirish/git-open.git \
       "$ZSH_CUSTOM/plugins/git-open"
+    git clone git@github.com:gradle/gradle-completion.git
+      "$ZSH_CUSTOM/plugins/gradle-completion"
     if [ -e "$HOME/.zsh.pre-oh-my-zsh" ]; then
       mv "$HOME/.zsh.pre-oh-my-zsh" "$HOME/.zshrc"
     fi
