@@ -5,7 +5,6 @@ jupyter
 jupyter_contrib_nbextensions
 notedown
 
-python-language-server
 jedi
 yapf
 autopep8
@@ -26,7 +25,7 @@ pytest
 pytest-django
 pytest-instafail
 pytest-bdd
-pytest-konira
+#pytest-konira
 pytest-cov
 pytest-pep8
 pytest-flake8
@@ -37,14 +36,12 @@ watchdog
 coverage
 
 memory_profiler
-psutil
-line_profiler
+# line_profiler git源码安装
 objgraph
-
 numba
 
 requests
-'requests[socks]'
+requests[socks]
 urllib3
 requests-html
 aiohttp
@@ -76,22 +73,24 @@ pillow
 chardet
 fn
 
+psutil
+
+python-language-server
 pynvim
 pyvim
 vim-vint
 neovim-remote
+Send2Trash
+asciinema
 clang
 scan-build
 msgpack-python
 sexpdata
 websocket-client
-Send2Trash
-asciinema
-
 
 git+https://github.com/google/vimdoc
 tensorflow-gpu
-https://download.pytorch.org/whl/cu100/torch-1.0.1.post2-cp37-cp37m-linux_x86_64.whl
+https://download.pytorch.org/whl/cpu/torch-1.0.1.post2-cp37-cp37m-linux_x86_64.whl
 torchvision
 keras
 

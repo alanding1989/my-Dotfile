@@ -31,6 +31,9 @@ ZshSettings() {
   fpath+=$HOME/.oh-my-zsh/custom/plugins/rustcompletion
   fpath+=$HOME/.oh-my-zsh/custom/plugins/ninja-completion
   fpath+=$HOME/.oh-my-zsh/custom/plugins/gradle-completion
+  fpath+=$HOME/.oh-my-zsh/custom/plugins/conda-completion
+
+  zstyle ':completion::complete:*' use-cache 1
 
   # Enable autosuggestions automatically.
   ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"
@@ -157,13 +160,17 @@ DefAlias() {
   alias mysql='mysql -u root -p'
 
   # system check
+  # less
+  # grep keyword file | keyword 
   alias grep="grep --color=auto"
-  alias free='free -h -s4'
+  alias free='free -h -s3'
   alias netstat='netstat -tunlp'
   alias portcheck="lsof -i"
 
   # fun
   alias rcat="nyancat"
+
+  alias clock="while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput rc;done&"
 }
 # }}}
 
@@ -190,10 +197,12 @@ DefEnVar() {
   # Conda
   export PATH=/home/alanding/software/anaconda3/envs/py37/bin:$PATH
   \. /home/alanding/software/anaconda3/etc/profile.d/conda.sh
+  # MiniConda
+  # export PATH=//home/alanding/software/lang-tools/miniconda/bin:$PATH
+  # \. /home/alanding/software/lang-tools/miniconda/etc/profile.d/conda.sh
 
-  # Julia
-  export PATH=/opt/lang-tools/julia/julia/bin:$PATH
-
+  # Pip cli completion
+  eval "`pip completion --zsh`"
 
   # CUDA
   export CUDA_HOME=/home/alanding/software/cuda/cuda-10.0
@@ -219,6 +228,18 @@ DefEnVar() {
   export RUST_SRC_PATH=$RUSTUP_HOME/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
   export RUSTUP_DIST_SERVER=http://mirrors.ustc.edu.cn/rust-static
   export RUSTUP_UPDATE_ROOT=http://mirrors.ustc.edu.cn/rust-static/rustup
+
+  # Go
+  export GOROOT=/opt/lang-tools/go/go
+  export PATH=$GOROOT/bin:$PATH
+  export GOPATH=/home/alanding/software/lang-tools/go
+  export PATH=$GOPATH/src:$PATH
+  export GOBIN=/home/alanding/software/lang-tools/go/bin
+  export PATH=$GOBIN:$PATH
+  # export GO111MODULE=on
+
+  # Julia
+  export PATH=/opt/lang-tools/julia/julia/bin:$PATH
 
 
   # Java
@@ -259,15 +280,6 @@ DefEnVar() {
 
   # .net
   export PATH=/opt/lang-tools/csharp:$PATH
-
-  # Go
-  export GOROOT=/opt/lang-tools/go/go
-  export GOPATH=/home/alanding/software/lang-tools/go
-  export GOBIN=/home/alanding/software/lang-tools/go/bin
-  export PATH=$GOPATH/src:$PATH
-  export PATH=$GOROOT/bin:$PATH
-  export PATH=$GOBIN:$PATH
-  # export GO111MODULE=on
 
 
   # Node version manager

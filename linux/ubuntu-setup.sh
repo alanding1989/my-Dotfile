@@ -15,6 +15,8 @@ fi
 
 mydotfile=$(cd "$(dirname "$0")"; cd ..; pwd)
 
+[ -x "zsh" ] && zsh
+
 
 #--------------------------------------------------------------------------------
 # Installation preparation 
@@ -26,7 +28,6 @@ preparation() {
   sudo apt-add-repository ppa:zanchey/asciinema
   sudo add-apt-repository ppa:jonathonf/vim
   sudo add-apt-repository ppa:kelleyk/emacs -y
-  # sudo add-apt-repository ppa:nathan-renniewaldock/flux
   apt-get update
 
   sudo ln -s -f /bin/bash /bin/sh
@@ -67,18 +68,18 @@ install_apps() {
     libperl-dev python3-dev
 
   # cli
-  apt-get install shellcheck cppcheck global valgrind valgrind-dbg valgrind-mpi
+  apt-get install shellcheck cppcheck global valgrind valgrind-dbg valgrind-mpi \
+    net-tools sysstat
 
-  apt-get install emacs26 zsh git-extras tig tmux curl tree silversearcher-ag urlview net-tools \
-    asciinema openssh-server unrar rar unzip xclip acpi tsocks convmv jq \
-    nyancat
+  apt-get install emacs26 guake zsh git-extras tig tmux curl tree silversearcher-ag urlview \
+    asciinema openssh-server unrar rar unzip xclip acpi tsocks convmv jq
 
   # gui
-  aptget install guake albert qbittorrent goldendict fcitx fcitx-googlepinyin synaptic gdebi \
-    xserver-xorg-input-synaptics fluxgui
+  aptget install albert qbittorrent goldendict fcitx fcitx-googlepinyin synaptic gdebi \
+    xserver-xorg-input-synaptics
 
   # system theme
-  apt-get install flat-remix-gnome flat-remix gnome-tweaks gnome-shell-extension-top-icons-plus
+  apt-get install flat-remix-gnome flat-remix gnome-tweaks gnome-shell-extension-top-icons-plus nyancat
   apt-get upgrade
 
   local chromedriver=/mnt/fun+downloads/linux系统安装/code-software/lang/python/chromedriver
@@ -88,21 +89,19 @@ install_apps() {
 
 
 #--------------------------------------------------------------------------------
-# Install from web
+# Install ZSH, Vim, fonts, 
 #----------------------------------------------------------------------------- # {{{
 install_zsh_fonts() {
   #@ oh-my-zsh
   if [ ! -e "$HOME/.oh-my-zsh" ]; then
     wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
     # zsh plugins
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
-      "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
-    git clone git://github.com/zsh-users/zsh-autosuggestions \
-      "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
-    git clone https://github.com/paulirish/git-open.git \
-      "$ZSH_CUSTOM/plugins/git-open"
-    git clone git@github.com:gradle/gradle-completion.git
-      "$ZSH_CUSTOM/plugins/gradle-completion"
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
+    git clone git://github.com/zsh-users/zsh-autosuggestions           "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
+    git clone https://github.com/paulirish/git-open.git                "$ZSH_CUSTOM/plugins/git-open"
+    git clone https://github.com/esc/conda-zsh-completion              "$ZSH_CUSTOM/plugins/conda-completions"
+    git clone git@github.com:gradle/gradle-completion.git              "$ZSH_CUSTOM/plugins/gradle-completion"
+
     if [ -e "$HOME/.zsh.pre-oh-my-zsh" ]; then
       mv "$HOME/.zsh.pre-oh-my-zsh" "$HOME/.zshrc"
     fi
@@ -134,7 +133,7 @@ install_zsh_fonts() {
 
 
 install_vim() {
-  #@ SpaceVim
+  #@ SpaceVim and Myconfig
   if [ ! -e "$HOME/.SpaceVim" ]; then
     sh "$mydotfile/ide-config/vim-install/linux-MyVim-install.sh"
   fi
@@ -147,11 +146,17 @@ install_vim() {
 # ----------------------------------------------------------------------------- # {{{
 lang_install() {
   local vimroot=/home/alanding/.SpaceVim.d
-  declare -a lang=(cpp go lua nodejs python)
+  declare -a lang=(cpp rust go lua nodejs python)
 
   for lang in ${lang[*]}; do
-    sh "$vimroot/extools/lang-install/$lang"
+    [ -e "$vimroot/extools/lang-install/$lang" ] && sh "$vimroot/extools/lang-install/$lang"
   done
+
+  if [ -x cargo ]; then
+    [ -x rg ] || cargo install ripgrep
+  else
+    printf "You need to install cargo!" && exit 1
+  fi  
 }
 # }}}
 
@@ -166,7 +171,7 @@ install_wine_code_google() {
     cpath=$(pwd)
     # sh /mnt/fun+downloads/linux系统安装/daily-software/deepin-wine-env/install.sh
 
-    # source website
+    # @@ app website
     # http://www.wps.cn/product/wpslinux/#
     # https://pinyin.sogou.com/linux/?r=pinyin
     # https://music.163.com/#/download
@@ -178,12 +183,9 @@ install_wine_code_google() {
     cd /mnt/fun+downloads/linux系统安装/daily-software || return
     rm -f google-chrome-stable_current_amd64.deb
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    #@ rg search
-    # curl -LO https://github.com/BurntSushi/ripgrep/releases/download/
     dpkg -i ./*.deb
-    ([ -x cargo ] && [ -x rg ]) || cargo install ripgrep
 
-    cd /mnt/fun+downloads/linux系统安装/code-software/ || return
+    cd /mnt/fun+downloads/linux系统安装/code-software/devtools || return
     dpkg -i ./*.deb
 
     # tex 换源
@@ -194,15 +196,16 @@ install_wine_code_google() {
   # fix dependencies
   apt-get --fix-broken install
   apt-get autoclean && apt-get autoremove && apt-get clean
-  #@ icons
-  zsh
+
   # FIXME:
-  cp -r "$mydotfile/linux/alan-root/.*" "$HOME"
+  zsh
+  cp -r "$mydotfile/linux/alan-root/.*" /root
+  #@ icons
   cp -r "$mydotfile/system-theme/icons/alanding/.local" /home/alanding
 }
 
 
-install_databashes() {
+install_databases() {
   cp -r /mnt/fun+downloads/my-Dotfile/linux/alan-root/etc  /etc
   sudo cd /home/alanding/.SpaceVim.d/extools/tools/database/ || return
   sh ./mysql.sh

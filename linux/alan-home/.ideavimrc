@@ -212,7 +212,8 @@ nnoremap gu               :action GotoSuperMethod<CR>
 nnoremap gt               :action GotoTypeDeclaration<CR>
 nnoremap gT               :action GotoTest<CR>
 nnoremap gr               :action ShowUsages<CR>
-nnoremap gl               :action ShowUmlDiagramPopup<CR>
+nnoremap gl               :action ShowUmlDiagram<CR>
+nnoremap gL               :action ShowUmlDiagramPopup<CR>
 nnoremap ghm              :action MethodHierarchy<CR>
 nnoremap ght              :action TypeHierarchy<CR>
 nnoremap ghc              :action CallHierarchy<CR>
