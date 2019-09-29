@@ -31,14 +31,17 @@ default-character-set = utf8mb4
 port      = 3306
 socket		= /var/run/mysqld/mysqld.sock
 
-
+# 有问题都是数据位置或者socket路径不对
 [mysqld]
-default-storage-engine = INNODB
-character-set-server = utf8mb4
-collation-server = utf8_general_ci
-
+# GENERAL
+# user      = alanding
+protocol  = tcp
 port      = 3306
 socket		= /var/run/mysqld/mysqld.sock
 pid-file	= /var/run/mysqld/mysqld.pid
-datadir		= /home/alanding/software/database/mysql
+# datadir		= /home/alanding/software/database/mysql
+default-storage-engine = INNODB
+character-set-server = utf8mb4
+# INNODB
+# LOGGING
 log-error	= /var/log/mysql/error.log

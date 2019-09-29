@@ -9,8 +9,9 @@
 
 sudo apt-get install libjson-perl mecab-ipadic-utf8 libmecab2 libaio1 
 
-cd /mnt/fun+downloads/linux系统安装/code-software/system-util/database || return
+cd /mnt/fun+downloads/linux系统安装/code-software/system-util/database/mysql || return
 dpkg -i ./*.deb
 
-cd /mnt/fun+downloads/linux系统安装/code-software/system-util/database/mysql-server_8.0.16 || return
+cd /mnt/fun+downloads/linux系统安装/code-software/system-util/database/mysql/mysql-server_8.0.16 || return
 dpkg -i ./*.deb
+

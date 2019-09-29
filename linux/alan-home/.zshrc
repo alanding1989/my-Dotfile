@@ -74,14 +74,15 @@ ZshSettings() {
 # =============================================================================== {{{
 DefAlias() {
 # For a full list of active aliases, run `alias`.
+  # system operation
   alias pdf='synclient touchpadoff=1'
   alias pdo='synclient touchpadoff=0'
-  alias upalc='update-alternatives --config'
-  alias upali='update-alternatives --install'
+  alias alc='update-alternatives --config'
+  alias ali='update-alternatives --install'
   alias apti="apt-get install"
   alias aptug="apt-get upgrade"
   alias aptud="apt-get update"
-  alias aptfi="apt-get -f install"
+  alias aptf="apt-get -f install"
   alias aptre="apt-get remove"
   alias aptar='apt-get autoremove && apt-get autoclean && apt-get clean'
   alias aptsh='apt show'
@@ -100,24 +101,36 @@ DefAlias() {
   alias cgt="colorls --gs -t"
   alias cgl="colorls --gs -lA --sd"
 
-  # config
+  alias encconvert='convmv'
+  alias sysbackup='sh /mnt/fun+downloads/linux系统安装/systembackup/sysbackup.sh'
+  # System check
+  # less
+  # grep keyword file | keyword 
+  alias grep="grep --color=auto"
+  alias free='free -h -s3'
+  alias netstat='netstat -tunlp'
+  alias portcheck="lsof -i"
+  # estimate file space usage
+  alias du="du -h"
+
+
+  # editor
+  alias ge='gedit'
+  alias em='emacs -nw'
+  alias nv='nvim'
+  alias typora='~/software/Typora/Typora'
+  alias tmk="tmux kill-server"
+  # config files
   alias zrc="nv ~/.zshrc"
   alias brc="nv ~/.bashrc"
   alias vrc="nv ~/.SpaceVim.d/vimrc"
   alias trc="nv ~/.tmux.conf"
   alias szsh="source ~/.zshrc"
 
-  # app
-  alias encconvert='convmv'
+  # App
   alias yinyue='sudo netease-cloud-music'
   alias xmind='cp=$pwd; cd /home/alanding/software/xmind-8/XMind_amd64 && ./XMind; cd $cp'
-  alias sysbackup='sh /mnt/fun+downloads/linux系统安装/systembackup/sysbackup.sh'
-  alias ge='gedit'
-  alias em='emacs -nw'
-  alias tmk="tmux kill-server"
-  alias nv='nvim'
-  alias typora='~/software/Typora/Typora'
-
+  # acinema
   alias acinema='asciinema'
   alias arec='asciinema rec'
   alias arect='asciinema rec -t'
@@ -125,8 +138,11 @@ DefAlias() {
   alias aul='asciinema upload'
   alias aauth='asciinema auth'
   alias acat='asciinema cat'
+  # translator
+  alias jj='python3 /home/alanding/.SpaceVim.d/extools/tools/translator/translator.py '
 
-  # spark
+  # Devtools
+  # Spark
   alias starthdfs='start-dfs.sh && start-yarn.sh && start-master.sh && start-slaves.sh'
   alias stophdfs='stop-dfs.sh && stop-yarn.sh && stop-master.sh && stop-slaves.sh'
   alias hf='hadoop fs'
@@ -135,7 +151,7 @@ DefAlias() {
   alias rr='cargo run'
   alias rb='cargo build'
 
-  # git
+  # Git
   alias gch='git checkout'
   alias grh='git reset --hard'
   alias gpod='git push origin --delete'
@@ -143,29 +159,21 @@ DefAlias() {
   alias grro='git remote remove origin'
   alias grru='git remote remove upstream'
 
-  # sphinx
+  # Sphinx
   alias sphstart='sphinx-quickstart'
   alias sphbuild='sphinx-build'
   alias sphapidoc='sphinx-apidoc'
   alias sphgen='sphinx-autogen'
-
-  # translator
-  alias jj='python3 /home/alanding/.SpaceVim.d/extools/tools/translator/translator.py '
+  # Jupyter
   alias jpnb='jupyter-notebook'
-  alias ipyto='jupyter nbconvert --to'
-  alias cookiedata='cookiecutter https://github.com/drivendata/cookiecutter-data-science'
-  alias cookiepy='cookiecutter git@github.com:audreyr/cookiecutter-pypackage.git'
+  alias jpto='jupyter nbconvert --to'
 
-  alias du="du -h"
+  # Python pkg
+  alias cookieml='cookiecutter https://github.com/drivendata/cookiecutter-data-science'
+  alias cookiegeneral='cookiecutter git@github.com:audreyr/cookiecutter-pypackage.git'
+
   alias mysql='mysql -u root -p'
-
-  # system check
-  # less
-  # grep keyword file | keyword 
-  alias grep="grep --color=auto"
-  alias free='free -h -s3'
-  alias netstat='netstat -tunlp'
-  alias portcheck="lsof -i"
+  alias mongod='mongod --dbpath /home/alanding/software/database/mongodb'
 
   # fun
   alias rcat="nyancat"
@@ -200,6 +208,7 @@ DefEnVar() {
   # MiniConda
   # export PATH=//home/alanding/software/lang-tools/miniconda/bin:$PATH
   # \. /home/alanding/software/lang-tools/miniconda/etc/profile.d/conda.sh
+  alias condacheat='okular $HOME/.SpaceVim.d/cheats/conda-cheatsheet.pdf'
 
   # Pip cli completion
   eval "`pip completion --zsh`"
@@ -277,6 +286,7 @@ DefEnVar() {
   export HDFS_SECONDARYNAMENODE_USER=alanding
   export YARN_NODEMANAGER_USER=alanding
   export YARN_RESOURCEMANAGER_USER=alanding
+
 
   # .net
   export PATH=/opt/lang-tools/csharp:$PATH
