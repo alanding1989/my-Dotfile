@@ -27,7 +27,7 @@ ZshSettings() {
   # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
   # Example format: plugins=(rails git textmate ruby lighthouse)
   plugins=(git wd	z extract history web-search sbt
-          git-open zsh-syntax-highlighting zsh-autosuggestions)
+          git-open zsh-syntax-highlighting zsh-autosuggestions docker docker-compose)
   fpath+=$HOME/.oh-my-zsh/custom/plugins/rustcompletion
   fpath+=$HOME/.oh-my-zsh/custom/plugins/ninja-completion
   fpath+=$HOME/.oh-my-zsh/custom/plugins/gradle-completion
@@ -103,15 +103,6 @@ DefAlias() {
 
   alias encconvert='convmv'
   alias sysbackup='sh /mnt/fun+downloads/linux系统安装/systembackup/sysbackup.sh'
-  # System check
-  # less
-  # grep keyword file | keyword 
-  alias grep="grep --color=auto"
-  alias free='free -h -s3'
-  alias netstat='netstat -tunlp'
-  alias portcheck="lsof -i"
-  # estimate file space usage
-  alias du="du -h"
 
 
   # editor
@@ -179,6 +170,20 @@ DefAlias() {
   alias rcat="nyancat"
 
   alias clock="while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput rc;done&"
+
+  # System check
+  # less
+  # systemctl status
+  # grep keyword file | keyword 
+  alias grep="grep --color=auto"
+  alias free='free -h -s3'
+  # tcp udp numeric listening program
+  alias netstat='netstat -tunlp'
+  alias portcheck="lsof -i"
+  # lsof -i tcp:80
+  # estimate file space usage
+  alias du="du -h"
+  alias jstat="jstat -gcutil"
 }
 # }}}
 
@@ -357,7 +362,7 @@ DefEnVar() {
   export MANPATH=/home/alanding/software/texlive/2018/texmf-dist/doc/man:$MANPATH
   export INFOPATH=/home/alanding/software/texlive/2018/texmf-dist/doc/info:$INFOPATH
 
-  # vagrant, chromedriver
+  # postman, vagrant, chromedriver ...
   export PATH=/home/alanding/software/command-line-tools:$PATH
 }
 # }}}

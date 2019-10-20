@@ -2,8 +2,8 @@
 Version=1.0
 Type=Application
 Name=PyCharm Professional Edition
-Icon=/opt/ide-tools/pycharm-2019.1.2/bin/pycharm.svg
-Exec="/opt/ide-tools/pycharm-2019.1.2/bin/pycharm.sh" %f
+Icon=/opt/ide-tools/pycharm-2019.2.1/bin/pycharm.svg
+Exec="/opt/ide-tools/pycharm-2019.2.1/bin/pycharm.sh" %f
 Comment=Python IDE for Professional Developers
 Categories=Development;IDE;
 Terminal=false

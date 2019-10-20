@@ -7,8 +7,16 @@
 # Description  : 
 
 
+# db
 docker pull mysql
 docker pull redis
 docker pull mongo
+
+# web server
+docker pull nginx
+docker pull tomcat
+
+# python web-dev
+docker pull dongweiming/web_develop
 
 

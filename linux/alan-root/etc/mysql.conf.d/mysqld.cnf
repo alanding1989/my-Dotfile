@@ -31,6 +31,7 @@ default-character-set = utf8mb4
 port      = 3306
 socket		= /var/run/mysqld/mysqld.sock
 
+
 # 有问题都是数据位置或者socket路径不对
 [mysqld]
 # GENERAL
@@ -45,3 +46,4 @@ character-set-server = utf8mb4
 # INNODB
 # LOGGING
 log-error	= /var/log/mysql/error.log
+

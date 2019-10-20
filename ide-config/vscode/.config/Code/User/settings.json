@@ -1,37 +1,271 @@
 {
+    "vim.neovimPath": "/opt/vim/nvim-linux64/bin/nvim",
+    "vim.leader": "<Space>",
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [ "<c-a>", ],
+            "commands": [ "cursorHome", ],
+        },
+        {
+            "before": [ "<c-e>", ],
+            "commands": [ "cursorEnd", ],
+        },
+        {
+            "before": [ "q", "w" ],
+            "after": [ "<escape>" ]
+        },
+        {
+            "before": [ "<leader>", "c", "l" ],
+            "commands": [ "editor.action.commentLine" ]
+        },
+        {
+            "before": [ "<leader>", "c", "b" ],
+            "commands": [ "editor.action.blockComment" ],
+        },
+    ],
+    "vim.insertModeKeyBindingsNonRecursive": [
+        {
+            "before": [ "<c-d>", ],
+            "commands": [ "deleteRight", ],
+        },
+        {
+            "before": [ "<c-a>", ],
+            "commands": [ "cursorHome", ],
+        },
+        {
+            "before": [ "<c-e>", ],
+            "commands": [ "cursorEnd", ],
+        },
+        {
+            "before": [ "<c-l>", ],
+            "commands": [ "cursorRight" ]
+        },
+        {
+            "before": [ "<c-f>", ],
+            "commands": [ "cursorRight" ]
+        },
+        {
+            "before": [ "<c-b>", ],
+            "commands": [ "cursorLeft" ]
+        },
+        {
+            "before": [ "q", "w" ],
+             "after": [ "<escape>" ]
+        },
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [ ":" ],
+            "commands": [ "workbench.action.showCommands", ]
+        },
+        {
+            "before": ["<leader>", "e", ],
+            "commands": ["workbench.action.showCommands"]
+        },
+        {
+            "before": [ "<leader>", "0" ],
+            "commands": [
+                "workbench.action.terminal.toggleTerminal",
+            ]
+        },
+        {
+            "before": [ "<leader>", "<tab>" ],
+            "commands": [ "workbench.action.focusSideBar" ]
+        },
+        {
+            "before": [ "<c-a>" ],
+            "after": [ "^" ]
+        },
+        {
+            "before": [ "<c-e>" ],
+            "after": [ "$" ]
+        },
+        {
+            "before": [ "<c-f>" ],
+            "after": [ "<c-d>", "M"]
+        },
+        // {
+        //     "before": [ "<c-f>" ],
+        //     "after": [ "3", "<c-e>", "M"]
+        // },
+        {
+            "before": [ "<c-b>" ],
+            "after": [ "<c-u>", "M" ]
+        },
+        {
+            "before": [ "<c-u>" ],
+            "after": [ "3", "<c-y>"]
+        },
+        {
+            "before": [ "s" ],
+            "commands": [ "<nop>" ]
+        },
+        {
+            "before": [ "s", "l" ],
+            "commands": [ "workbench.action.nextEditor" ]
+        },
+        {
+            "before": [ "s", "h" ],
+            "commands": [ "workbench.action.previousEditor"]
+        },
+        {
+            "before": [ "s", "s" ],
+            "commands": [
+                "workbench.action.splitEditorDown"
+            ]
+        },
+        {
+            "before": [ "s", "v" ],
+            "commands": [
+                "workbench.action.splitEditorRight"
+            ]
+        },
+        {
+            "before": [ "q", "w" ],
+            "commands": [ ":w" ]
+        },
+        {
+            "before": [ "q", "s" ],
+            "commands": [ "workbench.action.files.saveAs" ]
+        },
+        {
+            "before": [ "q", "d" ],
+            "commands": [ ":q" ]
+        },
+        {
+            "before": [ "q", "q" ],
+            "commands": [ ":q" ]
+        },
+        {
+            "before": [ "q", "p" ],
+            "commands": [
+                "workbench.action.closeActiveEditor"
+            ]
+         },
+        {
+            "before": [ "q", "p" ],
+            "commands": [ "workbench.action.closeFolder" ]
+        },
+        {
+            "before": [ "q", "h" ],
+            "commands": [ "workbench.action.closeWindow" ]
+        },
+        {
+            "before": [ "v", "v" ], "after": [ "V" ]
+        },
+        {
+            "before": [ "<leader>", "v" ],
+            "after": [ "V" ]
+        },
+        {
+            "before": [ "\\" ],
+            "commands": [ ":nohl" ]
+        },
+        {
+            "before": [ "<backspace>" ],
+            "after": [ "%" ]
+        },
+        {
+            "before": [ "<leader>", "c", "l" ],
+            "commands": [
+                "editor.action.commentLine"
+            ]
+        },
+        {
+            "before": [ "<leader>", "c", "b" ],
+            "commands": [
+                "editor.action.blockComment"
+            ],
+        },
+        {
+            "before": [ "<leader>", "f", "o" ],
+            "commands": [
+                "workbench.action.files.openFolder"
+            ]
+        },
+        {
+            "before": [ "<leader>", "o", "f" ],
+            "commands": [
+                "workbench.action.files.openFile"
+            ]
+        },
+        {
+            "before": [ "<leader>", "q", "r" ],
+            "commands": [
+                "workbench.action.openRecent"
+            ]
+        },
+        {
+            "before": [ "<leader>", "o", "c" ],
+            "commands": [
+                "workbench.action.reopenClosedEditor"
+            ]
+        },
+        {
+            "before": [ "<leader>", "g", "i", "f"],
+            "commands": [
+                "gitlens.openBranchInRemote"
+            ]
+        },
+        {
+            "before": [ "<leader>", "l", "n", "o" ],
+            "commands": [ "python.datascience.importnotebook" ]
+        },
+        {
+            "before": [ "g", "0" ],
+            "after": [ "*" ]
+        },
+        {
+            "before": [ "g", "f" ],
+            "commands": [ "editor.action.formatDocument" ]
+        },
+        {
+            "before": [ "g", "o" ],
+            "commands": [ "editor.action.organizeImports" ]
+        },
+        {
+            "before": [ "g", "n" ],
+            "commands": [ "editor.action.refactor" ]
+        },
+        {
+            "before": [ "g", "e" ],
+            "commands": [ "editor.action.rename" ]
+        },
+        {
+            "before": [ "<leader>", "s", "o" ],
+            "commands": [ "filesExplorer.findInWorkspace" ]
+        },
+    ],
     "window.zoomLevel": 1,
     "editor.mouseWheelZoom": true,
     "files.trimTrailingWhitespace": true,
     "search.smartCase": true,
     "terminal.integrated.shell.linux": "/usr/bin/zsh",
     "python.disableInstallationCheck": true,
-    "python.pythonPath": "/home/alanding/software/anaconda3/envs/py36/bin/python3.6",
-    "python.unitTest.pyTestEnabled": true,
+    "python.pythonPath": "/home/alanding/software/anaconda3/envs/py37/bin/python3.7",
+    "python.testing.pytestEnabled": true,
     "editor.multiCursorModifier": "alt",
-    "workbench.iconTheme": "material-icon-theme",
     "editor.tabCompletion": "on",
     "editor.wordWrap": "on",
     "files.autoSave": "afterDelay",
     "files.trimFinalNewlines": true,
     "workbench.list.horizontalScrolling": true,
-    "debug.inlineValues": true,
     "python.autoComplete.addBrackets": true,
-    "python.formatting.autopep8Path": "/home/alanding/software/anaconda3/envs/py36/bin/autopep8",
-    "python.formatting.yapfPath": "/home/alanding/software/anaconda3/envs/py36/bin/yapf",
-    "python.linting.pep8Path": "/home/alanding/software/anaconda3/envs/py36/bin/pep8",
-    "python.linting.flake8Path": "/home/alanding/software/anaconda3/envs/py36/bin/flake8",
-    "python.jediPath": "/home/alanding/software/anaconda3/envs/py36/lib/python3.6/site-packages/jedi",
-    "python.linting.prospectorPath": "/home/alanding/software/anaconda3/envs/py36/bin/prospector",
-    "python.linting.pydocstylePath": "/home/alanding/software/anaconda3/envs/py36/bin/pydocstyle",
-    "python.linting.pylintPath": "/home/alanding/software/anaconda3/envs/py36/bin/pylint",
-    "python.sortImports.path": "/home/alanding/software/anaconda3/envs/py36/bin/isort",
-    "python.unitTest.pyTestPath": "/home/alanding/software/anaconda3/envs/py36/bin/pytest",
+    "python.formatting.autopep8Path": "/home/alanding/software/anaconda3/envs/py37/bin/autopep8",
+    "python.formatting.yapfPath": "/home/alanding/software/anaconda3/envs/py37/bin/yapf",
+    "python.linting.pycodestylePath": "/home/alanding/software/anaconda3/envs/py37/bin/pep8",
+    "python.linting.flake8Path": "/home/alanding/software/anaconda3/envs/py37/bin/flake8",
+    "python.jediPath": "/home/alanding/software/anaconda3/envs/py37/lib/python3.7/site-packages/jedi",
+    "python.linting.prospectorPath": "/home/alanding/software/anaconda3/envs/py37/bin/prospector",
+    "python.linting.pydocstylePath": "/home/alanding/software/anaconda3/envs/py37/bin/pydocstyle",
+    "python.linting.pylintPath": "/home/alanding/software/anaconda3/envs/py37/bin/pylint",
+    "python.sortImports.path": "/home/alanding/software/anaconda3/envs/py37/bin/isort",
+    "python.testing.pytestPath": "/home/alanding/software/anaconda3/envs/py37/bin/pytest",
     "python.workspaceSymbols.ctagsPath": "/opt/vim/universal-ctags/bin/ctags",
     "python.workspaceSymbols.tagFilePath": "/home/alanding/.cache/tags",
     "vim.easymotion": true,
     "vim.enableNeovim": true,
     "vim.hlsearch": true,
-    "vim.neovimPath": "/opt/vim/nvim-app/nvim.appimage",
     "vim.useSystemClipboard": true,
     "workbench.colorCustomizations": {
         "titleBar.activeBackground": "#f6f1ecf1",
@@ -160,14 +394,12 @@
     "scm.diffDecorationsGutterWidth": 5,
     "terminal.integrated.rightClickBehavior": "copyPaste",
     "keyboard.dispatch": "keyCode",
-    "git.autofetch": true,
     "git.ignoreLimitWarning": true,
     "git.path": "/usr/bin/git",
     "git.rebaseWhenSync": true,
     "git.showPushSuccessNotification": true,
     "gitHistory.hideCommitViewExplorer": true,
     "gitlens.codeLens.authors.command": "gitlens.showQuickFileHistory",
-    "gitlens.codeLens.includeSingleLineSymbols": true,
     "gitlens.codeLens.scopesByLanguage": [
         {
             "language": "scala",
@@ -295,275 +527,19 @@
     "editor.fontFamily": "'SauceCodePro Nerd Font',  'monospace', monospace, \"Ubuntu Regular fallback\"",
     "terminal.integrated.letterSpacing": -0.6,
     "extensions.showRecommendationsOnlyOnDemand": true,
-    "workbench.colorTheme": "Solarized Light",
+    "workbench.colorTheme": "Gruvbox Dark (Soft)",
     "editor.minimap.renderCharacters": false,
     "vim.surround": true,
     "vim.ignorecase": true,
     "vim.foldfix": true,
     "dotty.trace.machineId": "ac5fbcfa-e990-4a10-babd-e612b23eb366",
-    "python.unitTest.autoTestDiscoverOnSaveEnabled": false,
-    "python.condaPath": "/home/alanding/software/anaconda3/etc/profile.d/conda.sh",
+    "python.testing.autoTestDiscoverOnSaveEnabled": false,
     "vim.changeWordIncludesWhitespace": true,
     "vim.debug.silent": true,
-    "vim.sneak": true,
-    "vim.sneakUseIgnorecaseAndSmartcase": true,
     "editor.letterSpacing": -0.3,
     "sync.gist": "89a9a79a3c91d62c5d3a901a53dfa0b0",
     "sync.autoUpload": false,
     "path-autocomplete.ignoredFilesPattern": ".gitignore",
-    "vim.visualModeKeyBindingsNonRecursive": [
-        {
-            "before": [
-                "q",
-                "w"
-            ],
-            "after": [
-                "<escape>"
-            ]
-        }
-    ],
-    "vim.insertModeKeyBindingsNonRecursive": [
-        {
-            "before": [
-                "q",
-                "w"
-            ],
-            "after": [
-                "<escape>"
-            ]
-        },
-        {
-            "before": [
-                "<c-f>"
-            ],
-            "commands": [
-                "deleteWordRight"
-            ]
-        },
-    ],
-    "sync.quietSync": false,
-    "vim.normalModeKeyBindingsNonRecursive": [
-        {
-            "before": [
-                "<c-e>"
-            ],
-            "after": [
-                "$"
-            ]
-        },
-        {
-            "before": [
-                "<c-a>"
-            ],
-            "after": [
-                "0"
-            ]
-        },
-        {
-            "before": [
-                "<c-l>"
-            ],
-            "commands": [
-                ":nohl"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "c",
-                "l"
-            ],
-            "commands": [
-                "editor.action.commentLine"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "c",
-                "b"
-            ],
-            "commands": [
-                "editor.action.blockComment"
-            ],
-        },
-        {
-            "before": [
-                "<backspace>"
-            ],
-            "after": [
-                "%"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "v"
-            ],
-            "after": [
-                "V"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "n",
-                "f"
-            ],
-            "commands": [
-                "explorer.newFile"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "n",
-                "d"
-            ],
-            "commands": [
-                "explorer.newFolder"
-            ]
-        },
-        {
-            "before": [
-                "q",
-                "q"
-            ],
-            "commands": [
-                ":q"
-            ]
-        },
-        {
-            "before": [
-                "q",
-                "w"
-            ],
-            "commands": [
-                ":w"
-            ]
-        },
-        {
-            "before": [
-                "q",
-                "s"
-            ],
-            "commands": [
-                "workbench.action.files.saveAs"
-            ]
-        },
-        {
-            "before": [
-                "q",
-                "p"
-            ],
-            "commands": [
-                "workbench.action.closeFolder"
-            ]
-        },
-        {
-            "before": [
-                "q",
-                "h"
-            ],
-            "commands": [
-                "workbench.action.closeWindow"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "o",
-                "o"
-            ],
-            "commands": [
-                "workbench.action.files.openFolder"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "o",
-                "f"
-            ],
-            "commands": [
-                "workbench.action.files.openFile"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "o",
-                "r"
-            ],
-            "commands": [
-                "workbench.action.openRecent"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "o",
-                "c"
-            ],
-            "commands": [
-                "workbench.action.reopenClosedEditor"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "o",
-                "g"
-            ],
-            "commands": [
-                "gitlens.openBranchInRemote"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "o",
-                "w"
-            ],
-            "commands": [
-                "workbench.action.openWorkspace"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "l",
-                "n",
-                "o"
-            ],
-            "commands": [
-                "python.datascience.importnotebook"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "t",
-                "h",
-                "l"
-            ],
-            "commands": [
-                "todohighlight.toggleHighlight"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "t",
-                "h",
-                "a"
-            ],
-            "commands": [
-                "todohighlight.listAnnotations"
-            ]
-        },
-    ],
-    "vim.leader": "<space>",
     "auto-close-tag.activationOnLanguage": [
         "*"
     ],
@@ -712,34 +688,129 @@
     "todo-tree.ripgrep": "/usr/bin/rg",
     "todo-tree.showCountsInTree": true,
     "todo-tree.statusBar": "top three",
-    "explorer.autoReveal": false,
-    "explorer.sortOrder": "mixed",
-    "metals.javaHome": "/opt/lang-tools/java/jdk11",
+    "metals.javaHome": "/opt/lang-tools/java/jdk",
     "metals.sbtScript": "/opt/lang-tools/scala/sbt/bin/sbt",
-    "metals.serverProperties": "Xms512M Xmx1536M Xss2M XX:+CMSClassUnloadingEnabled  -Dmetals.statistics=all",
+    "metals.serverProperties": [
+        "Xms512M",
+        "Xmx1536M",
+        "Xss2M",
+        "XX:+CMSClassUnloadingEnabled",
+        "-Dmetals.statistics=all"
+    ],
+    "metals.gradleScript": "/opt/lang-tools/java/gradle/bin/gradle",
+    "metals.mavenScript": "/opt/lang-tools/java/maven/bin/mvn",
     "debug.node.autoAttach": "off",
     "sync.autoDownload": false,
     "shellcheck.executablePath": "/usr/bin/shellcheck",
     "shellcheck.run": "onSave",
-    "shellcheck.useWSL": true,
     "shellcheck.useWorkspaceRootAsCwd": true,
     "python.formatting.provider": "yapf",
     "python.linting.flake8Enabled": true,
     "python.analysis.logLevel": "Information",
     "vim.camelCaseMotion.enable": true,
     "vim.highlightedyank.enable": true,
-    "vim.substituteGlobalFlag": true,
     "vim.visualstar": true,
-    "python.testing.pyTestEnabled": true,
     "code-runner.fileDirectoryAsCwd": true,
     "code-runner.runInTerminal": true,
-    "workbench.settings.openDefaultSettings": true,
     "workbench.settings.useSplitJSON": true,
     "C_Cpp.clang_format_path": "/opt/lang-tools/cpp/clang/bin/clang-format",
     "C_Cpp.clang_format_sortIncludes": true,
-    "C_Cpp.default.cppStandard": "c++14",
+    "C_Cpp.default.cppStandard": "c++11",
     "C_Cpp.default.cStandard": "c11",
     "C_Cpp.default.intelliSenseMode": "clang-x64",
     "AREPL.pythonPath": "/home/alanding/software/anaconda3/envs/py36/bin/python3.6",
     "projectManager.openInNewWindowWhenClickingInStatusBar": true,
+    "python.dataScience.sendSelectionToInteractiveWindow": true,
+    "goOutliner.extendExplorerTab": true,
+    "explorer.autoReveal": false,
+    "C_Cpp.clang_format_fallbackStyle": "LLVM",
+    "C_Cpp.clang_format_style": "",
+    "C_Cpp.updateChannel": "Insiders",
+    "python.condaPath": "conda",
+    "code-runner.saveFileBeforeRun": true,
+    "markdown.extension.italic.indicator": "_",
+    "rust-analyzer.cargo-watch.command": "clippy",
+    "rust-analyzer.enableEnhancedTyping": false,
+    "rust-analyzer.highlightingOn": true,
+    "rust-analyzer.lruCapacity": 1000,
+    "rust-analyzer.rainbowHighlightingOn": true,
+    "rust-analyzer.raLspServerPath": "/home/alanding/software/lang-tools/cargo/bin/ra_lsp_server",
+    "rust-client.rustupPath": "/home/alanding/software/lang-tools/cargo/bin/rustup",
+    "rust.all_features": true,
+    "rust.clippy_preference": "on",
+    "rust.rustfmt_path": "/home/alanding/software/lang-tools/cargo/bin/rustfmt",
+    "rust.sysroot": "/opt/lang-tools/rust/rustup/toolchains/stable-x86_64-unknown-linux-gnu/",
+    "todo-tree.ripgrep.ripgrep": "/usr/bin/rg",
+    "todo-tree.general.statusBar": "top three",
+    "todo-tree.tree.showCountsInTree": true,
+    "vsicons.dontShowNewVersionMessage": true,
+    "sync.quietSync": false,
+    "vim.autoSwitchInputMethod.enable": true,
+    "vim.gdefault": true,
+    "php.suggest.basic": false,
+    "php.validate.enable": false,
+    "vim.substituteGlobalFlag": true,
+    "emmet.excludeLanguages": [
+        "markdown",
+        "json"
+    ],
+    "eslint.alwaysShowStatus": true,
+    "eslint.autoFixOnSave": true,
+    "eslint.nodePath": "/opt/lang-tools/nvm/versions/node/v10.16.0/bin/node",
+    "eslint.run": "onSave",
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+    ],
+    "fileutils.delete.useTrash": true,
+    "jake.autoDetect": "off",
+    "workbench.iconTheme": "material-icon-theme",
+    "java.codeGeneration.generateComments": true,
+    "java.codeGeneration.hashCodeEquals.useJava7Objects": true,
+    "java.codeGeneration.toString.codeStyle": "STRING_BUILDER_CHAINED",
+    "java.completion.guessMethodArguments": true,
+    "java.configuration.maven.userSettings": "/home/alanding/.m2/settings.xml",
+    "java.home": "/opt/lang-tools/java/jdk",
+    "java.implementationsCodeLens.enabled": true,
+    "java.import.gradle.home": "/opt/lang-tools/java/gradle",
+    "java.saveActions.organizeImports": true,
+    "java.signatureHelp.enabled": true,
+    "markdown.links.openLocation": "beside",
+    "markdownlint.run": "onSave",
+    "maven.excludedFolders": [
+        "**/.*",
+        "**/node_modules",
+        "**/target",
+        "**/bin"
+    ],
+    "maven.executable.path": "/opt/lang-tools/java/maven/bin/mvn",
+    "maven.pomfile.autoUpdateEffectivePOM": true,
+    "maven.terminal.useJavaHome": true,
+    "maven.view": "hierarchical",
+    "typescriptHero.imports.grouping": [
+        "Plains",
+        "Modules",
+        "Workspace"
+    ],
+    "typescriptHero.imports.organizeOnSave": true,
+    "metals.serverVersion": "",
+    "gitlens.codeLens.includeSingleLineSymbols": true,
+    "debug.inlineValues": true,
+    "gitlens.codeLens.recentChange.enabled": false,
+    "auto-rename-tag.activationOnLanguage": [
+        "html", "xml", "vue", "jsx", "tsx"
+    ],
+    "better-comments.highlightPlainText": true,
+    "boot-java.support-spring-xml-config.on": true,
+    "docthis.includeAuthorTag": true,
+    "docthis.includeDescriptionTag": true,
+    "docthis.includeDateTag": true,
+    "java.dependency.packagePresentation": "hierarchical",
+    "npm.exclude": ["node_modules", ".git", ".vscode", "idea"],
+    "json.format.enable": false,
+    "movets.relativeToTsconfig": true,
+    "java.help.firstView": "overview",
+    "python.dataScience.autoPreviewNotebooksInInteractivePane": true,
 }

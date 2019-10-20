@@ -2,8 +2,8 @@
 Version=1.0
 Type=Application
 Name=GoLand
-Icon=/opt/ide-tools/GoLand-2019.1.2/bin/goland.svg
-Exec="/opt/ide-tools/GoLand-2019.1.2/bin/goland.sh" %f
+Icon=/opt/ide-tools/GoLand-2019.2.1/bin/goland.svg
+Exec="/opt/ide-tools/GoLand-2019.2.1/bin/goland.sh" %f
 Comment=The Drive to Develop
 Categories=Development;IDE;
 Terminal=false
