@@ -1,58 +1,65 @@
-" editor
+# 通用工具
 IdeaVim
 StringManipulation
 file-path-autocomplete
 KJump
 Rainbow brackets
-CodeGlance
 GrepConsole
+Translation
+OnlineSeach2
+CodeGlance
+file-watcher
+
+GitToolBox
+gitee
+Find Pull Request
+gitignore
+repo
+
+Docker
+TeamCityIntegration
+TeXiFy IDEA
 
 
-lombok
-
-
-" lang
-rust
+# lang
 BashSupport
 markdown
-rst
 idea-multimarkdown
-NodeJS
-Scala
-EmmyLua
 toml
+rst
+PlantUML integration
 
-frame related
+
+# frontEnd
 react
+NodeJS
+stylus linter
+styled components
+tsreact
 
 
-" lint
-cppcheck
+# Java
 findbugs
+Maven Helper
+lombok
+VisualVM Launcher
+# jprofiler
+GenerateAllSetter
+P3c
+google-java-style
+Scala
+scalafmt
+
+
+" cpp, rust, python
+rust
+cppcheck
+EmmyLua
 python-ce
 mypy-plugin
 pylint-plugin
-google-java-style
-
 
 " build-tools
 intellij-makefile
 xmake
 
-
-Translation
-OnlineSeach
-Docker
-GitToolBox
-gitee
-Find Pull Request
-idea-gitignore
-.ignore
-repo
-file-watcher
-
-
-TeamCityIntegration
-TeXiFy IDEA
-
-Key-Promoter-X

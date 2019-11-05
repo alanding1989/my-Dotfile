@@ -105,6 +105,7 @@ fi
 # disable Vim freeze after pressing <C-s>
 stty -ixon
 
+
 alias pdf='synclient touchpadoff=1'
 alias pdo='synclient touchpadoff=0'
 alias upalc='update-alternatives --config'
@@ -163,3 +164,20 @@ alias glum='git pull upstream master'
 alias grh='git reset --hard HEAD'
 
 zsh
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/alanding/software/lang-tools/miniconda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/alanding/software/lang-tools/miniconda/etc/profile.d/conda.sh" ]; then
+        . "/home/alanding/software/lang-tools/miniconda/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/alanding/software/lang-tools/miniconda/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+

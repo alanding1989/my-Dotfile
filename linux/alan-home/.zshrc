@@ -121,6 +121,7 @@ DefAlias() {
   # App
   alias yinyue='sudo netease-cloud-music'
   alias xmind='cp=$pwd; cd /home/alanding/software/xmind-8/XMind_amd64 && ./XMind; cd $cp'
+  alias irc='irssi'
   # acinema
   alias acinema='asciinema'
   alias arec='asciinema rec'
@@ -130,7 +131,7 @@ DefAlias() {
   alias aauth='asciinema auth'
   alias acat='asciinema cat'
   # translator
-  alias jj='python3 /home/alanding/.SpaceVim.d/extools/tools/translator/translator.py '
+  alias jj='python3 /home/alanding/.SpaceVim.d/extools/translator/translator.py '
 
   # Devtools
   # Spark
@@ -149,6 +150,7 @@ DefAlias() {
   alias gdrb='git push origin '
   alias grro='git remote remove origin'
   alias grru='git remote remove upstream'
+  alias gclr='git clone'
 
   # Sphinx
   alias sphstart='sphinx-quickstart'
@@ -163,27 +165,82 @@ DefAlias() {
   alias cookieml='cookiecutter https://github.com/drivendata/cookiecutter-data-science'
   alias cookiegeneral='cookiecutter git@github.com:audreyr/cookiecutter-pypackage.git'
 
+  # ---------------------------------------------------------------------------------------
   alias mysql='mysql -u root -p'
   alias mongod='mongod --dbpath /home/alanding/software/database/mongodb'
 
   # fun
   alias rcat="nyancat"
-
   alias clock="while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput rc;done&"
 
-  # System check
-  # less
-  # systemctl status
   # grep keyword file | keyword 
   alias grep="grep --color=auto"
-  alias free='free -h -s3'
-  # tcp udp numeric listening program
-  alias netstat='netstat -tunlp'
-  alias portcheck="lsof -i"
-  # lsof -i tcp:80
+
+  # -------------------------------------------------------------------------------------------------
+  # @运维命令
+  # -------------------------------------------------------------------------------------------------
+  # less tail head 等查看文件内容
+  # systemctl status 查看应用状况
+
+  # 后接应用程序名查找对应PID
+  alias psgrep='ps -ef | grep '
+  # 找进程中占用CPU较高的线程
+  # ps -p ..pid.. -L -o pcpu,pid,tid,time,tname,cmd > ~/...
+
   # estimate file space usage
   alias du="du -h"
-  alias jstat="jstat -gcutil"
+
+  ### 1. 查看性能
+  # top 查看系统整体性能查看总览
+
+  ### 2. CPU性能
+  # mpstat -P ALL 2
+  # vmstat -n 采样时间间隔 + 采样次数
+  #   -procs
+  #     r：运行等待CPU时间片的进程数，原则上1核的CPU运行队列不要超过2，整个系统的运行队列不能超过总核数的2倍，否则代表系统压力过大。
+  #   -cpu
+  #     us：用户进程消耗CPU时间百分比，us值高，用户进程小号CPU时间多，如果长期大于50%，优化程序；
+  #     sy：内核进程消耗的CPU百分比；
+
+  ### 3. 查看系统已使用及可用内存变化
+  alias free='free -h -s3'
+  # pidstat -p 进程号 -r(指内存统计) + 采样间隔
+  #
+  # 查看文件系统及硬盘空间状况
+  # df -h
+  #
+  # 查看磁盘IO性能
+  alias iostat='iostat -xdk 2, 3' 
+  # pidstat -p 进程号 -d(指磁盘IO统计) + 采样间隔
+
+  ### 4. 网络
+  # ifstat 查看网络IO性能
+  #
+  # 查看Ip，网络连接，端口占用等总览，加上.. | grep PID 查看具体进程占用端口 -tunlp tcp udp numeric listening program
+  alias netstat='netstat -tunlp'
+  #
+  # lsof -i tcp:80 
+  alias portcheck="lsof -i"
+
+  # Java 诊断工具
+  alias arthas='java -jar $HOME/software/lang-tools/Java/Arthas/arthas-boot.jar'
+  # jps -v JVM启动时参数列表
+  #     -m 传给主类参数
+  #     -l 列出主类、Jar包位置
+  #
+  # jstat -gcutil `pid`
+  alias jstat='jstat -gcutil'
+  #
+  # jinfo 实时查看和调整虚拟机各项参数
+  #
+  # jmap 生成堆转储快照
+  #
+  # 生成JVM当前时刻线程快照，定位线程长时间停顿原因，死锁、死循环、请求外部资源等。
+  # -l 输出锁信息，-F 强制输出线程堆栈，-m 如调用本地方法，可显示C/C++堆栈。
+  alias jstack='jstack -l'
+
+  # docker
+  alias drmc-all="docker rm $(docker ps -a -q) -f"
 }
 # }}}
 
@@ -266,6 +323,9 @@ DefEnVar() {
   # Gradle
   export GRADL_HOME=/opt/lang-tools/java/gradle
   export PATH=${GRADL_HOME}/bin:$PATH
+
+  # Tomcat
+  # export PATH=/home/alanding/software/web-server/tomcat/bin:$PATH
 
   # Scala
   export SCALA_HOME=/opt/lang-tools/scala/scala

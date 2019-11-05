@@ -352,7 +352,7 @@
         "command": "workbench.action.selectIconTheme"
     },
     {
-        "key": "alt+s p",
+        "key": "alt+q p",
         "command": "workbench.view.extensions"
     },
     {
@@ -659,16 +659,6 @@
         "command": "git.commitAll"
     },
     {
-        "key": "ctrl+p b",
-        "command": "editor.action.jumpToBracket",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "ctrl+shift+\\",
-        "command": "-editor.action.jumpToBracket",
-        "when": "editorTextFocus"
-    },
-    {
         "key": "ctrl+k ctrl+q",
         "command": "-workbench.action.navigateToLastEditLocation"
     },
@@ -728,7 +718,7 @@
         "when": "inSettingsEditor"
     },
     {
-        "key": "ctrl+p p",
+        "key": "ctrl+p",
         "command": "editor.action.triggerParameterHints",
         "when": "editorHasSignatureHelpProvider && editorTextFocus"
     },
@@ -738,7 +728,7 @@
         "when": "editorHasSignatureHelpProvider && editorTextFocus"
     },
     {
-        "key": "ctrl+p p",
+        "key": "ctrl+p",
         "command": "closeParameterHints",
         "when": "editorTextFocus && parameterHintsVisible"
     },
@@ -865,10 +855,6 @@
         "command": "python.datascience.runallcells"
     },
     {
-        "key": "ctrl+p o",
-        "command": "python.sortImports"
-    },
-    {
         "key": "alt+e n",
         "command": "editor.action.marker.nextInFiles",
         "when": "editorFocus && !editorReadonly"
@@ -907,7 +893,7 @@
         "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly"
     },
     {
-        "key": "ctrl+p i",
+        "key": "ctrl+enter",
         "command": "toggleSuggestionDetails",
         "when": "suggestWidgetVisible && textInputFocus"
     },
@@ -1186,7 +1172,7 @@
         "command": "workbench.action.closeWindow"
     },
     {
-        "key": "alt+o r",
+        "key": "ctrl+q r",
         "command": "workbench.action.openRecent"
     },
     {
@@ -2036,16 +2022,6 @@
         "when": "editorTextFocus && vim.active && !inDebugRepl"
     },
     {
-        "key": "backspace",
-        "command": "deleteLeft",
-        "when": "textInputFocus && !editorReadonly"
-    },
-    {
-        "key": "backspace",
-        "command": "-deleteLeft",
-        "when": "textInputFocus && !editorReadonly"
-    },
-    {
         "key": "ctrl+c",
         "command": "-gitlens.views.fileHistory.copy",
         "when": "gitlens:enabled && focusedView =~ /^gitlens\\.views\\.fileHistory/"
@@ -2069,5 +2045,10 @@
         "key": "ctrl+k ctrl+o",
         "command": "-workbench.action.files.openLocalFolder",
         "when": "remoteFileDialogVisible"
+    },
+    {
+        "key": "backspace",
+        "command": "-deleteLeft",
+        "when": "textInputFocus && !editorReadonly"
     }
 ]

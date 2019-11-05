@@ -16,7 +16,7 @@
     "keyboard_shortcut_editor/main": true,
     "select_keymap/main": true,
     "vim_binding/vim_binding": true,
-    "code_prettify/autopep8": false,
+    "code_prettify/autopep8": true,
     "code_font_size/code_font_size": true,
     "datestamper/main": true,
     "hide_input_all/main": true,
@@ -25,7 +25,13 @@
     "execute_time/ExecuteTime": true,
     "jupyter-js-widgets/extension": true,
     "nb_conda/main": true,
-    "skill/main": true
+    "skill/main": true,
+    "livemdpreview/livemdpreview": true,
+    "snippets/main": true,
+    "scratchpad/main": false,
+    "code_prettify/code_prettify": true,
+    "code_prettify/isort": true,
+    "hinterland/hinterland": true
   },
   "latex_envs": {
     "autoclose": true

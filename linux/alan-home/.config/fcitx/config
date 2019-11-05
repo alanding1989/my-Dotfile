@@ -145,7 +145,3 @@ NextWord=TAB CTRL_J
 # True False
 #HideInputWindowWhenOnlyOneCandidate=False
 
-e
-
-False
-

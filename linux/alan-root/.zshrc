@@ -146,7 +146,7 @@ DefAlias() {
   alias sphgen='sphinx-autogen'
 
   # translator
-  alias jj='python3 /home/alanding/.SpaceVim.d/extools/tools/translator/translator.py '
+  alias jj='python3 /home/alanding/.SpaceVim.d/extools/translator/translator.py '
   alias jpnb='jupyter-notebook'
   alias ipyto='jupyter nbconvert --to'
   alias cookiedata='cookiecutter https://github.com/drivendata/cookiecutter-data-science'

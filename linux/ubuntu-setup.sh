@@ -89,7 +89,7 @@ install_apps() {
 
 
 #--------------------------------------------------------------------------------
-# Install ZSH, Vim, fonts, 
+# Install ZSH, Tmux, Vim, fonts, 
 #----------------------------------------------------------------------------- # {{{
 install_zsh_fonts() {
   #@ oh-my-zsh
@@ -109,6 +109,8 @@ install_zsh_fonts() {
       rm -r /root/.oh-my-zsh && cp -r /home/alanding/.oh-my-zsh /root/
     fi
   fi
+
+  #@TODO tmux 启动后安装插件
 
   #@ install fonts
   sudo cp -r "$mydotfile/fonts/powerline" /usr/share/fonts
@@ -148,8 +150,8 @@ lang_install() {
   local vimroot=/home/alanding/.SpaceVim.d
   declare -a lang=(cpp rust go lua nodejs python)
 
-  for lang in ${lang[*]}; do
-    [ -e "$vimroot/extools/lang-install/$lang" ] && sh "$vimroot/extools/lang-install/$lang"
+  for lang in "${lang[@]}"; do
+    [ -e "$vimroot/lib/lang-install/$lang" ] && sh "$vimroot/lib/lang-install/$lang"
   done
 
   if [ -x cargo ]; then
@@ -201,13 +203,14 @@ install_wine_code_google() {
   zsh
   cp -r "$mydotfile/linux/alan-root/.*" /root
   #@ icons
-  cp -r "$mydotfile/system-theme/icons/alanding/.local" /home/alanding
+  cp -r "$mydotfile/system-theme/wallpaper" /home/alanding/Pictures \
+    && $HOME/Pictures/wallpaper $HOME/Pictures/壁纸
 }
 
 
 install_databases() {
   cp -r /mnt/fun+downloads/my-Dotfile/linux/alan-root/etc  /etc
-  sudo cd /home/alanding/.SpaceVim.d/extools/tools/database/ || return
+  cd /mnt/fun+downloads/my-Dotfile/linux/work-tools/database || return
   sh ./mysql.sh
   sh ./redis.sh
   sh ./mongodb.sh
@@ -234,10 +237,10 @@ install_nvidia() {
   fi
 }
 
-install_yarnpkg() {
-  ln -sf /opt/lang-tools/nvm/versions/node/v11.9.0/bin/node /usr/bin/nodejs
-  ln -sf /opt/lang-tools/nvm/versions/node/v11.9.0/bin/node /usr/bin/node
-}
+# install_yarnpkg() {
+  # ln -sf /opt/lang-tools/nvm/versions/node/v11.9.0/bin/node /usr/bin/nodejs
+  # ln -sf /opt/lang-tools/nvm/versions/node/v11.9.0/bin/node /usr/bin/node
+# }
 # }}}
 
 
