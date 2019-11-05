@@ -1,8 +1,8 @@
 [repositories]
 local
-aliyun nexus: https://maven.aliyun.com/nexus/content/groups/public
+maven-local: file:///home/alanding/.m2/repository
 
-maven-local: file:///mnt/fun+downloads/linux系统安装/systembackup/repo/m2/repository
+aliyun nexus: https://maven.aliyun.com/nexus/content/groups/public
 
 
 sbt-releases-repo: https://repo.typesafe.com/typesafe/ivy-releases/,[organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]

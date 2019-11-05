@@ -182,14 +182,6 @@ DefAlias() {
   # less tail head 等查看文件内容
   # systemctl status 查看应用状况
 
-  # 后接应用程序名查找对应PID
-  alias psgrep='ps -ef | grep '
-  # 找进程中占用CPU较高的线程
-  # ps -p ..pid.. -L -o pcpu,pid,tid,time,tname,cmd > ~/...
-
-  # estimate file space usage
-  alias du="du -h"
-
   ### 1. 查看性能
   # top 查看系统整体性能查看总览
 
@@ -209,6 +201,9 @@ DefAlias() {
   # 查看文件系统及硬盘空间状况
   # df -h
   #
+  # estimate file space usage
+  alias du="du -h"
+
   # 查看磁盘IO性能
   alias iostat='iostat -xdk 2, 3' 
   # pidstat -p 进程号 -d(指磁盘IO统计) + 采样间隔
@@ -221,6 +216,14 @@ DefAlias() {
   #
   # lsof -i tcp:80 
   alias portcheck="lsof -i"
+
+  # @@ 查找对应PID 后接应用程序名
+  alias psgrep='ps -ef | grep '
+  # 找进程中占用CPU较高的线程
+  # ps -p ..pid.. -L -o pcpu,pid,tid,time,tname,cmd > ~/...
+
+  # 输出某进程<pid>并检查该进程内运行的线程状况
+  # top -H -p <pid>
 
   # Java 诊断工具
   alias arthas='java -jar $HOME/software/lang-tools/Java/Arthas/arthas-boot.jar'
@@ -238,6 +241,8 @@ DefAlias() {
   # 生成JVM当前时刻线程快照，定位线程长时间停顿原因，死锁、死循环、请求外部资源等。
   # -l 输出锁信息，-F 强制输出线程堆栈，-m 如调用本地方法，可显示C/C++堆栈。
   alias jstack='jstack -l'
+
+  alias jps='jps -l'
 
   # docker
   alias drmc-all="docker rm $(docker ps -a -q) -f"
