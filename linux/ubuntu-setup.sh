@@ -68,8 +68,10 @@ install_apps() {
     libperl-dev python3-dev
 
   # cli
-  apt-get install shellcheck cppcheck global valgrind valgrind-dbg valgrind-mpi \
-    net-tools sysstat
+  apt-get install shellcheck cppcheck global net-tools sysstat htop pandoc
+
+   # c++ 内存泄漏排查工具
+   # valgrind valgrind-dbg valgrind-mpi
 
   apt-get install emacs26 guake zsh git-extras tig tmux curl tree silversearcher-ag urlview \
     asciinema openssh-server unrar rar unzip xclip acpi tsocks convmv jq
