@@ -160,6 +160,11 @@
       "after": ["%"]
     },
     {
+      "before": ["<leader>", "l", "p"],
+      "commands": ["markdown-preview-enhanced.openPreviewToTheSide"]
+    },
+
+    {
       "before": ["<leader>", "c", "l"],
       "commands": ["editor.action.commentLine"]
     },
@@ -466,7 +471,7 @@
   "editor.fontFamily": "'SauceCodePro Nerd Font',  'monospace', monospace, \"Ubuntu Regular fallback\"",
   "terminal.integrated.letterSpacing": -0.6,
   "extensions.showRecommendationsOnlyOnDemand": true,
-  "workbench.colorTheme": "Gruvbox Dark (Soft)",
+  "workbench.colorTheme": "Gruvbox Light (Soft)",
   "editor.minimap.renderCharacters": false,
   "vim.surround": true,
   "vim.ignorecase": true,
@@ -702,7 +707,6 @@
   ],
   "fileutils.delete.useTrash": true,
   "jake.autoDetect": "off",
-  "workbench.iconTheme": "material-icon-theme",
   "java.codeGeneration.generateComments": true,
   "java.codeGeneration.hashCodeEquals.useJava7Objects": true,
   "java.codeGeneration.toString.codeStyle": "STRING_BUILDER_CHAINED",
@@ -743,5 +747,17 @@
   "plantuml.exportConcurrency": 5,
   "plantuml.includes": ["/C4-PlantUML"],
   "plantuml.java": "/opt/lang-tools/java/jdk/bin/java",
-  "todo-tree.highlights.enabled": true
+  "todo-tree.highlights.enabled": true,
+  "markdown-preview-enhanced.enableExtendedTableSyntax": true,
+  "markdown-preview-enhanced.enableHTML5Embed": true,
+  "markdown-preview-enhanced.enableTypographer": true,
+  "markdown-preview-enhanced.mathRenderingOption": "MathJax",
+  "markdown-preview-enhanced.pandocPath": "/usr/bin/pandoc",
+  "window.restoreWindows": "none",
+  "explorer.confirmDelete": false,
+  "workbench.iconTheme": "material-icon-theme",
+  "bashIde.explainshellEndpoint": "https://explainshell.com",
+  "bashIde.path": "/opt/lang-tools/nvm/versions/node/v10.16.0/bin/bash-language-server",
+  "bookmarks.saveBookmarksInProject": true,
+  "bookmarks.navigateThroughAllFiles": true
 }

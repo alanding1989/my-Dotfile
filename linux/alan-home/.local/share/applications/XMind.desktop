@@ -1,5 +1,5 @@
 [Desktop Entry]
-Exec="/home/alanding/software/xmind-8/XMind_amd64/xmindinit.sh"
+Exec="/home/alanding/.local/share/applications/xmindinit.sh"
 Name=XMind
 Terminal=false
 Type=Application

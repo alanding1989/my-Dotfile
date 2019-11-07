@@ -1,9 +1,0 @@
-#!/usr/bin/env xdg-open
-[Desktop Entry]
-Type=Application
-Name=JProfiler
-Exec="/home/alanding/software/lang-tools/Java/jprofiler11/bin/jprofiler" %U
-MimeType=application/x-jprofiler-jps;application/x-hprof;application/x-jprofiler-hpz;
-Icon=/home/alanding/software/lang-tools/Java/jprofiler11/.install4j/jprofiler.png
-Categories=Application;Development;Java;
-StartupWMClass=install4j-com-jprofiler-frontend-FrontendApplication

@@ -380,7 +380,7 @@
         "command": "workbench.action.toggleMaximizedPanel"
     },
     {
-        "key": "ctrl+; ;",
+        "key": "ctrl+; ctrl+;",
         "command": "workbench.action.showCommands"
     },
     {
@@ -927,11 +927,6 @@
         "command": "-workbench.action.zoomIn"
     },
     {
-        "key": "ctrl+shift+k",
-        "command": "-editor.action.deleteLines",
-        "when": "textInputFocus && !editorReadonly"
-    },
-    {
         "key": "alt+d e",
         "command": "editor.debug.action.selectionToRepl"
     },
@@ -1083,11 +1078,6 @@
         "key": "ctrl+x",
         "command": "-editor.action.clipboardCutAction",
         "when": "textInputFocus && !editorReadonly"
-    },
-    {
-        "key": "ctrl+backspace",
-        "command": "-workbench.action.terminal.deleteWordLeft",
-        "when": "terminalFocus"
     },
     {
         "key": "ctrl+shift+enter",
@@ -2012,16 +2002,6 @@
         "when": "interactivePlaygroundFocus && !editorTextFocus"
     },
     {
-        "key": "backspace",
-        "command": "extension.vim_backspace",
-        "when": "editorTextFocus && vim.active && !inDebugRepl"
-    },
-    {
-        "key": "backspace",
-        "command": "-extension.vim_backspace",
-        "when": "editorTextFocus && vim.active && !inDebugRepl"
-    },
-    {
         "key": "ctrl+c",
         "command": "-gitlens.views.fileHistory.copy",
         "when": "gitlens:enabled && focusedView =~ /^gitlens\\.views\\.fileHistory/"
@@ -2047,8 +2027,8 @@
         "when": "remoteFileDialogVisible"
     },
     {
-        "key": "backspace",
-        "command": "-deleteLeft",
+        "key": "ctrl+shift+k",
+        "command": "-editor.action.deleteLines",
         "when": "textInputFocus && !editorReadonly"
     }
 ]
