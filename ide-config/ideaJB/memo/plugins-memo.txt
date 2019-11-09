@@ -1,4 +1,5 @@
 # 通用工具
+icons
 IdeaVim
 StringManipulation
 file-path-autocomplete
@@ -39,16 +40,18 @@ tsreact
 
 
 # Java
-findbugs
-Maven Helper
+mybatisCodeHelper
+jpa-support
 lombok
-VisualVM Launcher
-# jprofiler
 GenerateAllSetter
+Maven Helper
 P3c
+findbugs
 google-java-style
+VisualVM Launcher
 Scala
 scalafmt
+# jprofiler
 
 
 " cpp, rust, python

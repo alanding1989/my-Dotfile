@@ -231,7 +231,8 @@ DefAlias() {
   #     -m 传给主类参数
   #     -l 列出主类、Jar包位置
   #
-  # jstat -gcutil `pid`
+  # 监视虚拟机各种运行状态信息
+  # jstat -gcutil `pid` 3s
   alias jstat='jstat -gcutil'
   #
   # jinfo 实时查看和调整虚拟机各项参数
