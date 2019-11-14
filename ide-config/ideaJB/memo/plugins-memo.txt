@@ -1,5 +1,6 @@
 # 通用工具
-icons
+extra-icons
+NyanProgressBar
 IdeaVim
 StringManipulation
 file-path-autocomplete
@@ -10,13 +11,19 @@ Translation
 OnlineSeach2
 CodeGlance
 file-watcher
+GsonFormat
 
+
+" git
 GitToolBox
 gitee
 Find Pull Request
 gitignore
 repo
 
+
+" cloud
+kubernetes
 Docker
 TeamCityIntegration
 TeXiFy IDEA
@@ -31,14 +38,6 @@ rst
 PlantUML integration
 
 
-# frontEnd
-react
-NodeJS
-stylus linter
-styled components
-tsreact
-
-
 # Java
 mybatisCodeHelper
 jpa-support
@@ -47,22 +46,49 @@ GenerateAllSetter
 Maven Helper
 P3c
 findbugs
-google-java-style
+google-java-format
 VisualVM Launcher
 Scala
 scalafmt
-# jprofiler
 
 
-" cpp, rust, python
-rust
-cppcheck
-EmmyLua
+# frontEnd
+react
+ReactSnippets
+NodeJS
+stylus linter
+styled components
+TSReact
+
+Yeoman
+Meteor
+js-karma
+WebComponents
+Jade
+prettierJS
+phoneGap
+node-remote-interpreter
+handlebars
+EJS
+Dart
+cucumberJavaScript
+
+
+intellij-makefile
+RestructuredText Support
+# python
 python-ce
 mypy-plugin
 pylint-plugin
+yapf-pycharm
+python-typing-adder
+livepy
 
-" build-tools
-intellij-makefile
+
+# cpp, rust
+Rust
+cppcheck
+Clion-cpplint
+EmmyLua
 xmake
 

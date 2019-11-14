@@ -65,7 +65,20 @@ ZshSettings() {
   export LESS_TERMCAP_so=$'\e[01;33m'
   export LESS_TERMCAP_ue=$'\e[0m'
   export LESS_TERMCAP_us=$'\e[1;4;31m'
+
+
+  HISTSIZE=10000
+  SAVEHIST=10000
+   
+  # 不保留重复的历史记录项
+  setopt hist_ignore_all_dups
+  # 在命令前添加空格，不将此命令添加到记录文件中
+  setopt hist_ignore_space
+  # zsh 4.3.6 doesn't have this option
+  setopt hist_fcntl_lock 2>/dev/null
+  setopt hist_reduce_blanks
 }
+
 # }}}
 
 
@@ -117,6 +130,11 @@ DefAlias() {
   alias vrc="nv ~/.SpaceVim.d/vimrc"
   alias trc="nv ~/.tmux.conf"
   alias szsh="source ~/.zshrc"
+
+  # windows 编码 解码
+  # alias unzip="-O CP936"
+  # alias zipinfo="-O CP936"
+  # alias convmv="convmv -f GBK -t utf-8 -notest "
 
   # App
   alias yinyue='sudo netease-cloud-music'
@@ -475,10 +493,10 @@ hToD() {
 # Fzf
 FzfConfig() {
   [ -f /opt/vim/fzf/.fzf.zsh ] && source /opt/vim/fzf/.fzf.zsh
-  export FZF_TMUX=1
-  export FZF_COMPLETION_TRIGGER='ff'
-  export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude={.git, .idea, .vacode, .project, .sass-cache, node_modules, build}"
+  export FZF_COMPLETION_TRIGGER='jj'
   export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --preview '(highlight -O ansi {} || bat {}) 2> /dev/null | head -500'"
+  export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude={.git, .idea, .vscode, .project, .sass-cache, .pyc, node_modules, build, target}"
+  export FZF_TMUX=1
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
   export FZF_CTRL_T_OPTS="--select-1 --exit-0"
   export FZF_ALT_C_OPTS="--preview --select-1 --exit-0 'tree -C -p -s {} | head -200'"

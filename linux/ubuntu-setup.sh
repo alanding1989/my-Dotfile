@@ -73,7 +73,7 @@ install_apps() {
    # c++ 内存泄漏排查工具
    # valgrind valgrind-dbg valgrind-mpi
 
-  apt-get install emacs26 guake zsh git-extras tig tmux curl tree silversearcher-ag urlview \
+  apt-get install vim emacs26 guake zsh git-extras tig tmux curl tree silversearcher-ag urlview \
     asciinema openssh-server unrar rar unzip xclip acpi tsocks convmv jq
 
   # gui

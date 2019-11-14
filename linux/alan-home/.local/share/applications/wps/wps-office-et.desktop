@@ -15,6 +15,6 @@ X-DBUS-ServiceName=
 X-DBUS-StartupType=
 X-KDE-SubstituteUID=false
 X-KDE-Username=
-Icon=/usr/share/icons/hicolor/256x256/apps/wps-office-etmain.png
+Icon=/home/alanding/.local/share/applications/wps/wps-office-etmain.png
 InitialPreference=3
 StartupWMClass=et

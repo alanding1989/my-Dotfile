@@ -1,0 +1,31 @@
+[Desktop Entry]
+FullScreen=false
+
+[MainWindow]
+Height 1080=1052
+State=AAAA/wAAAAD9AAAAAAAAB4AAAAPfAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgEAAAAA/////wAAAAAAAAAA
+ToolBarsMovable=Disabled
+Width 1920=1920
+Window-Maximized 1080x1920=true
+
+[Recent Files]
+File1[$e]=/mnt/work+learn/1. IT互联网/4.网络编程/后端语言/Java/框架/互联网轻量级 SSM 框架解密：Spring、Spring MVC、MyBatis源码深度剖析-2019.pdf
+File10[$e]=/mnt/fun+downloads/Java视频/0. Java速查手册/04. Maven项目管理/Maven高级-教案-实战(IDEA).pdf
+File2[$e]=$HOME/0_Dev/Learning-notebook/5.语言学习/Java/Java基础.md
+File3[$e]=$HOME/.SpaceVim.d/cheats/gdb.md
+File4[$e]=$HOME/Desktop/Spring Boot基础-笔记.pdf
+File5[$e]=/mnt/fun+downloads/Java视频/3. Spring全家桶/1. 尚硅谷Spring Boot视频/源码、资料、课件/1.Spring Boot基础.pdf
+File6[$e]=/mnt/fun+downloads/Java视频/3. Spring全家桶/1. 尚硅谷Spring Boot视频/源码、资料、课件/2.SpringBoot课件.pdf
+File7[$e]=/mnt/fun+downloads/Java视频/0. Java速查手册/04. Maven项目管理/尚硅谷Maven.pdf
+File8[$e]=/mnt/fun+downloads/Java视频/0. Java速查手册/05. 数据库/2. Redis/尚硅谷Redis-PPT.pdf
+File9[$e]=/mnt/fun+downloads/Java视频/0. Java速查手册/05. 数据库/2. Redis/redis笔记.md
+Name1[$e]=互联网轻量级 SSM 框架解密：Spring、Spring MVC、MyBatis源码深度剖析-2019.pdf
+Name10[$e]=Maven高级-教案-实战(IDEA).pdf
+Name2[$e]=Java基础.md
+Name3[$e]=gdb.md
+Name4[$e]=Spring Boot基础-笔记.pdf
+Name5[$e]=1.Spring Boot基础.pdf
+Name6[$e]=2.SpringBoot课件.pdf
+Name7[$e]=尚硅谷Maven.pdf
+Name8[$e]=尚硅谷Redis-PPT.pdf
+Name9[$e]=redis笔记.md
