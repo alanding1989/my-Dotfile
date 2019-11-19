@@ -15,4 +15,5 @@ dpkg -i ./*.deb
 cd /mnt/fun+downloads/linux系统安装/code-software/system-util/database/mysql/mysql-server_8.0.16 || return
 dpkg -i ./*.deb
 
+# 配置mysql-workbench中文
 sudo cp -rf "$(dirname $0)/main_menu.xml" "/usr/share/mysql-workbench/data/main_menu.xml"

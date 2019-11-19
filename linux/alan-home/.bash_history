@@ -152,3 +152,7 @@ zsh
 whoami
 exit
 zsh
+alanding
+sudo alanding
+login
+zsh

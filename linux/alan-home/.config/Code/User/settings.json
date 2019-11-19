@@ -759,5 +759,8 @@
   "bashIde.explainshellEndpoint": "https://explainshell.com",
   "bashIde.path": "/opt/lang-tools/nvm/versions/node/v10.16.0/bin/bash-language-server",
   "bookmarks.saveBookmarksInProject": true,
-  "bookmarks.navigateThroughAllFiles": true
+  "bookmarks.navigateThroughAllFiles": true,
+  "scf.python3.path": "",
+  "scf.python2.path": "",
+  "scf.deploy.cos": false
 }

@@ -28,10 +28,10 @@ ZshSettings() {
   # Example format: plugins=(rails git textmate ruby lighthouse)
   plugins=(git wd	z extract history web-search sbt
           git-open zsh-syntax-highlighting zsh-autosuggestions docker docker-compose)
-  fpath+=$HOME/.oh-my-zsh/custom/plugins/rustcompletion
-  fpath+=$HOME/.oh-my-zsh/custom/plugins/ninja-completion
-  fpath+=$HOME/.oh-my-zsh/custom/plugins/gradle-completion
   fpath+=$HOME/.oh-my-zsh/custom/plugins/conda-completion
+  fpath+=$HOME/.oh-my-zsh/custom/plugins/gradle-completion
+  fpath+=$HOME/.oh-my-zsh/custom/plugins/ninja-completion
+  fpath+=$HOME/.oh-my-zsh/custom/plugins/rustcompletion
 
   zstyle ':completion::complete:*' use-cache 1
 
@@ -197,14 +197,12 @@ DefAlias() {
   # -------------------------------------------------------------------------------------------------
   # @运维命令
   # -------------------------------------------------------------------------------------------------
-  # less tail head 等查看文件内容
+  # less tail head 查看文件内容
   # systemctl status 查看应用状况
 
-  ### 1. 查看性能
-  # top 查看系统整体性能查看总览
+  #@## 1. top 查看系统整体性能
 
-  ### 2. CPU性能
-  # mpstat -P ALL 2
+  #@## 2. CPU性能
   # vmstat -n 采样时间间隔 + 采样次数
   #   -procs
   #     r：运行等待CPU时间片的进程数，原则上1核的CPU运行队列不要超过2，整个系统的运行队列不能超过总核数的2倍，否则代表系统压力过大。
@@ -212,56 +210,69 @@ DefAlias() {
   #     us：用户进程消耗CPU时间百分比，us值高，用户进程小号CPU时间多，如果长期大于50%，优化程序；
   #     sy：内核进程消耗的CPU百分比；
 
-  ### 3. 查看系统已使用及可用内存变化
+  #@## 3. 查看系统已使用及可用内存信息
   alias free='free -h -s3'
+  # 查看某个进程的运行信息
   # pidstat -p 进程号 -r(指内存统计) + 采样间隔
-  #
-  # 查看文件系统及硬盘空间状况
-  # df -h
-  #
-  # estimate file space usage
+
+  #@## 4. 查看文件系统及硬盘空间状况
   alias du="du -h"
 
-  # 查看磁盘IO性能
+  #@## 5. 查看磁盘IO性能
   alias iostat='iostat -xdk 2, 3' 
   # pidstat -p 进程号 -d(指磁盘IO统计) + 采样间隔
 
-  ### 4. 网络
-  # ifstat 查看网络IO性能
-  #
-  # 查看Ip，网络连接，端口占用等总览，加上.. | grep PID 查看具体进程占用端口 -tunlp tcp udp numeric listening program
+  #@## 6. ifstat 查看网络IO性能
+
+  #@## 7. 查看Ip，网络连接，端口占用等总览，加上.. | grep PID 查看具体进程占用端口 -tunlp tcp udp numeric listening program
   alias netstat='netstat -tunlp'
   #
   # lsof -i tcp:80 
   alias portcheck="lsof -i"
 
-  # @@ 查找对应PID 后接应用程序名
+  #@## 8. 查找对应PID 后接应用程序名
   alias psgrep='ps -ef | grep '
-  # 找进程中占用CPU较高的线程
-  # ps -p ..pid.. -L -o pcpu,pid,tid,time,tname,cmd > ~/...
 
-  # 输出某进程<pid>并检查该进程内运行的线程状况
+  #@## 9. CPU占用过高原因定位
+  # 先用`top`找到CPU占用最高的进程，然后用`ps -mp pid -o THREAD,tid,time`，得到该**进程**里面占用最高的**线程**。
+  # 这个线程是10进制的，用printf %x <填十进制数字> 将其转成16进制。将十六进制转为十进制要用printf %d 0x<填十六进制数>
+  # 然后用`jstack pid | grep tid`可以定位到具体哪一行导致了占用过高。
+
+  #@## 输出某进程<pid>并检查该进程内运行的线程状况
   # top -H -p <pid>
 
+
+  # -------------------------------------------------------------------------------------------------
   # Java 诊断工具
+  # -------------------------------------------------------------------------------------------------
+  # 阿里Java命令行可视化诊断工具
   alias arthas='java -jar $HOME/software/lang-tools/Java/Arthas/arthas-boot.jar'
+
   # jps -v JVM启动时参数列表
   #     -m 传给主类参数
   #     -l 列出主类、Jar包位置
-  #
-  # 监视虚拟机各种运行状态信息
+  alias jps='jps -l'
+
   # jstat -gcutil `pid` 3s
-  alias jstat='jstat -gcutil'
-  #
+  #       监视虚拟机内存使用情况百分比
+  #       -gc `pid` 3s
+  #       监视虚拟机内存使用情况实际大小
+  # alias jstat='jstat -gcutil'
+
   # jinfo 实时查看和调整虚拟机各项参数
-  #
-  # jmap 生成堆转储快照
-  #
-  # 生成JVM当前时刻线程快照，定位线程长时间停顿原因，死锁、死循环、请求外部资源等。
-  # -l 输出锁信息，-F 强制输出线程堆栈，-m 如调用本地方法，可显示C/C++堆栈。
+  # 查看某个参数
+  # jps -l 配合 jinfo -flag  JVM参数名 pid 
+  # jps -l 配合 jinfo -flags pid 
+
+  # 查看JVM运行线程状态，定位CPU占用过高，线程长时间停顿原因，如死锁、死循环、请求外部资源等。
+  # -l 输出锁信息，
+  # -F 强制输出线程堆栈，
+  # -m 如调用本地方法，可显示C/C++堆栈。
   alias jstack='jstack -l'
 
-  alias jps='jps -l'
+  # jmap 生成堆转储快照
+
+  # -XX:+PrintGCDetails
 
   # docker
   alias drmc-all="docker rm $(docker ps -a -q) -f"
@@ -273,7 +284,6 @@ DefAlias() {
 # Environment Variable Definition
 # =============================================================================== {{{
 DefEnVar() {
-  export PATH=/home/alanding/.local/bin:$PATH
   export TERM=xterm-256color
 
   export ALANDOTFILE=/mnt/fun+downloads/my-Dotfile
@@ -333,9 +343,6 @@ DefEnVar() {
   export PATH=$GOBIN:$PATH
   # export GO111MODULE=on
 
-  # Julia
-  export PATH=/opt/lang-tools/julia/julia/bin:$PATH
-
 
   # Java
   export JAVA_HOME=/opt/lang-tools/java/jdk
@@ -355,7 +362,6 @@ DefEnVar() {
   export SCALA_HOME=/opt/lang-tools/scala/scala
   export PATH=${SCALA_HOME}/bin:$PATH
   export PATH=/opt/lang-tools/scala:$PATH
-  # export PATH=/opt/lang-tools/scala/languageclient:$PATH
   export PATH=/opt/lang-tools/scala/coc:$PATH
   # Sbt
   export PATH=/opt/lang-tools/scala/sbt/bin:$PATH
@@ -375,10 +381,6 @@ DefEnVar() {
   export HDFS_SECONDARYNAMENODE_USER=alanding
   export YARN_NODEMANAGER_USER=alanding
   export YARN_RESOURCEMANAGER_USER=alanding
-
-
-  # .net
-  export PATH=/opt/lang-tools/csharp:$PATH
 
 
   # Node version manager
@@ -432,10 +434,15 @@ DefEnVar() {
   export PATH=/opt/vim/gtags/bin:$PATH
   export GTAGSLABEL=native-pygments
   export GTAGSCONF=$HOME/.globalrc
-  # Gtm
-  export PATH=/opt/vim/gtm.v1.3.5.linux:$PATH
   # LanguageTool
   export LANGUAGE_TOOL_HOME=/opt/vim/LanguageTool
+
+
+  # .net
+  # export PATH=/opt/lang-tools/csharp:$PATH
+
+  # Julia
+  # export PATH=/opt/lang-tools/julia/julia/bin:$PATH
 
   # Emacs
   # export EMACS_HOME=/opt/emacs
@@ -457,15 +464,18 @@ DefEnVar() {
 # =============================================================================== {{{
 pidCheck() {
   # check pid tid, locate thread problem
-  ps p ${1} -L -o pcpu,pmem,pid,tid,time,tname,cmd
+  ps -mp ${1} -L -o pcpu,pmem,pid,THREAD,tid,time,tname,cmd
+  # ps -mp pid -o THREAD,tid,time
 }
 
 
+decimalToHex() {
+  printf "%x\n" $1
+}
 jstackCheck() {
-  local pid=hToD $1
+  local pid=decimalToHex $1
   jstack -l $pid > $HOME/jstack.log
 }
-
 
 codi() {
 # Codi Usage: codi [filetype] [filename]
@@ -479,11 +489,9 @@ codi() {
     Codi $syntax" "$@"
 }
 
-# utils
-hToD() {
-  printf "%x\n" $1
+removewps() {
+    cd /usr/share/applications && sudo rm wps-office-et.desktop wps-office-pdf.desktop wps-office-wpp.desktop wps-office-wps.desktop
 }
-
 # }}}
 
 

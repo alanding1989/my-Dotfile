@@ -61,31 +61,42 @@ install_apps() {
   apt-get install gcc-8 g++-8 build-essential texinfo autoconf automake pkg-config bear 
 
   # deps
-  apt-get install libncurses5-dev libgtk-3-dev libgtk2.0-dev libatlas-base-dev\
+  apt-get install \
+    libncurses5-dev libgtk-3-dev libgtk2.0-dev libatlas-base-dev\
     libjpeg-dev libpng-dev libtiff-dev libavcodec-dev libavformat-dev libswscale-dev libv4l-dev \
     libxvidcore-dev libx264-dev libaudit-dev libslang2-dev libelf-dev systemtap-sdt-dev \
     pcre2-utils libpcre2-dev \
     libperl-dev python3-dev
 
   # cli
-  apt-get install shellcheck cppcheck global net-tools sysstat htop pandoc
-
+  apt-get install shellcheck cppcheck global pandoc \
+    net-tools sysstat htop 
    # c++ 内存泄漏排查工具
    # valgrind valgrind-dbg valgrind-mpi
 
-  apt-get install vim emacs26 guake zsh git-extras tig tmux curl tree silversearcher-ag urlview \
+  apt-get install \
+    vim emacs26 guake zsh git-extras tig tmux curl tree urlview mysql-workbench-community \
     asciinema openssh-server unrar rar unzip xclip acpi tsocks convmv jq
 
+    # silversearcher-ag
+
   # gui
-  aptget install albert qbittorrent goldendict fcitx fcitx-googlepinyin synaptic gdebi \
-    xserver-xorg-input-synaptics
+  apt-get install \
+    okular kchmviewer qbittorrent goldendict gimp vlc fcitx fcitx-googlepinyin \
+    synaptic xserver-xorg-input-synaptics gdebi 
+    # albert
 
   # system theme
-  apt-get install flat-remix-gnome flat-remix gnome-tweaks gnome-shell-extension-top-icons-plus nyancat
+  apt-get install \
+    flat-remix-gnome flat-remix \
+    gnome-tweaks gnome-shell-extension-top-icons-plus nyancat
+  # 打开软件商城，安装附加组件
+  # user themes
+  # dash to dock
+  # Hide Top Bar
+
   apt-get upgrade
 
-  local chromedriver=/mnt/fun+downloads/linux系统安装/code-software/lang/python/chromedriver
-  [ -e $chromedriver ] || echo "Please download chromedriver !" | exit 1
 }
 # }}}
 
@@ -98,11 +109,11 @@ install_zsh_fonts() {
   if [ ! -e "$HOME/.oh-my-zsh" ]; then
     wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
     # zsh plugins
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
-    git clone git://github.com/zsh-users/zsh-autosuggestions           "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
-    git clone https://github.com/paulirish/git-open.git                "$ZSH_CUSTOM/plugins/git-open"
     git clone https://github.com/esc/conda-zsh-completion              "$ZSH_CUSTOM/plugins/conda-completions"
+    git clone https://github.com/paulirish/git-open.git                "$ZSH_CUSTOM/plugins/git-open"
     git clone git@github.com:gradle/gradle-completion.git              "$ZSH_CUSTOM/plugins/gradle-completion"
+    git clone git://github.com/zsh-users/zsh-autosuggestions           "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
 
     if [ -e "$HOME/.zsh.pre-oh-my-zsh" ]; then
       mv "$HOME/.zsh.pre-oh-my-zsh" "$HOME/.zshrc"
@@ -119,7 +130,7 @@ install_zsh_fonts() {
   sudo fc-cache -vf
 
   # ssh
-  # rm $HOME/.ssh && ssh localhost || cd ~/.ssh && ssh-keygen -t rsa && cat ./id_rsa.pub >> ./authorized_keys
+  # rm $HOME/.ssh && ssh localhost && cd ~/.ssh && ssh-keygen -t rsa && cat ./id_rsa.pub >> ./authorized_keys
   ssh-keygen -f "/home/alanding/.ssh/known_hosts" -R "localhost"
   ssh-keygen -f "/home/alanding/.ssh/known_hosts" -R "0.0.0.0"
 
@@ -192,6 +203,9 @@ install_wine_code_google() {
     cd /mnt/fun+downloads/linux系统安装/code-software/devtools || return
     dpkg -i ./*.deb
 
+    local chromedriver=/mnt/fun+downloads/linux系统安装/code-software/devtools/chromedriver
+    [ -e $chromedriver ] || echo "Please download chromedriver !" | exit 1
+
     # tex 换源
     tlmgr option repository http://mirrors.ustc.edu.cn/CTAN/systems/texlive/tlnet
     cd "$cpath" || return
@@ -203,10 +217,11 @@ install_wine_code_google() {
 
   # FIXME:
   zsh
-  cp -r "$mydotfile/linux/alan-root/.*" /root
   #@ icons
   cp -r "$mydotfile/system-theme/wallpaper" /home/alanding/Pictures \
     && $HOME/Pictures/wallpaper $HOME/Pictures/壁纸
+
+  cp -r "$mydotfile/linux/alan-root/.*" /root
 }
 
 
