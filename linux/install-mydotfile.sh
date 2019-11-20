@@ -20,7 +20,11 @@ fi
 bash "$mydotfile/linux/ubuntu-setup.sh" | tee "$mydotfile/log/install-log.txt"
 
 
-printf "\n\n"
-echo "======================== 安装完成！ ==============================="
-printf "\n"
-echo "安装记录保存在$mydotfile/log/install-log.txt文件中。"
+if ! $?; then
+  printf "\n\n"
+  echo "=========================== 安装完成！ ==============================="
+  printf "\n"
+  echo "安装记录保存在$mydotfile/log/install-log.txt文件中。"
+else
+  echo "========================= 安装发生错误！=============================="
+fi
