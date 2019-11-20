@@ -56,6 +56,8 @@ nnoremap <C-j>            :action JumpToLastWindow<CR>
 nnoremap <C-k>            :action JumpToLastWindow<CR>
 
 " insert mode
+inoremap <C-j>            <down>
+inoremap <C-k>            <up>
 inoremap <C-b>            <Left>
 inoremap <C-f>            <Right>
 inoremap <C-l>            <Right>
@@ -217,8 +219,8 @@ vnoremap <leader>ee       :action SearchEverywhere<CR>
 nnoremap gd               :action GotoDeclaration<CR>
 nnoremap gi               :action GotoImplementation<CR>
 nnoremap gu               :action GotoSuperMethod<CR>
-nnoremap gt               :action GotoTypeDeclaration<CR>
-nnoremap gT               :action GotoTest<CR>
+nnoremap gT               :action GotoTypeDeclaration<CR>
+nnoremap gt               :action GotoTest<CR>
 nnoremap gs               :action GotoRelated<CR>
 nnoremap gr               :action FindUsages<CR>
 nnoremap gb               :action ByteCodeViewer<CR>
@@ -277,6 +279,7 @@ nnoremap ge               :action RenameElement<CR>
 " code format
 nnoremap g=               ggVG=``
 nnoremap gf               :action ReformatCode<CR>
+inoremap gf               <ESC>:action ReformatCode<CR>A
 nnoremap go               :action OptimizeImports<CR>
 
 

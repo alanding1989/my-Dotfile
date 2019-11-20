@@ -27,10 +27,13 @@ ZshSettings() {
   # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
   # Example format: plugins=(rails git textmate ruby lighthouse)
   plugins=(git wd	z extract history web-search sbt
-          git-open zsh-syntax-highlighting zsh-autosuggestions)
-  fpath+=$HOME/.oh-my-zsh/custom/plugins/rustcompletion
-  fpath+=$HOME/.oh-my-zsh/custom/plugins/ninja-completion
+          git-open zsh-syntax-highlighting zsh-autosuggestions docker docker-compose)
+  fpath+=$HOME/.oh-my-zsh/custom/plugins/conda-completion
   fpath+=$HOME/.oh-my-zsh/custom/plugins/gradle-completion
+  fpath+=$HOME/.oh-my-zsh/custom/plugins/ninja-completion
+  fpath+=$HOME/.oh-my-zsh/custom/plugins/rustcompletion
+
+  zstyle ':completion::complete:*' use-cache 1
 
   # Enable autosuggestions automatically.
   ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"
@@ -62,7 +65,20 @@ ZshSettings() {
   export LESS_TERMCAP_so=$'\e[01;33m'
   export LESS_TERMCAP_ue=$'\e[0m'
   export LESS_TERMCAP_us=$'\e[1;4;31m'
+
+
+  HISTSIZE=10000
+  SAVEHIST=10000
+   
+  # 不保留重复的历史记录项
+  setopt hist_ignore_all_dups
+  # 在命令前添加空格，不将此命令添加到记录文件中
+  setopt hist_ignore_space
+  # zsh 4.3.6 doesn't have this option
+  setopt hist_fcntl_lock 2>/dev/null
+  setopt hist_reduce_blanks
 }
+
 # }}}
 
 
@@ -71,14 +87,15 @@ ZshSettings() {
 # =============================================================================== {{{
 DefAlias() {
 # For a full list of active aliases, run `alias`.
+  # system operation
   alias pdf='synclient touchpadoff=1'
   alias pdo='synclient touchpadoff=0'
-  alias upalc='update-alternatives --config'
-  alias upali='update-alternatives --install'
+  alias alc='update-alternatives --config'
+  alias ali='update-alternatives --install'
   alias apti="apt-get install"
   alias aptug="apt-get upgrade"
   alias aptud="apt-get update"
-  alias aptfi="apt-get -f install"
+  alias aptf="apt-get -f install"
   alias aptre="apt-get remove"
   alias aptar='apt-get autoremove && apt-get autoclean && apt-get clean'
   alias aptsh='apt show'
@@ -97,23 +114,33 @@ DefAlias() {
   alias cgt="colorls --gs -t"
   alias cgl="colorls --gs -lA --sd"
 
-  # config
+  alias encconvert='convmv'
+  alias sysbackup='sh /mnt/fun+downloads/linux系统安装/systembackup/sysbackup.sh'
+
+
+  # editor
+  alias ge='gedit'
+  alias em='emacs -nw'
+  alias nv='nvim'
+  alias typora='~/software/Typora/Typora'
+  alias tmk="tmux kill-server"
+  # config files
   alias zrc="nv ~/.zshrc"
   alias brc="nv ~/.bashrc"
   alias vrc="nv ~/.SpaceVim.d/vimrc"
   alias trc="nv ~/.tmux.conf"
   alias szsh="source ~/.zshrc"
 
-  # app
+  # windows 编码 解码
+  # alias unzip="-O CP936"
+  # alias zipinfo="-O CP936"
+  # alias convmv="convmv -f GBK -t utf-8 -notest "
+
+  # App
   alias yinyue='sudo netease-cloud-music'
   alias xmind='cp=$pwd; cd /home/alanding/software/xmind-8/XMind_amd64 && ./XMind; cd $cp'
-  alias sysbackup='sh /mnt/fun+downloads/linux系统安装/systembackup/sysbackup.sh'
-  alias ge='gedit'
-  alias em='emacs -nw'
-  alias tmk="tmux kill-server"
-  alias nv='nvim'
-  alias encconvert='convmv'
-
+  alias irc='irssi'
+  # acinema
   alias acinema='asciinema'
   alias arec='asciinema rec'
   alias arect='asciinema rec -t'
@@ -121,8 +148,11 @@ DefAlias() {
   alias aul='asciinema upload'
   alias aauth='asciinema auth'
   alias acat='asciinema cat'
+  # translator
+  alias jj='python3 /home/alanding/.SpaceVim.d/extools/translator/translator.py '
 
-  # spark
+  # Devtools
+  # Spark
   alias starthdfs='start-dfs.sh && start-yarn.sh && start-master.sh && start-slaves.sh'
   alias stophdfs='stop-dfs.sh && stop-yarn.sh && stop-master.sh && stop-slaves.sh'
   alias hf='hadoop fs'
@@ -131,35 +161,121 @@ DefAlias() {
   alias rr='cargo run'
   alias rb='cargo build'
 
-  # git
+  # Git
   alias gch='git checkout'
   alias grh='git reset --hard'
   alias gpod='git push origin --delete'
   alias gdrb='git push origin '
   alias grro='git remote remove origin'
   alias grru='git remote remove upstream'
+  alias gclr='git clone'
 
-  # sphinx
+  # Sphinx
   alias sphstart='sphinx-quickstart'
   alias sphbuild='sphinx-build'
   alias sphapidoc='sphinx-apidoc'
   alias sphgen='sphinx-autogen'
-
-  # translator
-  alias jj='python3 /home/alanding/.SpaceVim.d/extools/translator/translator.py '
+  # Jupyter
   alias jpnb='jupyter-notebook'
-  alias ipyto='jupyter nbconvert --to'
-  alias cookiedata='cookiecutter https://github.com/drivendata/cookiecutter-data-science'
-  alias cookiepy='cookiecutter git@github.com:audreyr/cookiecutter-pypackage.git'
+  alias jpto='jupyter nbconvert --to'
 
-  alias du="du -h"
+  # Python pkg
+  alias cookieml='cookiecutter https://github.com/drivendata/cookiecutter-data-science'
+  alias cookiegeneral='cookiecutter git@github.com:audreyr/cookiecutter-pypackage.git'
+
+  # ---------------------------------------------------------------------------------------
   alias mysql='mysql -u root -p'
+  alias mongod='mongod --dbpath /home/alanding/software/database/mongodb'
 
-  # system check
+  # fun
+  alias ncat="nyancat"
+  alias clock="while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput rc;done&"
+
+  # grep keyword file | keyword 
   alias grep="grep --color=auto"
-  alias free='free -h -s4'
+
+  # -------------------------------------------------------------------------------------------------
+  # @运维命令
+  # -------------------------------------------------------------------------------------------------
+  # less tail head 查看文件内容
+  # systemctl status 查看应用状况
+
+  #@## 1. top 查看系统整体性能
+
+  #@## 2. CPU性能
+  # vmstat -n 采样时间间隔 + 采样次数
+  #   -procs
+  #     r：运行等待CPU时间片的进程数，原则上1核的CPU运行队列不要超过2，整个系统的运行队列不能超过总核数的2倍，否则代表系统压力过大。
+  #   -cpu
+  #     us：用户进程消耗CPU时间百分比，us值高，用户进程小号CPU时间多，如果长期大于50%，优化程序；
+  #     sy：内核进程消耗的CPU百分比；
+
+  #@## 3. 查看系统已使用及可用内存信息
+  alias free='free -h -s3'
+  # 查看某个进程的运行信息
+  # pidstat -p 进程号 -r(指内存统计) + 采样间隔
+
+  #@## 4. 查看文件系统及硬盘空间状况
+  alias du="du -h"
+
+  #@## 5. 查看磁盘IO性能
+  alias iostat='iostat -xdk 2, 3' 
+  # pidstat -p 进程号 -d(指磁盘IO统计) + 采样间隔
+
+  #@## 6. ifstat 查看网络IO性能
+
+  #@## 7. 查看Ip，网络连接，端口占用等总览，加上.. | grep PID 查看具体进程占用端口 -tunlp tcp udp numeric listening program
   alias netstat='netstat -tunlp'
+  #
+  # lsof -i tcp:80 
   alias portcheck="lsof -i"
+
+  #@## 8. 查找对应PID 后接应用程序名
+  alias psgrep='ps -ef | grep '
+
+  #@## 9. CPU占用过高原因定位
+  # 先用`top`找到CPU占用最高的进程，然后用`ps -mp pid -o THREAD,tid,time`，得到该**进程**里面占用最高的**线程**。
+  # 这个线程是10进制的，用printf %x <填十进制数字> 将其转成16进制。将十六进制转为十进制要用printf %d 0x<填十六进制数>
+  # 然后用`jstack pid | grep tid`可以定位到具体哪一行导致了占用过高。
+
+  #@## 输出某进程<pid>并检查该进程内运行的线程状况
+  # top -H -p <pid>
+
+
+  # -------------------------------------------------------------------------------------------------
+  # Java 诊断工具
+  # -------------------------------------------------------------------------------------------------
+  # 阿里Java命令行可视化诊断工具
+  alias arthas='java -jar $HOME/software/lang-tools/Java/Arthas/arthas-boot.jar'
+
+  # jps -v JVM启动时参数列表
+  #     -m 传给主类参数
+  #     -l 列出主类、Jar包位置
+  alias jps='jps -l'
+
+  # jstat -gcutil `pid` 3s
+  #       监视虚拟机内存使用情况百分比
+  #       -gc `pid` 3s
+  #       监视虚拟机内存使用情况实际大小
+  # alias jstat='jstat -gcutil'
+
+  # jinfo 实时查看和调整虚拟机各项参数
+  # 查看某个参数
+  # jps -l 配合 jinfo -flag  JVM参数名 pid 
+  # jps -l 配合 jinfo -flags pid 
+
+  # 查看JVM运行线程状态，定位CPU占用过高，线程长时间停顿原因，如死锁、死循环、请求外部资源等。
+  # -l 输出锁信息，
+  # -F 强制输出线程堆栈，
+  # -m 如调用本地方法，可显示C/C++堆栈。
+  alias jstack='jstack -l'
+
+  # jmap 生成堆转储快照
+
+  # -XX:+PrintGCDetails
+
+  # docker
+  alias drmc-all="docker rm $(docker ps -a -q) -f"
 }
 # }}}
 
@@ -168,7 +284,6 @@ DefAlias() {
 # Environment Variable Definition
 # =============================================================================== {{{
 DefEnVar() {
-  export PATH=/home/alanding/.local/bin:$PATH
   export TERM=xterm-256color
 
   export ALANDOTFILE=/mnt/fun+downloads/my-Dotfile
@@ -176,7 +291,7 @@ DefEnVar() {
   # Preferred editor for local and remote sessions
   export EDITOR=/opt/vim/nvim-linux64/bin/nvim
 
-# Browser for ensime
+  # Browser for ensime
   export BROWSER="google-chrome %s"
 
   # Git
@@ -186,10 +301,13 @@ DefEnVar() {
   # Conda
   export PATH=/home/alanding/software/anaconda3/envs/py37/bin:$PATH
   \. /home/alanding/software/anaconda3/etc/profile.d/conda.sh
+  # MiniConda
+  # export PATH=//home/alanding/software/lang-tools/miniconda/bin:$PATH
+  # \. /home/alanding/software/lang-tools/miniconda/etc/profile.d/conda.sh
+  alias condacheat='okular $HOME/.SpaceVim.d/cheats/conda-cheatsheet.pdf'
 
-  # Julia
-  export PATH=/opt/lang-tools/julia/julia/bin:$PATH
-
+  # Pip cli completion
+  eval "`pip completion --zsh`"
 
   # CUDA
   export CUDA_HOME=/home/alanding/software/cuda/cuda-10.0
@@ -216,6 +334,15 @@ DefEnVar() {
   export RUSTUP_DIST_SERVER=http://mirrors.ustc.edu.cn/rust-static
   export RUSTUP_UPDATE_ROOT=http://mirrors.ustc.edu.cn/rust-static/rustup
 
+  # Go
+  export GOROOT=/opt/lang-tools/go/go
+  export PATH=$GOROOT/bin:$PATH
+  export GOPATH=/home/alanding/software/lang-tools/go
+  export PATH=$GOPATH/src:$PATH
+  export GOBIN=/home/alanding/software/lang-tools/go/bin
+  export PATH=$GOBIN:$PATH
+  # export GO111MODULE=on
+
 
   # Java
   export JAVA_HOME=/opt/lang-tools/java/jdk
@@ -228,11 +355,13 @@ DefEnVar() {
   export GRADL_HOME=/opt/lang-tools/java/gradle
   export PATH=${GRADL_HOME}/bin:$PATH
 
+  # Tomcat
+  # export PATH=/home/alanding/software/web-server/tomcat/bin:$PATH
+
   # Scala
   export SCALA_HOME=/opt/lang-tools/scala/scala
   export PATH=${SCALA_HOME}/bin:$PATH
   export PATH=/opt/lang-tools/scala:$PATH
-  # export PATH=/opt/lang-tools/scala/languageclient:$PATH
   export PATH=/opt/lang-tools/scala/coc:$PATH
   # Sbt
   export PATH=/opt/lang-tools/scala/sbt/bin:$PATH
@@ -252,18 +381,6 @@ DefEnVar() {
   export HDFS_SECONDARYNAMENODE_USER=alanding
   export YARN_NODEMANAGER_USER=alanding
   export YARN_RESOURCEMANAGER_USER=alanding
-
-  # .net
-  export PATH=/opt/lang-tools/csharp:$PATH
-
-  # Go
-  export GOROOT=/opt/lang-tools/go/go
-  export GOPATH=/home/alanding/software/lang-tools/go
-  export GOBIN=/home/alanding/software/lang-tools/go/bin
-  export PATH=$GOPATH/src:$PATH
-  export PATH=$GOROOT/bin:$PATH
-  export PATH=$GOBIN:$PATH
-  # export GO111MODULE=on
 
 
   # Node version manager
@@ -289,7 +406,8 @@ DefEnVar() {
     fi
   }
   add-zsh-hook chpwd load-nvmrc
-  # yarn
+
+  # Node yarn not hadoop`s
   export PATH=`dirname $(which node)`:$PATH
 
   #lua
@@ -317,10 +435,15 @@ DefEnVar() {
   export PATH=/opt/vim/gtags/bin:$PATH
   export GTAGSLABEL=native-pygments
   export GTAGSCONF=$HOME/.globalrc
-  # Gtm
-  export PATH=/opt/vim/gtm.v1.3.5.linux:$PATH
   # LanguageTool
   export LANGUAGE_TOOL_HOME=/opt/vim/LanguageTool
+
+
+  # .net
+  # export PATH=/opt/lang-tools/csharp:$PATH
+
+  # Julia
+  # export PATH=/opt/lang-tools/julia/julia/bin:$PATH
 
   # Emacs
   # export EMACS_HOME=/opt/emacs
@@ -331,7 +454,7 @@ DefEnVar() {
   export MANPATH=/home/alanding/software/texlive/2018/texmf-dist/doc/man:$MANPATH
   export INFOPATH=/home/alanding/software/texlive/2018/texmf-dist/doc/info:$INFOPATH
 
-  # vagrant, chromedriver
+  # postman, vagrant, chromedriver ...
   export PATH=/home/alanding/software/command-line-tools:$PATH
 }
 # }}}
@@ -342,15 +465,18 @@ DefEnVar() {
 # =============================================================================== {{{
 pidCheck() {
   # check pid tid, locate thread problem
-  ps p ${1} -L -o pcpu,pmem,pid,tid,time,tname,cmd
+  ps -mp ${1} -L -o pcpu,pmem,pid,THREAD,tid,time,tname,cmd
+  # ps -mp pid -o THREAD,tid,time
 }
 
 
+decimalToHex() {
+  printf "%x\n" $1
+}
 jstackCheck() {
-  local pid=hToD $1
+  local pid=decimalToHex $1
   jstack -l $pid > $HOME/jstack.log
 }
-
 
 codi() {
 # Codi Usage: codi [filetype] [filename]
@@ -364,24 +490,22 @@ codi() {
     Codi $syntax" "$@"
 }
 
-# utils
-hToD() {
-  printf "%x\n" $1
+removewps() {
+  cd /usr/share/applications && sudo rm wps-office-et.desktop wps-office-pdf.desktop wps-office-wpp.desktop wps-office-wps.desktop
 }
-
 # }}}
 
 
 # ==================================================================================
-# Others
+# Configuration
 # ==============================================================================# {{{
 # Fzf
 FzfConfig() {
   [ -f /opt/vim/fzf/.fzf.zsh ] && source /opt/vim/fzf/.fzf.zsh
-  export FZF_TMUX=1
-  export FZF_COMPLETION_TRIGGER='ff'
-  export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude={.git, .idea, .vacode, .project, .sass-cache, node_modules, build}"
+  export FZF_COMPLETION_TRIGGER='jj'
   export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --preview '(highlight -O ansi {} || bat {}) 2> /dev/null | head -500'"
+  export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude={.git, .idea, .vscode, .project, .sass-cache, .pyc, node_modules, build, target}"
+  export FZF_TMUX=1
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
   export FZF_CTRL_T_OPTS="--select-1 --exit-0"
   export FZF_ALT_C_OPTS="--preview --select-1 --exit-0 'tree -C -p -s {} | head -200'"
@@ -403,6 +527,7 @@ FzfConfig() {
 
 # disable Vim freeze after pressing <C-s>
 stty -ixon
+
 # }}}
 
 
@@ -414,5 +539,6 @@ DefAlias
 DefEnVar
 
 FzfConfig
+# nv jj 触发fzf搜索当前目录文件
 # }}}
 

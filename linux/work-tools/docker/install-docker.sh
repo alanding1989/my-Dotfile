@@ -4,7 +4,7 @@
 # File Name    : extools/tools/install-docker.sh
 # Author       : AlanDing
 # Created Time : Thu 26 Sep 2019 10:13:58 PM CST
-# Description  : 
+# Description  :
 
 
 # path=/mnt/fun+downloads/linux系统安装/code-software/system-util/

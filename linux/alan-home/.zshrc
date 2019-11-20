@@ -188,7 +188,7 @@ DefAlias() {
   alias mongod='mongod --dbpath /home/alanding/software/database/mongodb'
 
   # fun
-  alias rcat="nyancat"
+  alias ncat="nyancat"
   alias clock="while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput rc;done&"
 
   # grep keyword file | keyword 
@@ -406,7 +406,8 @@ DefEnVar() {
     fi
   }
   add-zsh-hook chpwd load-nvmrc
-  # yarn
+
+  # Node yarn not hadoop`s
   export PATH=`dirname $(which node)`:$PATH
 
   #lua
@@ -490,13 +491,13 @@ codi() {
 }
 
 removewps() {
-    cd /usr/share/applications && sudo rm wps-office-et.desktop wps-office-pdf.desktop wps-office-wpp.desktop wps-office-wps.desktop
+  cd /usr/share/applications && sudo rm wps-office-et.desktop wps-office-pdf.desktop wps-office-wpp.desktop wps-office-wps.desktop
 }
 # }}}
 
 
 # ==================================================================================
-# Others
+# Configuration
 # ==============================================================================# {{{
 # Fzf
 FzfConfig() {
@@ -526,6 +527,7 @@ FzfConfig() {
 
 # disable Vim freeze after pressing <C-s>
 stty -ixon
+
 # }}}
 
 
@@ -537,5 +539,6 @@ DefAlias
 DefEnVar
 
 FzfConfig
+# nv jj 触发fzf搜索当前目录文件
 # }}}
 

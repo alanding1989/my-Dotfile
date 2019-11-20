@@ -7,5 +7,6 @@
 # Description  :
 
 
-docker run -dit --name rabbitmq-01 -p 5672:5672 -p 15672:15672 --restart=always rabbitmq:3-management
+# 本机已装
+docker run -dit --name redis-01 -p --restart=always redis
 

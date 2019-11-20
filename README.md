@@ -2,6 +2,10 @@
 
 -- personal dotfile for backup
 
+```bash
+curl -sLf https://github.com/alanding1989/my-Dotfile/blob/master/linux/install-mydotfile.sh | bash
+```
+
 ### 1.Env :       
 
     linux   (neovim/vim)
