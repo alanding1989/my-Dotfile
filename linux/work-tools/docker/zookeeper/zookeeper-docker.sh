@@ -1,12 +1,11 @@
 #! /usr/bin/env bash
 
-
-# File Name    : linux/work-tools/docker/rabbitmq/rabbitmq-docker.sh
+# File Name    : linux/work-tools/docker/zookeeper/zookeeper-docker.sh
 # Author       : AlanDing
-# Created Time : Mon 18 Nov 2019 03:55:40 PM CST
-# Description  :
+# Created Time : Wed 20 Nov 2019 09:20:49 PM CST
+# Description  : 
 
 
-# 本机已装
-docker run -dit --name redis-01 -p --restart=always redis
+# -it
+docker run -dit --name zookee-01 -p 2181:2181 --restart=always zookeeper
 

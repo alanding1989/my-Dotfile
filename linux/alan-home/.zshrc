@@ -30,7 +30,7 @@ ZshSettings() {
           git-open zsh-syntax-highlighting zsh-autosuggestions docker docker-compose)
   fpath+=$HOME/.oh-my-zsh/custom/plugins/conda-completion
   fpath+=$HOME/.oh-my-zsh/custom/plugins/gradle-completion
-  fpath+=$HOME/.oh-my-zsh/custom/plugins/ninja-completion
+  # fpath+=$HOME/.oh-my-zsh/custom/plugins/ninja-completion
   fpath+=$HOME/.oh-my-zsh/custom/plugins/rustcompletion
 
   zstyle ':completion::complete:*' use-cache 1
@@ -77,6 +77,8 @@ ZshSettings() {
   # zsh 4.3.6 doesn't have this option
   setopt hist_fcntl_lock 2>/dev/null
   setopt hist_reduce_blanks
+
+  setopt no_nomatch
 }
 
 # }}}
@@ -413,15 +415,15 @@ DefEnVar() {
   #lua
   export PATH=/opt/lang-tools/lua/luarocks/bin:$PATH
 
-  # Ruby
-  if [ `whoami` != "root" ]; then
-  # if [ $UID -ne 0 ]; then
-    export PATH=$HOME/.rbenv/bin:$PATH
-    eval "$(rbenv init -)"
-    if [ -x gem ]; then
-      \. $(dirname $(gem which colorls))/tab_complete.sh
-    fi
-  fi
+  # # Ruby
+  # if [ `whoami` != "root" ]; then
+  # # if [ $UID -ne 0 ]; then
+  #   export PATH=$HOME/.rbenv/bin:$PATH
+  #   eval "$(rbenv init -)"
+  #   if [ -x gem ]; then
+  #     \. $(dirname $(gem which colorls))/tab_complete.sh
+  #   fi
+  # fi
 
 
   # Vim

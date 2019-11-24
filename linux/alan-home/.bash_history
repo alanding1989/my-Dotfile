@@ -156,3 +156,4 @@ alanding
 sudo alanding
 login
 zsh
+nv .bashrc 

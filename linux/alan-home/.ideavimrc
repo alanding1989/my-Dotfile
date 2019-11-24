@@ -285,11 +285,12 @@ nnoremap go               :action OptimizeImports<CR>
 
 " run
 nnoremap <tab><tab>       :action RunAnything<CR>
+
 nnoremap <Space>re        :action ChooseRunConfiguration<CR>
 nnoremap <Space>rr        :action Rerun<CR>
 nnoremap <Space>rt        :action RerunTests<CR>
-nnoremap <Space>dk        :action Resume<CR>
 nnoremap <Space>rq        :action Stop<CR>
+nnoremap <Space>dk        :action Resume<CR>
 
 " maven
 nnoremap <Space>rm        :action MavenHelper.QuickRunMavenGoal<CR>
@@ -303,16 +304,17 @@ nnoremap <Space>xc        :action XMake.Clean<CR>
 
 
 " debug
-nnoremap <Space>dd        :action Debug<CR>
+nnoremap <Space>dd        :action ChooseDebugConfiguration<CR>
 nnoremap <Space>dl        :action Debug<CR>
 nnoremap <Space>dc        :action DebugClass<CR>
-nnoremap <Space>dk        :action ChooseDebugConfiguration<CR>
 nnoremap <Space>di        :action StepInto<CR>
 nnoremap <Space>do        :action StepOver<CR>
+
 nnoremap <Space>de        :action EvaluateExpression<CR>
 nnoremap <Space>dv        :action ViewBreakpoints<CR>
 nnoremap <Space>db        :action ToggleLineBreakpoint<CR>
 nnoremap <Space>dm        :action XDebugger.MuteBreakpoints<CR>
+
 nnoremap <Space>df        :action FindBugs.CurrentFileAction<CR>
 
 
