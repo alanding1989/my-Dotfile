@@ -6,6 +6,7 @@ Height 1080=1052
 State=AAAA/wAAAAD9AAAAAAAAB4AAAAPfAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgEAAAAA/////wAAAAAAAAAA
 ToolBarsMovable=Disabled
 Width 1920=1920
+Window-Maximized 1080x1920=true
 
 [Recent Files]
 File1[$e]=/mnt/fun+downloads/Java视频/0. Java速查手册/07. Spring全家桶/03、springBoot/SpringBoot高级.pdf
@@ -14,9 +15,13 @@ File3[$e]=$HOME/Desktop/spring-boot-reference.pdf
 File4[$e]=$HOME/Desktop/Spring Boot基础-笔记.pdf
 File5[$e]=/mnt/fun+downloads/Java视频/3. Spring全家桶/3.SpringBoot高级-PPT.pdf
 File6[$e]=/mnt/work+learn/1. IT互联网/4.网络编程/后端语言/Java/框架/互联网轻量级 SSM 框架解密：Spring、Spring MVC、MyBatis源码深度剖析-2019.pdf
+File7[$e]=/mnt/work+learn/1. IT互联网/5.数据库/非关系型/MongoDB权威指南第2版.pdf
+File8[$e]=/mnt/fun+downloads/Java视频/0. Java速查手册/01. Java基础/23.【函数式接口】/day12【函数式接口】-笔记.pdf
 Name1[$e]=SpringBoot高级.pdf
 Name2[$e]=SpringBoot课件.pdf
 Name3[$e]=spring-boot-reference.pdf
 Name4[$e]=Spring Boot基础-笔记.pdf
 Name5[$e]=3.SpringBoot高级-PPT.pdf
 Name6[$e]=互联网轻量级 SSM 框架解密：Spring、Spring MVC、MyBatis源码深度剖析-2019.pdf
+Name7[$e]=MongoDB权威指南第2版.pdf
+Name8[$e]=day12【函数式接口】-笔记.pdf

@@ -213,9 +213,11 @@ DefAlias() {
   #     sy：内核进程消耗的CPU百分比；
 
   #@## 3. 查看系统已使用及可用内存信息
-  alias free='free -h -s3'
-  # 查看某个进程的运行信息
+  #
+  # !!! 查看某个进程的内存占用信息
   # pidstat -p 进程号 -r(指内存统计) + 采样间隔
+  #
+  alias free='free -h -s3'
 
   #@## 4. 查看文件系统及硬盘空间状况
   alias du="du -h"
