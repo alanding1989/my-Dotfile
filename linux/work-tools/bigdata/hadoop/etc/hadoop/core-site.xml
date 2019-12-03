@@ -26,6 +26,6 @@
     <!-- 指定Hadoop运行时产生文件的存储目录 -->
     <property>
         <name>hadoop.tmp.dir</name>
-        <value>/home/alanding/software/spark/hadoop/tmp</value>
+        <value>/home/alanding/software/bigdata/hadoop/tmp</value>
     </property>
 </configuration>

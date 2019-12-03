@@ -20,7 +20,7 @@ echo pdir=$pdir
 user=`whoami`
 
 #5 循环
-for((host=103; host<105; host++)); do
+for((host=101; host<103; host++)); do
     echo ------------------- hadoop$host --------------
     rsync -av $pdir/$fname $user@hadoop$host:$pdir
 done

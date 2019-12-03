@@ -140,7 +140,7 @@ DefAlias() {
 
   # App
   alias yinyue='sudo netease-cloud-music'
-  alias xmind='cp=$pwd; cd /home/alanding/software/xmind-8/XMind_amd64 && ./XMind; cd $cp'
+  alias xmind='cp=$pwd; cd /home/alanding/software/command-line-tools/xmind-8/XMind_amd64 && ./XMind; cd $cp'
   alias irc='irssi'
   # acinema
   alias acinema='asciinema'
@@ -356,7 +356,7 @@ DefEnVar() {
   export MAVEN_HOME=/opt/lang-tools/java/maven
   export PATH=${MAVEN_HOME}/bin:$PATH
   # Gradle
-  export GRADL_HOME=/opt/lang-tools/java/gradle
+  export GRADLE_User_HOME=/opt/lang-tools/java/gradle
   export PATH=${GRADL_HOME}/bin:$PATH
 
   # Tomcat

@@ -33,11 +33,11 @@
     <!-- 伪分布式配置 -->
     <property>
         <name>dfs.namenode.name.dir</name>
-        <value>/home/alanding/software/spark/hadoop/tmp/dfs/name</value>
+        <value>/home/alanding/software/bigdata/hadoop/tmp/dfs/name</value>
     </property>
     <property>
         <name>dfs.datanode.data.dir</name>
-        <value>/home/alanding/software/spark/hadoop/tmp/dfs/data</value>
+        <value>/home/alanding/software/bigdata/hadoop/tmp/dfs/data</value>
     </property>
 
     <property>

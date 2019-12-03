@@ -22,6 +22,8 @@ export YARN_CONF_DIR="${YARN_CONF_DIR:-$HADOOP_YARN_HOME/conf}"
 # some Java parameters
 export JAVA_HOME=/opt/lang-tools/java/jdk
 
+
+
 if [ "$JAVA_HOME" != "" ]; then
   #echo "run java in $JAVA_HOME"
   JAVA_HOME=$JAVA_HOME

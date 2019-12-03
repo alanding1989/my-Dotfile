@@ -140,7 +140,7 @@ DefAlias() {
 
   # App
   alias yinyue='sudo netease-cloud-music'
-  alias xmind='cp=$pwd; cd /home/alanding/software/xmind-8/XMind_amd64 && ./XMind; cd $cp'
+  alias xmind='cp=$pwd; cd /home/alanding/software/command-line-tools/xmind-8/XMind_amd64 && ./XMind; cd $cp'
   alias irc='irssi'
   # acinema
   alias acinema='asciinema'
@@ -303,8 +303,9 @@ DefEnVar() {
   export LESSCHARSET=utf-8
 
   # Conda
-  export PATH=/home/alanding/software/anaconda3/envs/py37/bin:$PATH
-  \. /home/alanding/software/anaconda3/etc/profile.d/conda.sh
+  export CONDA=/home/alanding/software/anaconda3
+  export PATH=$CONDA/envs/py37/bin:$PATH
+  \. $CONDA/etc/profile.d/conda.sh
   # MiniConda
   # export PATH=//home/alanding/software/lang-tools/miniconda/bin:$PATH
   # \. /home/alanding/software/lang-tools/miniconda/etc/profile.d/conda.sh
@@ -314,7 +315,7 @@ DefEnVar() {
   eval "`pip completion --zsh`"
 
   # CUDA
-  export CUDA_HOME=/home/alanding/software/cuda/cuda-10.0
+  export CUDA_HOME=/home/alanding/software/lang-tools/cuda/cuda-10.0
   export PATH=$CUDA_HOME/bin:$PATH
   export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
   export CUDA_DEVICE_ORDER="PCI_BUS_ID"
@@ -356,7 +357,7 @@ DefEnVar() {
   export MAVEN_HOME=/opt/lang-tools/java/maven
   export PATH=${MAVEN_HOME}/bin:$PATH
   # Gradle
-  export GRADL_HOME=/opt/lang-tools/java/gradle
+  export GRADLE_User_HOME=/opt/lang-tools/java/gradle
   export PATH=${GRADL_HOME}/bin:$PATH
 
   # Tomcat
@@ -376,7 +377,7 @@ DefEnVar() {
   # Pyspark
   export PYSPARK_DRIVER_PYTHON=jupyter
   export PYSPARK_DRIVER_PYTHON_OPTS='notebook'
-  export PYSPARK_PYTHON=/home/alanding/software/anaconda3/envs/py37/bin/python3.7
+  export PYSPARK_PYTHON=$CONDA/envs/py37/bin/python3.7
   # Hadoop
   export HADOOP_HOME=/home/alanding/software/spark/hadoop
   export PATH=${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:$PATH
