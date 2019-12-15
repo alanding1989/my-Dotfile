@@ -294,6 +294,7 @@ DefAlias() {
   alias startvm='vboxmanage startvm "hadoop101" -type headless && vboxmanage startvm "hadoop102" -type headless'
   alias stopvm='vboxmanage controlvm "hadoop101" acpipowerbutton && vboxmanage controlvm "hadoop102" acpipowerbutton'
   alias listvm='vboxmanage list runningvms'
+
   # 单机伪分布式
   # alias starthdfs='start-dfs.sh && start-yarn.sh && start-master.sh && start-slaves.sh'
   # alias stophdfs='stop-dfs.sh && stop-yarn.sh && stop-master.sh && stop-slaves.sh'
@@ -308,6 +309,8 @@ DefAlias() {
   alias ssh103='ssh hadoop103'
   alias hjps='slave_do "jps -l"'
   alias hf='hadoop fs'
+  # hdfs haadmin -getServiceState nn2
+  # hdfs haadmin -transitionToActive nn1
 
   # 高可用集群模式
   # 要先起 Zookeeper
@@ -315,8 +318,8 @@ DefAlias() {
   alias zkstatus='slave_do "zkServer.sh status"'
   alias zkstop='slave_do "zkServer.sh stop"'
 
-  alias hdfs-startall='start-dfs.sh && start-yarn.sh && ssh hadoop101 "yarn-daemon.sh start resourcemanager"'
-  alias hdfs-stopall='stop-dfs.sh && stop-yarn.sh && ssh hadoop101 "yarn-daemon.sh stop resourcemanager"'
+  alias hdfs-startall='start-dfs.sh && start-yarn.sh && ssh hadoop101 "yarn-daemon.sh start resourcemanager" && httpfs.sh start && ssh hadoop102 "mr-jobhistory-daemon.sh start historyserver"'
+  alias hdfs-stopall='stop-dfs.sh && stop-yarn.sh && httpfs.sh stop && ssh hadoop101 "yarn-daemon.sh stop resourcemanager" && ssh hadoop102 "mr-jobhistory-daemon.sh stop historyserver"'
 
   # ha 集群 hdfs 初始化时步骤
   alias startjn='slave_do "hadoop-daemon.sh start journalnode"'
@@ -339,8 +342,11 @@ DefAlias() {
   # alias kfkmanager='${BIGDATA_HOME}/kafka-manager/bin/kafka-manager'
   # alias kfkmonitor='${BIGDATA_HOME}/kafka-offset-console/start.sh'
   
-  alias hbasestart='${BIGDATA_HOME}/hbase/bin/start-hbase.sh'
-  alias hbasestop='${BIGDATA_HOME}/hbase/bin/stop-hbase.sh'
+  alias hbasestart='${BIGDATA_HOME}/hbase/bin/start-hbase.sh && hbase-daemon.sh start thrift'
+  alias hbasestop='${BIGDATA_HOME}/hbase/bin/stop-hbase.sh && hbase-daemon.sh stop thrift'
+
+  alias hivestart='${BIGDATA_HOME}/hive/bin/hive --service metastore &'
+  alias hivestop='${BIGDATA_HOME}/hive/bin/hive --service hiveserver2 &'
 
   # }}}
 
@@ -516,6 +522,9 @@ DefEnVar() {
   # Gradle
   export GRADLE_User_HOME=/opt/lang-tools/java/gradle
   export PATH=${GRADL_HOME}/bin:$PATH
+  # Ant
+  export ANT_HOME=/opt/lang-tools/java/ant
+  export PATH=${ANT_HOME}/bin:$PATH
 
 
   # Scala
@@ -528,6 +537,9 @@ DefEnVar() {
 
 
   export BIGDATA_HOME=/home/alanding/software/bigdata
+  # Hadoop
+  export HADOOP_HOME=$BIGDATA_HOME/hadoop
+  export PATH=${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:$PATH
   # Spark
   export SPARK_HOME=$BIGDATA_HOME/spark
   export PATH=${SPARK_HOME}/bin:${SPARK_HOME}/sbin:$PATH
@@ -535,9 +547,6 @@ DefEnVar() {
   export PYSPARK_DRIVER_PYTHON=jupyter
   export PYSPARK_DRIVER_PYTHON_OPTS='notebook'
   export PYSPARK_PYTHON=$CONDA/envs/py37/bin/python3.7
-  # Hadoop
-  export HADOOP_HOME=$BIGDATA_HOME/hadoop
-  export PATH=${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:$PATH
   # Hive
   export HIVE_HOME=$BIGDATA_HOME/hive
   export PATH=${HIVE_HOME}/bin:$PATH
@@ -550,6 +559,10 @@ DefEnVar() {
   # Kafka
   export KAFKA_HOME=$BIGDATA_HOME/kafka
   export PATH=${KAFKA_HOME}/bin:$PATH
+  # Hue
+  # Oozie
+  export OOZIE_HOME=$BIGDATA_HOME/oozie
+  export PATH=${OOZIE_HOME}/bin:$PATH
 
 
   # Node version manager

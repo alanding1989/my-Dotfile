@@ -157,3 +157,4 @@ sudo alanding
 login
 zsh
 nv .bashrc 
+zsh
