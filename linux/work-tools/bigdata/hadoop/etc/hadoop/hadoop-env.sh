@@ -22,11 +22,7 @@
 # remote nodes.
 
 # The java implementation to use.
-export JAVA_HOME=/opt/lang-tools/java/jdk
-
-
-
-
+export JAVA_HOME=/home/alanding/software/bigdata/jdk
 
 # The jsvc implementation to use. Jsvc is required to run secure datanodes
 # that bind to privileged ports to provide authentication of data transfer
@@ -44,6 +40,10 @@ for f in $HADOOP_HOME/contrib/capacity-scheduler/*.jar; do
     export HADOOP_CLASSPATH=$f
   fi
 done
+
+# 增加 Hbase 的Jar包
+export HADOOP_CLASSPATH=$HADOOP_CLASSPATH:/home/alanding/software/bigdata/hbase/lib/*
+
 
 # The maximum amount of heap to use, in MB. Default is 1000.
 #export HADOOP_HEAPSIZE=

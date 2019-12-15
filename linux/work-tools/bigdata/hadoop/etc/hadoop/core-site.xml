@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<?xml-stylesheet type="text/xsl" href="configuration.xsl" ?>
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 <!--
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -17,15 +17,15 @@
 <!-- Put site-specific property overrides in this file. -->
 
 <configuration>
-    <!-- 指定HDFS中NameNode的地址 -->
-    <property>
-        <name>fs.defaultFS</name>
-        <value>hdfs://localhost:9000</value>
-    </property>
+        <!-- 指定HDFS中NameNode的地址 -->
+        <property>
+            <name>fs.defaultFS</name>
+            <value>hdfs://hadoop100:9000</value>
+        </property>
 
-    <!-- 指定Hadoop运行时产生文件的存储目录 -->
-    <property>
-        <name>hadoop.tmp.dir</name>
-        <value>/home/alanding/software/bigdata/hadoop/tmp</value>
-    </property>
+        <!-- 指定Hadoop运行时产生文件的存储目录 -->
+        <property>
+            <name>hadoop.tmp.dir</name>
+            <value>/home/alanding/software/bigdata/hadoop/data/tmp</value>
+        </property>
 </configuration>

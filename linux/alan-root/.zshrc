@@ -50,7 +50,7 @@ ZshSettings() {
   export ARCHFLAGS="-arch x86_64"
 
   # ssh
-  export SSH_KEY_PATH="~/.ssh/rsa_id"
+  export SSH_KEY_PATH="~/.ssh"
 
   source $ZSH/oh-my-zsh.sh
 
@@ -69,7 +69,7 @@ ZshSettings() {
 
   HISTSIZE=10000
   SAVEHIST=10000
-   
+
   # 不保留重复的历史记录项
   setopt hist_ignore_all_dups
   # 在命令前添加空格，不将此命令添加到记录文件中
@@ -77,10 +77,99 @@ ZshSettings() {
   # zsh 4.3.6 doesn't have this option
   setopt hist_fcntl_lock 2>/dev/null
   setopt hist_reduce_blanks
-
   setopt no_nomatch
+
+  # disable Vim freeze after pressing <C-s>
+  stty -ixon
+}
+# }}}
+
+
+# ==================================================================================
+# Function Tools Definition
+# =============================================================================== {{{
+pidCheck() {
+  # check pid tid, locate thread problem
+  ps -mp ${1} -L -o pcpu,pmem,pid,THREAD,tid,time,tname,cmd
+  # ps -mp pid -o THREAD,tid,time
 }
 
+
+decimalToHex() {
+  printf "%x\n" $1
+}
+jstackCheck() {
+  local pid=decimalToHex $1
+  jstack -l $pid > $HOME/jstack.log
+}
+
+
+removewps() {
+  cd /usr/share/applications && sudo rm wps-office-et.desktop wps-office-pdf.desktop wps-office-wpp.desktop wps-office-wps.desktop
+}
+
+
+# hadoop 集群运维函数
+slave_do() {
+    if (($#==0)); then
+       echo no args;
+       return;
+    fi
+
+    echo '=========== in hadoop100 ============'
+    eval $1
+    echo '\n'
+
+    for (( i = 1; i < 3; i++ )); do
+        echo '=========== in hadoop10'${i}' ============'
+        ssh hadoop10$i $1
+        echo '\n'
+    done
+}
+
+
+# Fzf
+FzfConfig() {
+  [ -f /opt/vim/fzf/.fzf.zsh ] && source /opt/vim/fzf/.fzf.zsh
+  export FZF_COMPLETION_TRIGGER='jj'
+  export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --preview '(highlight -O ansi {} || bat {}) 2> /dev/null | head -500'"
+  export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude={.git, .idea, .vscode, .project, .sass-cache, .pyc, node_modules, build, target}"
+  export FZF_TMUX=1
+  # export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+  # export FZF_CTRL_T_OPTS="--select-1 --exit-0"
+  export FZF_ALT_C_OPTS="--preview --select-1 --exit-0 'tree -C -p -s {} | head -200'"
+  _fzf_compgen_path() {
+    fd --hidden --follow --exclude ".git" . "$1"
+  }
+  _fzf_compgen_dir() {
+    fd --type d --hidden --follow --exclude ".git" . "$1"
+  }
+
+  # 命令行模糊搜索文件，进入选中文件所在的文件夹
+  cdf() {
+    local dir
+    dir=$(dirname "$1") && cd "$dir"
+  }
+  
+  # 运行选中的历史命令
+  fh() {
+    eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
+  }
+
+}
+
+
+codi() {
+# Codi Usage: codi [filetype] [filename]
+  local syntax="${1:-python}"
+  shift
+  vim -c \
+    "set bt=nofile ls=0 noru nonu nornu |\
+    hi ColorColumn ctermbg=NONE |\
+    hi VertSplit ctermby=NONE |\
+    hi NonText ctermfg=0 |\
+    Codi $syntax" "$@"
+}
 # }}}
 
 
@@ -88,7 +177,9 @@ ZshSettings() {
 # Commands Aliases Definition
 # =============================================================================== {{{
 DefAlias() {
-# For a full list of active aliases, run `alias`.
+  # -------------------------------------------------------------------------------------------------
+  # 普通应用
+  # ---------------------------------------------------------------------------------------------- {{{
   # system operation
   alias pdf='synclient touchpadoff=1'
   alias pdo='synclient touchpadoff=0'
@@ -101,6 +192,14 @@ DefAlias() {
   alias aptre="apt-get remove"
   alias aptar='apt-get autoremove && apt-get autoclean && apt-get clean'
   alias aptsh='apt show'
+
+  alias cl="colorls -A --sd"
+  alias clf="colorls -A -f --sd"
+  alias cld="colorls -A -d --sd"
+  alias cll="colorls -lA --sd"
+  alias cgt="colorls --gs -t"
+  alias cgl="colorls --gs -lA --sd"
+
   alias md="mkdir -p"
   alias df="df -h"
   alias mv="mv -i"
@@ -109,23 +208,9 @@ DefAlias() {
   alias la="ls -a -htrF"
   alias ll="ls -la -lhtrF"
   alias l.="ls -lhtrdF .*"
-  alias cl="colorls -A --sd"
-  alias clf="colorls -A -f --sd"
-  alias cld="colorls -A -d --sd"
-  alias cll="colorls -lA --sd"
-  alias cgt="colorls --gs -t"
-  alias cgl="colorls --gs -lA --sd"
 
-  alias encconvert='convmv'
   alias sysbackup='sh /mnt/fun+downloads/linux系统安装/systembackup/sysbackup.sh'
 
-
-  # editor
-  alias ge='gedit'
-  alias em='emacs -nw'
-  alias nv='nvim'
-  alias typora='~/software/Typora/Typora'
-  alias tmk="tmux kill-server"
   # config files
   alias zrc="nv ~/.zshrc"
   alias brc="nv ~/.bashrc"
@@ -138,9 +223,15 @@ DefAlias() {
   # alias zipinfo="-O CP936"
   # alias convmv="convmv -f GBK -t utf-8 -notest "
 
+  # editor
+  alias ge='gedit'
+  alias em='emacs -nw'
+  alias nv='nvim'
+  alias typora='~/software/Typora/Typora'
+  alias tmk="tmux kill-server"
+
   # App
   alias yinyue='sudo netease-cloud-music'
-  alias xmind='cp=$pwd; cd /home/alanding/software/command-line-tools/xmind-8/XMind_amd64 && ./XMind; cd $cp'
   alias irc='irssi'
   # acinema
   alias acinema='asciinema'
@@ -150,27 +241,37 @@ DefAlias() {
   alias aul='asciinema upload'
   alias aauth='asciinema auth'
   alias acat='asciinema cat'
+  # fun
+  alias ncat="nyancat"
+  alias clock="while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput rc;done&"
   # translator
   alias jj='python3 /home/alanding/.SpaceVim.d/extools/translator/translator.py '
+  # }}}
 
-  # Devtools
-  # Spark
-  alias starthdfs='start-dfs.sh && start-yarn.sh && start-master.sh && start-slaves.sh'
-  alias stophdfs='stop-dfs.sh && stop-yarn.sh && stop-master.sh && stop-slaves.sh'
-  alias hf='hadoop fs'
 
-  # Cargo
-  alias rr='cargo run'
-  alias rb='cargo build'
+  # -------------------------------------------------------------------------------------------------
+  # 常用开发工具
+  # ---------------------------------------------------------------------------------------------- {{{
+  # grep keyword file | keyword
+  alias grep="grep --color=auto"
 
   # Git
   alias gch='git checkout'
   alias grh='git reset --hard'
   alias gpod='git push origin --delete'
-  alias gdrb='git push origin '
   alias grro='git remote remove origin'
   alias grru='git remote remove upstream'
-  alias gclr='git clone'
+
+  # Database
+  # alias mysql='mysql -u root -p'
+  # alias mongod='mongod --dbpath /home/alanding/software/database/mongodb'
+
+  # docker
+  alias drmc-all="docker rm $(docker ps -a -q) -f"
+
+  # Cargo
+  alias rr='cargo run'
+  alias rb='cargo build'
 
   # Sphinx
   alias sphstart='sphinx-quickstart'
@@ -181,24 +282,72 @@ DefAlias() {
   alias jpnb='jupyter-notebook'
   alias jpto='jupyter nbconvert --to'
 
-  # Python pkg
+  # Python template
   alias cookieml='cookiecutter https://github.com/drivendata/cookiecutter-data-science'
   alias cookiegeneral='cookiecutter git@github.com:audreyr/cookiecutter-pypackage.git'
+  # }}}
 
-  # ---------------------------------------------------------------------------------------
-  alias mysql='mysql -u root -p'
-  alias mongod='mongod --dbpath /home/alanding/software/database/mongodb'
-
-  # fun
-  alias ncat="nyancat"
-  alias clock="while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput rc;done&"
-
-  # grep keyword file | keyword 
-  alias grep="grep --color=auto"
 
   # -------------------------------------------------------------------------------------------------
-  # @运维命令
+  # 大数据集群管理，必须要在每台机 .bashrc 环境变量设置好才起作用
+  # ------------------------------------------------------------------------------------------------{{{
+  alias startvm='vboxmanage startvm "hadoop101" -type headless && vboxmanage startvm "hadoop102" -type headless'
+  alias stopvm='vboxmanage controlvm "hadoop101" acpipowerbutton && vboxmanage controlvm "hadoop102" acpipowerbutton'
+  alias listvm='vboxmanage list runningvms'
+  # 单机伪分布式
+  # alias starthdfs='start-dfs.sh && start-yarn.sh && start-master.sh && start-slaves.sh'
+  # alias stophdfs='stop-dfs.sh && stop-yarn.sh && stop-master.sh && stop-slaves.sh'
+  #
+  # 普通集群模式
+  # alias starthdfs='start-dfs.sh && ssh hadoop101 start-yarn.sh && ssh hadoop102 mr-jobhistory-daemon.sh start historyserver'
+  # alias stophdfs='stop-dfs.sh && ssh hadoop101 stop-yarn.sh && ssh hadoop102 mr-jobhistory-daemon.sh stop historyserver'
+
+  alias ssh100='ssh hadoop100'
+  alias ssh101='ssh hadoop101'
+  alias ssh102='ssh hadoop102'
+  alias ssh103='ssh hadoop103'
+  alias hjps='slave_do "jps -l"'
+  alias hf='hadoop fs'
+
+  # 高可用集群模式
+  # 要先起 Zookeeper
+  alias zkstart='slave_do "zkServer.sh start"'
+  alias zkstatus='slave_do "zkServer.sh status"'
+  alias zkstop='slave_do "zkServer.sh stop"'
+
+  alias hdfs-startall='start-dfs.sh && start-yarn.sh && ssh hadoop101 "yarn-daemon.sh start resourcemanager"'
+  alias hdfs-stopall='stop-dfs.sh && stop-yarn.sh && ssh hadoop101 "yarn-daemon.sh stop resourcemanager"'
+
+  # ha 集群 hdfs 初始化时步骤
+  alias startjn='slave_do "hadoop-daemon.sh start journalnode"'
+  alias hdfsfmt='hdfs namenode -format'
+  #
+  # 搭ha时分步进行
+  # alias startnn1='hadoop-daemon.sh start namenode'
+  # alias startnn2='ssh hadoop101 "hdfs namenode -bootstrapStandby && hadoop-daemon.sh start namenode"'
+  # alias activenn1='set -e slave_do "hadoop-daemon.sh start datanode" && hdfs haadmin -transitionToActive nn1 && hdfs haadmin -getServiceState nn1'
+  #
+  # 初始化 hadoop-ha 在 zookeeper 中的状态
+  # stop-dfs.sh && zkServer.sh start && hdfs zkfc -formatZK
+  alias hyarn='/home/alanding/software/bigdata/hadoop/bin/yarn'
+
+
+  # Kafka
+  # 开启Jmx端口，JMX_PORT=9988 bin/kafka-server-start -daemon config/server.properties
+  alias kfkstart='slave_do "kafka-server-start.sh -daemon ${BIGDATA_HOME}/kafka/config/server.properties"'
+  alias kfkmonitor='${BIGDATA_HOME}/kafka-offset-console/start.sh && ${BIGDATA_HOME}/kafka-manager/bin/kafka-manager'
+  # alias kfkmanager='${BIGDATA_HOME}/kafka-manager/bin/kafka-manager'
+  # alias kfkmonitor='${BIGDATA_HOME}/kafka-offset-console/start.sh'
+  
+  alias hbasestart='${BIGDATA_HOME}/hbase/bin/start-hbase.sh'
+  alias hbasestop='${BIGDATA_HOME}/hbase/bin/stop-hbase.sh'
+
+  # }}}
+
+
   # -------------------------------------------------------------------------------------------------
+  # 系统运维命令
+  # ----------------------------------------------------------------------------------------------{{{
   # less tail head 查看文件内容
   # systemctl status 查看应用状况
 
@@ -223,15 +372,18 @@ DefAlias() {
   alias du="du -h"
 
   #@## 5. 查看磁盘IO性能
-  alias iostat='iostat -xdk 2, 3' 
+  alias iostat='iostat -xdk 2, 3'
   # pidstat -p 进程号 -d(指磁盘IO统计) + 采样间隔
 
   #@## 6. ifstat 查看网络IO性能
 
-  #@## 7. 查看Ip，网络连接，端口占用等总览，加上.. | grep PID 查看具体进程占用端口 -tunlp tcp udp numeric listening program
+  #@## 7. 监控Tcp/Ip 网络工具。显示路由表，实际网络连接，端口占用，每个网络接口设备的状态信息  
+  #       -tunlp 参数说明: tcp udp --numeric-直接使用ip地址，--listening-显示监听的服务器的Socket --program-显示Socket的PID和程序名称
+  #       加上 | grep PID 查看具体进程占用端口
+  #       加上 | grep port 查看port 端口是否被占用
   alias netstat='netstat -tunlp'
   #
-  # lsof -i tcp:80 
+  # lsof -i tcp:80
   alias portcheck="lsof -i"
 
   #@## 8. 查找对应PID 后接应用程序名
@@ -244,11 +396,12 @@ DefAlias() {
 
   #@## 输出某进程<pid>并检查该进程内运行的线程状况
   # top -H -p <pid>
+  # }}}
 
 
   # -------------------------------------------------------------------------------------------------
   # Java 诊断工具
-  # -------------------------------------------------------------------------------------------------
+  # ----------------------------------------------------------------------------------------------{{{
   # 阿里Java命令行可视化诊断工具
   alias arthas='java -jar $HOME/software/lang-tools/Java/Arthas/arthas-boot.jar'
 
@@ -265,8 +418,8 @@ DefAlias() {
 
   # jinfo 实时查看和调整虚拟机各项参数
   # 查看某个参数
-  # jps -l 配合 jinfo -flag  JVM参数名 pid 
-  # jps -l 配合 jinfo -flags pid 
+  # jps -l 配合 jinfo -flag  JVM参数名 pid
+  # jps -l 配合 jinfo -flags pid
 
   # 查看JVM运行线程状态，定位CPU占用过高，线程长时间停顿原因，如死锁、死循环、请求外部资源等。
   # -l 输出锁信息，
@@ -274,12 +427,12 @@ DefAlias() {
   # -m 如调用本地方法，可显示C/C++堆栈。
   alias jstack='jstack -l'
 
-  # jmap 生成堆转储快照
+  # jmap 生成堆转储快照，手工直接导，PID为进程号
+  # jmap -dump:live,format=b,file=m.hprof PID
 
   # -XX:+PrintGCDetails
+  # }}}
 
-  # docker
-  alias drmc-all="docker rm $(docker ps -a -q) -f"
 }
 # }}}
 
@@ -291,6 +444,7 @@ DefEnVar() {
   export TERM=xterm-256color
 
   export ALANDOTFILE=/mnt/fun+downloads/my-Dotfile
+  export DEVFILE=/home/alanding/0_Dev/
 
   # Preferred editor for local and remote sessions
   export EDITOR=/opt/vim/nvim-linux64/bin/nvim
@@ -349,6 +503,9 @@ DefEnVar() {
   # export GO111MODULE=on
 
 
+  # Tomcat
+  # export PATH=/home/alanding/software/web-server/tomcat/bin:$PATH
+
   # Java
   export JAVA_HOME=/opt/lang-tools/java/jdk
   export JRE_HOME=${JAVA_HOME}/jre
@@ -360,8 +517,6 @@ DefEnVar() {
   export GRADLE_User_HOME=/opt/lang-tools/java/gradle
   export PATH=${GRADL_HOME}/bin:$PATH
 
-  # Tomcat
-  # export PATH=/home/alanding/software/web-server/tomcat/bin:$PATH
 
   # Scala
   export SCALA_HOME=/opt/lang-tools/scala/scala
@@ -371,21 +526,30 @@ DefEnVar() {
   # Sbt
   export PATH=/opt/lang-tools/scala/sbt/bin:$PATH
 
+
+  export BIGDATA_HOME=/home/alanding/software/bigdata
   # Spark
-  export SPARK_HOME=/home/alanding/software/spark/spark
+  export SPARK_HOME=$BIGDATA_HOME/spark
   export PATH=${SPARK_HOME}/bin:${SPARK_HOME}/sbin:$PATH
   # Pyspark
   export PYSPARK_DRIVER_PYTHON=jupyter
   export PYSPARK_DRIVER_PYTHON_OPTS='notebook'
   export PYSPARK_PYTHON=$CONDA/envs/py37/bin/python3.7
   # Hadoop
-  export HADOOP_HOME=/home/alanding/software/spark/hadoop
+  export HADOOP_HOME=$BIGDATA_HOME/hadoop
   export PATH=${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:$PATH
-  export HDFS_DATANODE_USER=alanding
-  export HDFS_NAMENODE_USER=alanding
-  export HDFS_SECONDARYNAMENODE_USER=alanding
-  export YARN_NODEMANAGER_USER=alanding
-  export YARN_RESOURCEMANAGER_USER=alanding
+  # Hive
+  export HIVE_HOME=$BIGDATA_HOME/hive
+  export PATH=${HIVE_HOME}/bin:$PATH
+  # Hbase
+  export HBASE_HOME=$BIGDATA_HOME/hbase
+  export PATH=${HBASE_HOME}/bin:$PATH
+  # Zookeeper
+  export ZOOKEEPER_HOME=$BIGDATA_HOME/zookeeper
+  export PATH=${ZOOKEEPER_HOME}/bin:$PATH
+  # Kafka
+  export KAFKA_HOME=$BIGDATA_HOME/kafka
+  export PATH=${KAFKA_HOME}/bin:$PATH
 
 
   # Node version manager
@@ -419,11 +583,11 @@ DefEnVar() {
   export PATH=/opt/lang-tools/lua/luarocks/bin:$PATH
 
   # # Ruby
-  # if [ `whoami` != "root" ]; then
   # # if [ $UID -ne 0 ]; then
+  # if [[ `whoami` != "root" ]]; then
   #   export PATH=$HOME/.rbenv/bin:$PATH
   #   eval "$(rbenv init -)"
-  #   if [ -x gem ]; then
+  #   if [[ -x gem ]]; then
   #     \. $(dirname $(gem which colorls))/tab_complete.sh
   #   fi
   # fi
@@ -455,84 +619,13 @@ DefEnVar() {
   # export PATH=${EMACS_HOME}/emacs/bin:$PATH
 
   # TEX
-  export PATH=/home/alanding/software/texlive/2018/bin/x86_64-linux:$PATH
-  export MANPATH=/home/alanding/software/texlive/2018/texmf-dist/doc/man:$MANPATH
-  export INFOPATH=/home/alanding/software/texlive/2018/texmf-dist/doc/info:$INFOPATH
+  export PATH=/home/alanding/software/command-line-tools/texlive/2018/bin/x86_64-linux:$PATH
+  export MANPATH=/home/alanding/software/command-line-tools/texlive/2018/texmf-dist/doc/man:$MANPATH
+  export INFOPATH=/home/alanding/software/command-line-tools/texlive/2018/texmf-dist/doc/info:$INFOPATH
 
   # postman, vagrant, chromedriver ...
   export PATH=/home/alanding/software/command-line-tools:$PATH
 }
-# }}}
-
- 
-# ==================================================================================
-# Function Tools Definition
-# =============================================================================== {{{
-pidCheck() {
-  # check pid tid, locate thread problem
-  ps -mp ${1} -L -o pcpu,pmem,pid,THREAD,tid,time,tname,cmd
-  # ps -mp pid -o THREAD,tid,time
-}
-
-
-decimalToHex() {
-  printf "%x\n" $1
-}
-jstackCheck() {
-  local pid=decimalToHex $1
-  jstack -l $pid > $HOME/jstack.log
-}
-
-codi() {
-# Codi Usage: codi [filetype] [filename]
-  local syntax="${1:-python}"
-  shift
-  vim -c \
-    "set bt=nofile ls=0 noru nonu nornu |\
-    hi ColorColumn ctermbg=NONE |\
-    hi VertSplit ctermby=NONE |\
-    hi NonText ctermfg=0 |\
-    Codi $syntax" "$@"
-}
-
-removewps() {
-  cd /usr/share/applications && sudo rm wps-office-et.desktop wps-office-pdf.desktop wps-office-wpp.desktop wps-office-wps.desktop
-}
-# }}}
-
-
-# ==================================================================================
-# Configuration
-# ==============================================================================# {{{
-# Fzf
-FzfConfig() {
-  [ -f /opt/vim/fzf/.fzf.zsh ] && source /opt/vim/fzf/.fzf.zsh
-  export FZF_COMPLETION_TRIGGER='jj'
-  export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --preview '(highlight -O ansi {} || bat {}) 2> /dev/null | head -500'"
-  export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude={.git, .idea, .vscode, .project, .sass-cache, .pyc, node_modules, build, target}"
-  export FZF_TMUX=1
-  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-  export FZF_CTRL_T_OPTS="--select-1 --exit-0"
-  export FZF_ALT_C_OPTS="--preview --select-1 --exit-0 'tree -C -p -s {} | head -200'"
-  _fzf_compgen_path() {
-    fd --hidden --follow --exclude ".git" . "$1"
-  }
-  _fzf_compgen_dir() {
-    fd --type d --hidden --follow --exclude ".git" . "$1"
-  }
-  cdf() {
-    local file
-    local dir
-    file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
-  }
-  fh() {
-    eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
-  }
-}
-
-# disable Vim freeze after pressing <C-s>
-stty -ixon
-
 # }}}
 
 

@@ -17,6 +17,7 @@
 <!-- Put site-specific property overrides in this file. -->
 
 <configuration>
+
     <property>
         <name>mapreduce.framework.name</name>
         <value>yarn</value>
@@ -25,13 +26,13 @@
     <!-- 历史服务器端地址 -->
     <property>
         <name>mapreduce.jobhistory.address</name>
-        <value>hadoop104:10020</value>
+        <value>hadoop102:10020</value>
     </property>
 
     <!-- 历史服务器web端地址 -->
     <property>
         <name>mapreduce.jobhistory.webapp.address</name>
-        <value>hadoop104:19888</value>
+        <value>hadoop102:19888</value>
     </property>
 
 </configuration>

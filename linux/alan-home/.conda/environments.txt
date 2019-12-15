@@ -1,2 +1,2 @@
 
-/home/alanding/software/anaconda3/envs/py38-net
+/home/alanding/software/lang-tools/python/anaconda3/envs/py38-net
