@@ -13,6 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
+BIGDATA_HOME=/home/alanding/software/bigdata
+
+
 # User for YARN daemons
 export HADOOP_YARN_USER=${HADOOP_YARN_USER:-yarn}
 
@@ -20,7 +24,7 @@ export HADOOP_YARN_USER=${HADOOP_YARN_USER:-yarn}
 export YARN_CONF_DIR="${YARN_CONF_DIR:-$HADOOP_YARN_HOME/conf}"
 
 # some Java parameters
-export JAVA_HOME=/home/alanding/software/bigdata/jdk
+export JAVA_HOME=${BIGDATA_HOME}/jdk
 
 if [ "$JAVA_HOME" != "" ]; then
   #echo "run java in $JAVA_HOME"

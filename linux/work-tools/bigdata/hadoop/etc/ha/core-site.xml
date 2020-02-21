@@ -47,6 +47,17 @@
         <value>*</value>
     </property>
 
+    <!-- Oozie Server的Hostname -->
+    <property>
+        <name>hadoop.proxyuser.root.hosts</name>
+        <value>*</value>
+    </property>
+    <!-- 允许被Oozie代理的用户组 -->
+    <property>
+        <name>hadoop.proxyuser.root.groups</name>
+        <value>*</value>
+    </property>
+
     <!-- hue Server的Hostname -->
     <property>
         <name>hadoop.proxyuser.hue.hosts</name>

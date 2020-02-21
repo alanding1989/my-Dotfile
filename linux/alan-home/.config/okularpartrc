@@ -5,7 +5,7 @@ ExternalEditor=Emacsclient
 SlidesTransition=SplitHorizontalOut
 
 [Main View]
-SplitterSizes=319,1553
+SplitterSizes=458,1414
 
 [Nav Panel]
 SidebarIconSize=32

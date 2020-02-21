@@ -13,8 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-export JAVA_HOME=/opt/lang-tools/java/jdk
-# export JAVA_HOME=/home/alanding/software/bigdata/jdk
+BIGDATA_HOME=/home/alanding/software/bigdata
+export JAVA_HOME=${BIGDATA_HOME}/jdk
 
 # when HADOOP_JOB_HISTORYSERVER_HEAPSIZE is not defined, set it.
 if [ "$HADOOP_JOB_HISTORYSERVER_HEAPSIZE" = "" ];then

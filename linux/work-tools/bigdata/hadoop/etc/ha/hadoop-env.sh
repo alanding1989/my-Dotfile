@@ -22,7 +22,8 @@
 # remote nodes.
 
 # The java implementation to use.
-export JAVA_HOME=/home/alanding/software/bigdata/jdk
+BIGDATA_HOME=/home/alanding/software/bigdata
+export JAVA_HOME=${BIGDATA_HOME}/jdk
 
 # The jsvc implementation to use. Jsvc is required to run secure datanodes
 # that bind to privileged ports to provide authentication of data transfer

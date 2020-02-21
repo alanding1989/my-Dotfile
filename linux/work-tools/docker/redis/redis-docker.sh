@@ -7,6 +7,6 @@
 # Description  :
 
 
-# 本机已装
+# 
 docker run -dit --name redis-01 -p --restart=always redis
 

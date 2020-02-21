@@ -68,23 +68,23 @@
 # - MKL_NUM_THREADS=1        Disable multi-threading of Intel MKL
 # - OPENBLAS_NUM_THREADS=1   Disable multi-threading of OpenBLAS
 
-export BIGDATA_HOME=/home/alanding/software/bigdata
+
+BIGDATA_HOME=/home/alanding/software/bigdata
+export JAVA_HOME=${BIGDATA_HOME}/jdk
+
+# yarn 模式部署
+# BIGDATA_HOME=/home/alanding/software/bigdata
+# export YARN_CONF_DIR=$BIGDATA_HOME/etc/hadoop
+# export SPARK_EXECUTOR_CORES=1
+# export SPARK_EXECUTOR_MEMORY=1G
 
 
-
-export JAVA_HOME=/opt/lang-tools/java/jdk
-export SCALA_HOME=/opt/lang-tools/scala/scala
-
-export HADOOP_HOME=$BIGDATA_HOME/hadoop
-export HADOOP_CONF_DIR=$BIGDATA_HOME/hadoop/etc/hadoop
-export SPARK_HOME=$BIGDATA_HOME/spark
+# spark 独立部署
 export SPARK_MASTER_IP=127.0.0.1
 export SPARK_MASTER_PORT=7077
-export SPARK_MASTER_WEBUI_PORT=8099
-export SPARK_WORKER_CORES=3
-export SPARK_WORKER_INSTANCES=1
-export SPARK_WORKER_MEMORY=5G
-export SPARK_WORKER_WEBUI_PORT=8081
-export SPARK_EXECUTOR_CORES=1
-export SPARK_EXECUTOR_MEMORY=1G
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:$HADOOP_HOME/lib/native
+# export SPARK_MASTER_WEBUI_PORT=8099
+
+# export SPARK_WORKER_CORES=3
+# export SPARK_WORKER_INSTANCES=1
+# export SPARK_WORKER_MEMORY=5G
+# export SPARK_WORKER_WEBUI_PORT=8081

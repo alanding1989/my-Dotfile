@@ -218,10 +218,13 @@ DefAlias() {
   alias trc="nv ~/.tmux.conf"
   alias szsh="source ~/.zshrc"
 
+  # -------------------------------------------------------------------------------------------------
   # windows 编码 解码
+  # ---------------------------------------------------------------------------------------------- {{{
   # alias unzip="-O CP936"
   # alias zipinfo="-O CP936"
   # alias convmv="convmv -f GBK -t utf-8 -notest "
+  # }}}
 
   # editor
   alias ge='gedit'
@@ -242,7 +245,7 @@ DefAlias() {
   alias aauth='asciinema auth'
   alias acat='asciinema cat'
   # fun
-  alias ncat="nyancat"
+  alias rcat="nyancat"
   alias clock="while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput rc;done&"
   # translator
   alias jj='python3 /home/alanding/.SpaceVim.d/extools/translator/translator.py '
@@ -291,10 +294,6 @@ DefAlias() {
   # -------------------------------------------------------------------------------------------------
   # 大数据集群管理，必须要在每台机 .bashrc 环境变量设置好才起作用
   # ------------------------------------------------------------------------------------------------{{{
-  alias startvm='vboxmanage startvm "hadoop101" -type headless && vboxmanage startvm "hadoop102" -type headless'
-  alias stopvm='vboxmanage controlvm "hadoop101" acpipowerbutton && vboxmanage controlvm "hadoop102" acpipowerbutton'
-  alias listvm='vboxmanage list runningvms'
-
   # 单机伪分布式
   # alias starthdfs='start-dfs.sh && start-yarn.sh && start-master.sh && start-slaves.sh'
   # alias stophdfs='stop-dfs.sh && stop-yarn.sh && stop-master.sh && stop-slaves.sh'
@@ -303,23 +302,61 @@ DefAlias() {
   # alias starthdfs='start-dfs.sh && ssh hadoop101 start-yarn.sh && ssh hadoop102 mr-jobhistory-daemon.sh start historyserver'
   # alias stophdfs='stop-dfs.sh && ssh hadoop101 stop-yarn.sh && ssh hadoop102 mr-jobhistory-daemon.sh stop historyserver'
 
+  alias startvm='vboxmanage startvm "hadoop101" -type headless && vboxmanage startvm "hadoop102" -type headless'
+  alias stopvm='vboxmanage controlvm "hadoop101" acpipowerbutton && vboxmanage controlvm "hadoop102" acpipowerbutton'
+  alias listvm='vboxmanage list runningvms'
   alias ssh100='ssh hadoop100'
   alias ssh101='ssh hadoop101'
   alias ssh102='ssh hadoop102'
   alias ssh103='ssh hadoop103'
   alias hjps='slave_do "jps -l"'
   alias hf='hadoop fs'
-  # hdfs haadmin -getServiceState nn2
-  # hdfs haadmin -transitionToActive nn1
+  alias hyarn='/home/alanding/software/bigdata/hadoop/bin/yarn'
+
 
   # 高可用集群模式
-  # 要先起 Zookeeper
+  # 要先起 Zookeeper，服务器端口 2181
   alias zkstart='slave_do "zkServer.sh start"'
   alias zkstatus='slave_do "zkServer.sh status"'
   alias zkstop='slave_do "zkServer.sh stop"'
 
-  alias hdfs-startall='start-dfs.sh && start-yarn.sh && ssh hadoop101 "yarn-daemon.sh start resourcemanager" && httpfs.sh start && ssh hadoop102 "mr-jobhistory-daemon.sh start historyserver"'
-  alias hdfs-stopall='stop-dfs.sh && stop-yarn.sh && httpfs.sh stop && ssh hadoop101 "yarn-daemon.sh stop resourcemanager" && ssh hadoop102 "mr-jobhistory-daemon.sh stop historyserver"'
+  alias hdfs-startall='start-dfs.sh && start-yarn.sh && ssh hadoop101 "yarn-daemon.sh start resourcemanager" && printf "\n\n" && hdfs-status'
+  alias hdfs-stopall='stop-dfs.sh && stop-yarn.sh && ssh hadoop101 "yarn-daemon.sh stop resourcemanager"'
+  alias log-start="ssh hadoop102 mr-jobhistory-daemon.sh start historyserver"
+  alias log-stop="ssh hadoop102 mr-jobhistory-daemon.sh stop historyserver"
+
+  # 查看及切换主从状态
+  alias hdfs-status='printf "hdfs hadoop100:\n" && hdfs haadmin -getServiceState nn1 && printf "\n yarn hadoop100:\n" && hyarn rmadmin -getServiceState rm1'
+  alias hdfs-trans='hdfs haadmin -transitionToStandby nn2 --forcemanual && hdfs haadmin -transitionToActive nn1 --forcemanual'
+  alias yarn-trans='hyarn rmadmin -transitionToStandby rm2 --forcemanual && hyarn rmadmin -transitionToActive rm1 --forcemanual'
+
+  # hbase
+  alias hbase-start='${HBASE_HOME}/bin/start-hbase.sh'
+  alias hbase-stop='${HBASE_HOME}/bin/stop-hbase.sh'
+  alias hbase-service-start='hbase-daemon.sh start thrift'
+  alias hbase-service-stop='hbase-daemon.sh stop thrift'
+ 
+  # hive服务
+  alias hive-start='(${HIVE_HOME}/bin/hive --service metastore &) && ${HIVE_HOME}/bin/hive --service hiveserver2 &'
+  # alias hivestop=''
+
+  # Kafka，服务器端口 9092
+  # kafka 每个节点上的 server.properties 配置中 broker.id 都要不一样，否则出错
+  # 开启Jmx端口，JMX_PORT=9988 bin/kafka-server-start -daemon config/server.properties
+  alias kfk-start='slave_do "kafka-server-start.sh -daemon ${KAFKA_HOME}/config/server.properties"'
+  alias kfk-stop='slave_do "kafka-server-stop.sh"'
+  alias kfk-monitor='${BIGDATA_HOME}/kafka-offset-console/start.sh && ${BIGDATA_HOME}/kafka-manager/bin/kafka-manager'
+  # alias kfkmanager='${BIGDATA_HOME}/kafka-manager/bin/kafka-manager'
+  # alias kfkmonitor='${BIGDATA_HOME}/kafka-offset-console/start.sh'
+  
+  # hue 前面的是hadoop的服务
+  alias hue-start="httpfs.sh start | docker-compose -f /home/alanding/software/bigdata/hue/docker-compose.yml up -d"
+  alias hue-stop="httpfs.sh stop | docker stop hue"
+
+  # oozie
+  alias oozie-start='${OOZIE_HOME}/bin/oozied.sh start'
+  alias oozie-stop='${OOZIE_HOME}/bin/oozied.sh stop'
+
 
   # ha 集群 hdfs 初始化时步骤
   alias startjn='slave_do "hadoop-daemon.sh start journalnode"'
@@ -332,22 +369,6 @@ DefAlias() {
   #
   # 初始化 hadoop-ha 在 zookeeper 中的状态
   # stop-dfs.sh && zkServer.sh start && hdfs zkfc -formatZK
-  alias hyarn='/home/alanding/software/bigdata/hadoop/bin/yarn'
-
-
-  # Kafka
-  # 开启Jmx端口，JMX_PORT=9988 bin/kafka-server-start -daemon config/server.properties
-  alias kfkstart='slave_do "kafka-server-start.sh -daemon ${BIGDATA_HOME}/kafka/config/server.properties"'
-  alias kfkmonitor='${BIGDATA_HOME}/kafka-offset-console/start.sh && ${BIGDATA_HOME}/kafka-manager/bin/kafka-manager'
-  # alias kfkmanager='${BIGDATA_HOME}/kafka-manager/bin/kafka-manager'
-  # alias kfkmonitor='${BIGDATA_HOME}/kafka-offset-console/start.sh'
-  
-  alias hbasestart='${BIGDATA_HOME}/hbase/bin/start-hbase.sh && hbase-daemon.sh start thrift'
-  alias hbasestop='${BIGDATA_HOME}/hbase/bin/stop-hbase.sh && hbase-daemon.sh stop thrift'
-
-  alias hivestart='${BIGDATA_HOME}/hive/bin/hive --service metastore &'
-  alias hivestop='${BIGDATA_HOME}/hive/bin/hive --service hiveserver2 &'
-
   # }}}
 
 
@@ -375,7 +396,7 @@ DefAlias() {
   alias free='free -h -s3'
 
   #@## 4. 查看文件系统及硬盘空间状况
-  alias du="du -h"
+  alias du="du -h --max-depth=1"
 
   #@## 5. 查看磁盘IO性能
   alias iostat='iostat -xdk 2, 3'
@@ -392,7 +413,7 @@ DefAlias() {
   # lsof -i tcp:80
   alias portcheck="lsof -i"
 
-  #@## 8. 查找对应PID 后接应用程序名
+  #@## 8. 查找对应进程　PID 后接应用程序名
   alias psgrep='ps -ef | grep '
 
   #@## 9. CPU占用过高原因定位
@@ -495,9 +516,10 @@ DefEnVar() {
   export RUSTUP_HOME=/opt/lang-tools/rust/rustup
   export CARGO_HOME=/home/alanding/software/lang-tools/cargo
   export PATH=$CARGO_HOME/bin:$PATH
-  export RUST_SRC_PATH=$RUSTUP_HOME/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
-  export RUSTUP_DIST_SERVER=http://mirrors.ustc.edu.cn/rust-static
-  export RUSTUP_UPDATE_ROOT=http://mirrors.ustc.edu.cn/rust-static/rustup
+
+  export RUST_SRC_PATH=$RUSTUP_HOME/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
+  export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
+  export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
 
   # Go
   export GOROOT=/opt/lang-tools/go/go
@@ -537,6 +559,10 @@ DefEnVar() {
 
 
   export BIGDATA_HOME=/home/alanding/software/bigdata
+  # Redis
+  export REDIS_HOME=$BIGDATA_HOME/redis
+  export PATH=${REDIS_HOME}/bin:$PATH
+
   # Hadoop
   export HADOOP_HOME=$BIGDATA_HOME/hadoop
   export PATH=${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin:$PATH
@@ -547,6 +573,9 @@ DefEnVar() {
   export PYSPARK_DRIVER_PYTHON=jupyter
   export PYSPARK_DRIVER_PYTHON_OPTS='notebook'
   export PYSPARK_PYTHON=$CONDA/envs/py37/bin/python3.7
+  # Flink
+  export FLINK_HOME=$BIGDATA_HOME/spark
+  export PATH=${FLINK_HOME}/bin:$PATH
   # Hive
   export HIVE_HOME=$BIGDATA_HOME/hive
   export PATH=${HIVE_HOME}/bin:$PATH
@@ -559,7 +588,6 @@ DefEnVar() {
   # Kafka
   export KAFKA_HOME=$BIGDATA_HOME/kafka
   export PATH=${KAFKA_HOME}/bin:$PATH
-  # Hue
   # Oozie
   export OOZIE_HOME=$BIGDATA_HOME/oozie
   export PATH=${OOZIE_HOME}/bin:$PATH

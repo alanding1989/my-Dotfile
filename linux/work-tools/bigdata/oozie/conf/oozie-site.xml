@@ -137,14 +137,22 @@
         </description>
     </property>
 
+    <!-- <property> -->
+        <!-- <name>oozie.service.JPAService.jdbc.driver</name> -->
+        <!-- <value>com.mysql.jdbc.Driver</value> -->
+        <!-- <description> -->
+            <!-- JDBC driver class. -->
+        <!-- </description> -->
+    <!-- </property> -->
+
     <property>
         <name>oozie.service.JPAService.jdbc.driver</name>
         <value>com.mysql.cj.jdbc.Driver</value>
-        <!-- <value>com.mysql.jdbc.Driver</value> -->
         <description>
             JDBC driver class.
         </description>
     </property>
+
 
     <property>
         <name>oozie.service.JPAService.jdbc.url</name>

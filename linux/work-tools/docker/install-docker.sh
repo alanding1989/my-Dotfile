@@ -25,6 +25,7 @@ sudo usermod -aG docker alanding
 
 # change docker path to store
 [[ ! -e "/home/alanding/software/docker" ]] && mkdir "/home/alanding/software/docker"
+# 如果/var/lib/docker文件夹下已经有文件，就要复制过来，再创建软链
 [[ -z $(ls "/var/lib/docker") ]] && sudo ln -s /home/alanding/software/docker "/var/lib/docker"
 
 
